@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Pc8dB5ctMmIgTDbxPVGvx"
+uri = "file://artifacts/colorstack-utd/src/assets/images/team-1.png"
+type = "image"
+title = "Headshot of a Black male student"
+
+[[generated]]
+id = "-0KzcX6BrlN2bUhMw9EiL"
+uri = "file://artifacts/colorstack-utd/src/assets/images/team-2.png"
+type = "image"
+title = "Headshot of a Latina female student"
+
+[[generated]]
+id = "hzxaBDm9cvGjEyMDBJqoK"
+uri = "file://artifacts/colorstack-utd/src/assets/images/team-3.png"
+type = "image"
+title = "Headshot of a Black female student"
+
+[[generated]]
+id = "J3UdIraRB_awKi3NRHhGI"
+uri = "file://artifacts/colorstack-utd/src/assets/images/team-4.png"
+type = "image"
+title = "Headshot of a Latino male student"
+
+[[generated]]
+id = "GChEIaKKKonLnSahpzucZ"
+uri = "file://artifacts/colorstack-utd/src/assets/images/team-5.png"
+type = "image"
+title = "Headshot of a Black male student"
+
+[[generated]]
+id = "1GsjHYh2hNI-Z0n5XmMJH"
+uri = "file://artifacts/colorstack-utd/src/assets/images/hero-bg.png"
+type = "image"
+title = "Abstract glowing floating orbs background"

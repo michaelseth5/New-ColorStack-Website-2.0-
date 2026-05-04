@@ -1,0 +1,55 @@
+Replit Prompt — SHPE UTD Website:
+
+Build a multi-page website for SHPE at UT Dallas modeled 80% after the ColorStack OSU site (https://colorstackosu.org) and 20% inspired by the SHPE UTD site (https://utdshpe.org/about).
+
+Brand Colors:
+
+Orange: #EC7524
+Green: #114634
+White: #FFFFFF
+
+
+Structure — mirror ColorStack OSU's layout exactly but swap in UTD SHPE branding:
+Nav Bar:
+
+Logo on left (text: "SHPE at UTD" for now)
+Links: Events | Sponsors | Meet the Board | About Us (dropdown: About, Contact Us)
+Dark green background (#114634), orange hover accents
+
+Home Page (index.html):
+
+Full-width hero image section with headline: "Welcome to SHPE at UT Dallas"
+Orange CTA button: "Become a Member"
+Scrolling sponsor logo marquee row (placeholder logos)
+Our Mission section with a bold statement about SHPE UTD empowering Hispanic engineers
+3 feature cards with icons: Workshops, Professional Development, Community — each with a short description (pull tone/style from SHPE UTD's about page language)
+Impact Numbers section (animated count-up): e.g. Members, Events Hosted, Internship Offers, Industry Partners
+Voices of SHPE UTD — testimonial carousel (same style as ColorStack OSU's sliding testimonials)
+Get Involved section: 3 cards — Sponsorship, Join the Community, Contact Us
+
+Meet the Board (execboard.html):
+
+Title: < Meet The Board />  in monospace/code font style (exact match to ColorStack OSU)
+Year toggle tabs: e.g. 2023-2024 | 2024-2025 | 2025-2026
+Officer cards: circular photo, name, title, "Book a Time" button
+Green card backgrounds with orange accents
+
+Events (events.html):
+
+Card grid of past + upcoming events
+Each card: event photo placeholder, title, date, short description
+Filter tabs: Upcoming | Past
+
+Sponsors (sponsors.html):
+
+Grid of sponsor logos by tier (Gold, Silver, Bronze)
+CTA to sponsor the chapter
+
+About (about.html):
+
+About SHPE UTD mission + history section (pull inspiration from https://utdshpe.org/about style here — this is the 20%: warm, community-first tone, photos of members)
+Contact form at bottom
+
+
+Tech Stack: HTML, CSS, vanilla JavaScript (or React). Fully responsive/mobile-friendly. Use smooth scroll, hover transitions, and the count-up animation for stats. Keep all color usage consistent: green for nav/headers/backgrounds, orange for buttons/highlights/accents.
+Start with index.html and execboard.html first.

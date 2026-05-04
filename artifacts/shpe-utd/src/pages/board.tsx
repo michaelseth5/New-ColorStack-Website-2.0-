@@ -20,26 +20,26 @@ interface Officer {
 
 const officersData: Record<Year, Officer[]> = {
   "2025-2026": [
-    { name: "Miguel Hernandez", title: "PRESIDENT", image: board1, color: "orange" },
-    { name: "Sofia Ramirez", title: "VICE PRESIDENT", image: board2, color: "green" },
-    { name: "Isabella Flores", title: "SECRETARY", image: board3, color: "orange" },
-    { name: "Diego Castro", title: "TREASURER", image: board4, color: "green" },
-    { name: "Alejandro Morales", title: "EVENTS CHAIR", image: board5, color: "orange" },
-    { name: "Valentina Cruz", title: "PROFESSIONAL DEV CHAIR", image: board6, color: "green" },
-    { name: "Mateo Ortiz", title: "WEBMASTER", image: board1, color: "orange" },
-    { name: "Camila Reyes", title: "COMMUNITY CHAIR", image: board2, color: "green" },
+    { name: "Jordan Williams", title: "PRESIDENT", image: board1, color: "orange" },
+    { name: "Aaliyah Carter", title: "VICE PRESIDENT", image: board2, color: "green" },
+    { name: "Marcus Thompson", title: "SECRETARY", image: board3, color: "orange" },
+    { name: "Destiny Reyes", title: "TREASURER", image: board4, color: "green" },
+    { name: "Elijah Johnson", title: "EVENTS CHAIR", image: board5, color: "orange" },
+    { name: "Camila Flores", title: "PROFESSIONAL DEV CHAIR", image: board6, color: "green" },
+    { name: "Isaiah Brooks", title: "WEBMASTER", image: board1, color: "orange" },
+    { name: "Natalie Morales", title: "COMMUNITY CHAIR", image: board2, color: "green" },
   ],
   "2024-2025": [
-    { name: "Javier Vargas", title: "PRESIDENT", image: board5, color: "green" },
-    { name: "Lucia Navarro", title: "VICE PRESIDENT", image: board3, color: "orange" },
-    { name: "Daniel Ruiz", title: "SECRETARY", image: board4, color: "green" },
-    { name: "Carmen Salazar", title: "TREASURER", image: board6, color: "orange" },
+    { name: "Darius Mitchell", title: "PRESIDENT", image: board5, color: "green" },
+    { name: "Sofia Ramirez", title: "VICE PRESIDENT", image: board3, color: "orange" },
+    { name: "Caleb Washington", title: "SECRETARY", image: board4, color: "green" },
+    { name: "Jasmine Cruz", title: "TREASURER", image: board6, color: "orange" },
   ],
   "2023-2024": [
-    { name: "Andres Mendoza", title: "PRESIDENT", image: board4, color: "orange" },
-    { name: "Gabriela Torres", title: "VICE PRESIDENT", image: board2, color: "green" },
-    { name: "Luis Dominguez", title: "SECRETARY", image: board1, color: "orange" },
-    { name: "Maria Castillo", title: "TREASURER", image: board3, color: "green" },
+    { name: "Andre Davis", title: "PRESIDENT", image: board4, color: "orange" },
+    { name: "Isabella Torres", title: "VICE PRESIDENT", image: board2, color: "green" },
+    { name: "Malik Robinson", title: "SECRETARY", image: board1, color: "orange" },
+    { name: "Gabriela Vega", title: "TREASURER", image: board3, color: "green" },
   ]
 };
 
@@ -60,7 +60,7 @@ export default function Board() {
             &lt; Meet The Board /&gt;
           </h1>
           <p className="text-white/80 mt-6 text-xl max-w-2xl mx-auto font-medium">
-            The dedicated student leaders behind SHPE UTD.
+            The dedicated student leaders behind ColorStack at UTD.
           </p>
         </motion.div>
       </section>
@@ -74,8 +74,8 @@ export default function Board() {
               key={year}
               onClick={() => setActiveYear(year)}
               className={`px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 ${
-                activeYear === year 
-                  ? "bg-primary text-white shadow-lg shadow-primary/30" 
+                activeYear === year
+                  ? "bg-primary text-white shadow-lg shadow-primary/30"
                   : "bg-white text-muted-foreground hover:bg-gray-100 hover:text-foreground shadow-sm"
               }`}
               data-testid={`tab-year-${year}`}
@@ -86,7 +86,7 @@ export default function Board() {
         </div>
 
         {/* Officer Grid */}
-        <motion.div 
+        <motion.div
           key={activeYear}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,15 +96,15 @@ export default function Board() {
           {officersData[activeYear].map((officer, idx) => (
             <div key={`${activeYear}-${idx}`} className="flex flex-col group">
               {/* Photo Card */}
-              <div 
+              <div
                 className={`w-full aspect-square rounded-3xl overflow-hidden mb-6 p-4 relative ${
                   officer.color === "orange" ? "bg-primary/10" : "bg-secondary/10"
                 } transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl`}
               >
                 <div className={`absolute inset-0 opacity-20 ${officer.color === "orange" ? "bg-primary" : "bg-secondary"}`}></div>
-                <img 
-                  src={officer.image} 
-                  alt={officer.name} 
+                <img
+                  src={officer.image}
+                  alt={officer.name}
                   className="w-full h-full object-cover rounded-2xl relative z-10 shadow-md grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
                 />
               </div>
@@ -115,8 +115,8 @@ export default function Board() {
                 <p className="text-primary font-black uppercase tracking-wider text-sm mb-6 flex-1">
                   {officer.title}
                 </p>
-                
-                <Button 
+
+                <Button
                   className="bg-primary hover:bg-primary/90 text-white rounded-full font-bold shadow-md w-full py-6 group-hover:shadow-lg transition-all"
                   data-testid={`button-book-${idx}`}
                 >

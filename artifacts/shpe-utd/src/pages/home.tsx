@@ -36,19 +36,19 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Maria Rodriguez",
+      name: "Jordan Williams",
       year: "Senior, Computer Science",
-      quote: "SHPE UTD gave me the community I didn't know I needed. It's more than an organization; it's a familia that supports you through every tough exam and interview process."
+      quote: "ColorStack UTD gave me the community I didn't know I needed. Being surrounded by people who look like me and are crushing it in tech made me believe I could do it too."
     },
     {
-      name: "Carlos Gomez",
-      year: "Junior, Mechanical Engineering",
-      quote: "The professional development workshops completely transformed my resume. I landed my dream internship thanks to the connections I made through SHPE's corporate partners."
+      name: "Aaliyah Carter",
+      year: "Junior, Software Engineering",
+      quote: "The resume workshops and mock interviews through ColorStack helped me land a summer internship at Microsoft. I genuinely don't think I would have gotten it without this community."
     },
     {
-      name: "Elena Silva",
-      year: "Sophomore, Biomedical Engineering",
-      quote: "Being part of SHPE has helped me grow as a leader. The opportunities to serve our community while building technical skills are incredible."
+      name: "Marcus Thompson",
+      year: "Sophomore, Computer Engineering",
+      quote: "ColorStack changed how I see myself in this industry. Walking into a room full of Black and Latinx engineers who are thriving — that's powerful. That's what this org does."
     }
   ];
 
@@ -74,49 +74,49 @@ export default function Home() {
         {/* Left Column - Image */}
         <div className="w-full md:w-[55%] h-[50vh] md:h-auto relative overflow-hidden">
           <div className="absolute inset-0 bg-secondary/10 z-10"></div>
-          <img 
-            src={heroImg} 
-            alt="Diverse Hispanic engineering students at UTD" 
+          <img
+            src={heroImg}
+            alt="Black and Latinx computing students at UTD"
             className="w-full h-full object-cover object-center"
           />
         </div>
-        
+
         {/* Right Column - Content */}
         <div className="w-full md:w-[45%] flex flex-col justify-center bg-white p-8 md:p-16 lg:p-24">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight mb-6">
-              Welcome to <span className="text-primary block mt-2">SHPE</span> at UT Dallas
+              Welcome to <span className="text-primary block mt-2">ColorStack</span> at UT Dallas
             </h1>
             <p className="text-xl text-muted-foreground mb-10 max-w-md">
-              Empowering Hispanic engineering students to become leaders in STEM through community, professional development, and academic excellence.
+              Increasing the number of Black and Latinx students who graduate with computing degrees and go on to thrive in tech careers.
             </p>
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 py-6 text-lg font-bold w-fit shadow-lg shadow-primary/25" data-testid="button-hero-join">
               Become a Member
             </Button>
-            
+
             {/* Sponsors Marquee */}
             <div className="mt-20 overflow-hidden w-full">
               <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">Our Supporters</p>
               <div className="flex w-[200%] gap-8 animate-marquee items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                 <span className="text-2xl font-bold font-sans">Google</span>
                 <span className="text-2xl font-bold font-sans">Microsoft</span>
-                <span className="text-2xl font-bold font-sans">ExxonMobil</span>
-                <span className="text-2xl font-bold font-sans">Boeing</span>
+                <span className="text-2xl font-bold font-sans">Goldman Sachs</span>
                 <span className="text-2xl font-bold font-sans">Capital One</span>
-                <span className="text-2xl font-bold font-sans">Toyota</span>
-                <span className="text-2xl font-bold font-sans">Raytheon</span>
+                <span className="text-2xl font-bold font-sans">Salesforce</span>
+                <span className="text-2xl font-bold font-sans">Stripe</span>
+                <span className="text-2xl font-bold font-sans">Dropbox</span>
                 {/* Duplicate for infinite effect */}
                 <span className="text-2xl font-bold font-sans">Google</span>
                 <span className="text-2xl font-bold font-sans">Microsoft</span>
-                <span className="text-2xl font-bold font-sans">ExxonMobil</span>
-                <span className="text-2xl font-bold font-sans">Boeing</span>
+                <span className="text-2xl font-bold font-sans">Goldman Sachs</span>
                 <span className="text-2xl font-bold font-sans">Capital One</span>
-                <span className="text-2xl font-bold font-sans">Toyota</span>
-                <span className="text-2xl font-bold font-sans">Raytheon</span>
+                <span className="text-2xl font-bold font-sans">Salesforce</span>
+                <span className="text-2xl font-bold font-sans">Stripe</span>
+                <span className="text-2xl font-bold font-sans">Dropbox</span>
               </div>
             </div>
           </motion.div>
@@ -138,14 +138,14 @@ export default function Home() {
       {/* Mission Text */}
       <section className="bg-white py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
             className="text-2xl md:text-3xl lg:text-4xl font-medium text-foreground leading-relaxed"
           >
-            We empower the Hispanic community at UT Dallas to realize its fullest potential and impact the world through STEM awareness, access, support, and development. <span className="font-bold text-primary block mt-4">We are more than a chapter. We are a familia.</span>
+            We exist to increase the number of Black and Latinx students who graduate with computing degrees and go on to have successful careers in tech. <span className="font-bold text-primary block mt-4">Representation changes everything.</span>
           </motion.p>
         </div>
       </section>
@@ -158,17 +158,17 @@ export default function Home() {
               {
                 icon: <BookOpen size={40} strokeWidth={1.5} />,
                 title: "Workshops",
-                desc: "Technical deep-dives, resume reviews, and academic support to ensure you excel in your coursework."
+                desc: "Technical deep-dives, resume reviews, and interview prep to get you ready for the world's best tech companies."
               },
               {
                 icon: <Briefcase size={40} strokeWidth={1.5} />,
                 title: "Professional Development",
-                desc: "Direct access to recruiters, mock interviews, and career fair prep to land top internships."
+                desc: "Direct access to recruiters, coffee chats with engineers, and career fair prep to land top-tier internships."
               },
               {
                 icon: <Users size={40} strokeWidth={1.5} />,
                 title: "Community",
-                desc: "Social events, mentorship programs, and a supportive network that feels like home away from home."
+                desc: "A network of Black and Latinx peers who support, challenge, and celebrate each other through every step of the journey."
               }
             ].map((feature, i) => (
               <motion.div
@@ -196,12 +196,12 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x-0 md:divide-x divide-white/20">
             {[
-              { num: 200, label: "Members", suffix: "+" },
-              { num: 40, label: "Events Hosted", suffix: "+" },
-              { num: 75, label: "Internship Offers", suffix: "+" },
-              { num: 20, label: "Industry Partners", suffix: "+" }
+              { num: 150, label: "Active Members", suffix: "+" },
+              { num: 35, label: "Events This Year", suffix: "+" },
+              { num: 60, label: "Internship Offers", suffix: "+" },
+              { num: 15, label: "Industry Partners", suffix: "+" }
             ].map((stat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -219,7 +219,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Voices of SHPE UTD */}
+      {/* Voices of ColorStack UTD */}
       <section className="bg-white py-24 px-4 overflow-hidden">
         <div className="container mx-auto">
           <motion.div
@@ -228,7 +228,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">Voices of SHPE UTD</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">Voices of ColorStack UTD</h2>
             <p className="text-xl text-muted-foreground">Hear directly from our members.</p>
           </motion.div>
 
@@ -282,7 +282,7 @@ export default function Home() {
                 <Briefcase size={32} />
               </div>
               <h3 className="text-2xl font-bold mb-4">Sponsorship</h3>
-              <p className="text-muted-foreground mb-8 flex-1">Support our mission and connect with top Hispanic engineering talent at UTD.</p>
+              <p className="text-muted-foreground mb-8 flex-1">Connect your company with the next generation of Black and Latinx tech talent at UTD.</p>
               <Link href="/sponsors">
                 <Button className="bg-secondary hover:bg-secondary/90 w-full rounded-full py-6 text-lg font-bold group-hover:shadow-lg transition-all" data-testid="button-partner">
                   Partner with us
@@ -301,7 +301,7 @@ export default function Home() {
                 <Users size={32} />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Join the Community</h3>
-              <p className="text-white/90 mb-8 flex-1">Become a part of our familia and take your college experience to the next level.</p>
+              <p className="text-white/90 mb-8 flex-1">Become a member of ColorStack UTD and take your computing career to the next level.</p>
               <Button className="bg-white text-primary hover:bg-white/90 w-full rounded-full py-6 text-lg font-bold shadow-md" data-testid="button-join-community">
                 Become a Member
               </Button>
@@ -318,7 +318,7 @@ export default function Home() {
                 <BookOpen size={32} />
               </div>
               <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
-              <p className="text-muted-foreground mb-8 flex-1">Have questions? Want to collaborate? We'd love to hear from you.</p>
+              <p className="text-muted-foreground mb-8 flex-1">Questions? Want to collaborate? We'd love to hear from you.</p>
               <Link href="/about">
                 <Button variant="outline" className="w-full rounded-full py-6 text-lg font-bold border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-all group-hover:shadow-lg" data-testid="button-contact">
                   Get in Touch

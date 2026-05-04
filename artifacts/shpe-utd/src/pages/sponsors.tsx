@@ -5,14 +5,14 @@ import { Mail } from "lucide-react";
 export default function Sponsors() {
   const sponsors = {
     gold: ["Google", "Microsoft"],
-    silver: ["ExxonMobil", "Boeing", "Capital One"],
-    bronze: ["Toyota", "Raytheon", "Texas Instruments", "Lockheed Martin"]
+    silver: ["Goldman Sachs", "Capital One", "Salesforce"],
+    bronze: ["Dropbox", "Stripe", "Figma", "Notion"]
   };
 
   return (
     <div className="min-h-screen bg-white w-full pb-24">
       {/* Header */}
-      <section className="bg-[#114634] py-24 px-4 text-center relative overflow-hidden">
+      <section className="bg-secondary py-24 px-4 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,7 +37,7 @@ export default function Sponsors() {
             <h2 className="text-3xl font-black text-yellow-600 tracking-widest uppercase px-6 py-2 border-2 border-yellow-500/30 rounded-full bg-yellow-50/50">Gold Tier</h2>
             <div className="h-px bg-gradient-to-l from-transparent to-yellow-500/50 flex-1"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {sponsors.gold.map((sponsor, idx) => (
               <motion.div
@@ -61,7 +61,7 @@ export default function Sponsors() {
             <h2 className="text-2xl font-black text-gray-500 tracking-widest uppercase px-6 py-2 border-2 border-gray-400/30 rounded-full bg-gray-50">Silver Tier</h2>
             <div className="h-px bg-gradient-to-l from-transparent to-gray-400/50 flex-1"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {sponsors.silver.map((sponsor, idx) => (
               <motion.div
@@ -85,7 +85,7 @@ export default function Sponsors() {
             <h2 className="text-xl font-black text-orange-700 tracking-widest uppercase px-6 py-2 border-2 border-orange-400/30 rounded-full bg-orange-50">Bronze Tier</h2>
             <div className="h-px bg-gradient-to-l from-transparent to-orange-400/50 flex-1"></div>
           </div>
-          
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {sponsors.bronze.map((sponsor, idx) => (
               <motion.div
@@ -103,7 +103,7 @@ export default function Sponsors() {
         </div>
 
         {/* CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -111,16 +111,16 @@ export default function Sponsors() {
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary opacity-20 blur-[100px] rounded-full"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary opacity-20 blur-[100px] rounded-full"></div>
-          
+
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-black mb-6">Become a Sponsor</h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              Partner with SHPE UTD to connect with exceptional Hispanic engineering talent. Access resume books, host events, and build your employer brand.
+              Partner with ColorStack UTD to connect with exceptional Black and Latinx computing talent. Access resume books, host events, and build your employer brand on campus.
             </p>
-            <a href="mailto:corporate@shpeutd.org">
+            <a href="mailto:colorstackutd@utdallas.edu">
               <Button className="bg-primary hover:bg-primary/90 text-white rounded-full py-8 px-12 text-xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all" data-testid="button-sponsor-mailto">
                 <Mail className="mr-3 h-6 w-6" />
-                Contact Corporate Relations
+                Contact Us
               </Button>
             </a>
           </div>

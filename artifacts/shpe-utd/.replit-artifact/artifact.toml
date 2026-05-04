@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/shpe-utd/"
+title = "SHPE at UTD"
+version = "1.0.0"
+id = "artifacts/shpe-utd"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/shpe-utd/" ]
+localPort = 20325
+
+[services.development]
+run = "pnpm --filter @workspace/shpe-utd run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/shpe-utd", "run", "build" ]
+publicDir = "artifacts/shpe-utd/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20325"
+BASE_PATH = "/shpe-utd/"

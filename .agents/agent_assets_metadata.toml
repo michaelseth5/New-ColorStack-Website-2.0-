@@ -36,3 +36,75 @@ id = "1GsjHYh2hNI-Z0n5XmMJH"
 uri = "file://artifacts/colorstack-utd/src/assets/images/hero-bg.png"
 type = "image"
 title = "Abstract glowing floating orbs background"
+
+[[generated]]
+id = "LbgEVxND56JHYnNmWeMCZ"
+uri = "file://artifacts/shpe-utd/src/assets/images/hero.png"
+type = "image"
+title = "diverse engineering students campus"
+
+[[generated]]
+id = "4a5Gw3P_RHjGhvruF9ha2"
+uri = "file://artifacts/shpe-utd/src/assets/images/board-1.png"
+type = "image"
+title = "professional headshot orange background"
+
+[[generated]]
+id = "oHhqZ_BCK6s-Zu2mw3DUQ"
+uri = "file://artifacts/shpe-utd/src/assets/images/board-2.png"
+type = "image"
+title = "professional headshot green background"
+
+[[generated]]
+id = "Pq-9mzpBZ-00G5ipBiu-T"
+uri = "file://artifacts/shpe-utd/src/assets/images/board-3.png"
+type = "image"
+title = "professional headshot orange background"
+
+[[generated]]
+id = "xFkZeXpvPUbtKjxXgJMdF"
+uri = "file://artifacts/shpe-utd/src/assets/images/board-4.png"
+type = "image"
+title = "professional headshot green background"
+
+[[generated]]
+id = "zzBSnA0Wj7qMZBgZvK_8r"
+uri = "file://artifacts/shpe-utd/src/assets/images/board-5.png"
+type = "image"
+title = "professional headshot orange background"
+
+[[generated]]
+id = "5_LQzoaJBNkpnVNyJmfAq"
+uri = "file://artifacts/shpe-utd/src/assets/images/board-6.png"
+type = "image"
+title = "professional headshot green background"
+
+[[generated]]
+id = "6ory4i6gx9IdddWkXjTWP"
+uri = "file://artifacts/shpe-utd/src/assets/images/event-1.png"
+type = "image"
+title = "students in workshop setting"
+
+[[generated]]
+id = "J9E3r_GWa-c6WatL0R8r3"
+uri = "file://artifacts/shpe-utd/src/assets/images/event-2.png"
+type = "image"
+title = "students at networking event"
+
+[[generated]]
+id = "qK3YBFzo5-WhkcJ9oY9Kk"
+uri = "file://artifacts/shpe-utd/src/assets/images/event-3.png"
+type = "image"
+title = "students at panel discussion"
+
+[[generated]]
+id = "oR5cnHJOUNae8hbk1Qfty"
+uri = "file://artifacts/shpe-utd/src/assets/images/event-4.png"
+type = "image"
+title = "students at social gathering"
+
+[[generated]]
+id = "a2PhS0TjmjdxWqCLyTiC5"
+uri = "file://artifacts/shpe-utd/src/assets/images/about.png"
+type = "image"
+title = "students at engineering event"

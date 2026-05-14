@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, HeartHandshake, Zap, Trophy, Shield, Terminal, GitMerge, Globe } from "lucide-react";
-import aboutImg from "@/assets/images/about.png";
+import aboutImg from "@assets/ColorStack_UTD_Tech_Panel_1778792970743.jpg";
 
 export default function About() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
@@ -82,9 +82,9 @@ export default function About() {
             className="flex-1 w-full"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
-              <img src={aboutImg} alt="ColorStack UTD Members" className="w-full h-auto object-cover" />
+              <img src={aboutImg} alt="ColorStack UTD Tech Panel" className="w-full object-cover object-bottom" style={{ height: "420px" }} />
               <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-8">
-                <span className="text-white font-bold text-2xl">We get our members cracked.</span>
+                <span className="text-white font-bold text-2xl">Debugging Your Path Into Tech.</span>
               </div>
             </div>
           </motion.div>

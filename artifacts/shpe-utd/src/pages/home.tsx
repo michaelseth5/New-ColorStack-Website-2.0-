@@ -8,6 +8,7 @@ const heroImg = `${BASE}/hero.jpg`;
 const logo = `${BASE}/logo-bg.png`;
 const speedImg = `${BASE}/speed.jpg`;
 const communityImg = `${BASE}/community.jpg`;
+const connectedImg = `${BASE}/connected.png`;
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -191,6 +192,7 @@ export default function Home() {
               number: "03",
               title: "Get Connected",
               desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
+              img: connectedImg,
             },
           ].map((pillar, i) => (
             <motion.div

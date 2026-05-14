@@ -11,6 +11,7 @@ const gbm1 = `${BASE}/gbm-1.jpg`;
 const gbm2 = `${BASE}/gbm-2.jpg`;
 const gbm3 = `${BASE}/gbm-3.jpg`;
 const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
+const at = Array.from({ length: 8 }, (_, i) => `${BASE}/at-${i + 1}.jpg`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -245,6 +246,26 @@ export default function Events() {
           "Networking and development resources to stay connected",
         ],
         recap: "A huge thank you to our UT Dallas University Career Center reps Brett Webb and Juna Jones-Moore, along with board members Michael, Oluwadamilare, and Akram for leading the panel and offering 1:1 resume reviews! If you're interested in accessing our Resume Night resources, be sure to join our Slack.",
+        instagram: "@colorstackutd",
+      },
+      {
+        title: "ColorStack UTD x Texas Chapters — AfroTech Meetup",
+        date: "NOV 13",
+        time: "November 13, 2025",
+        location: "AfroTech Conference 2025",
+        desc: "Honored we could host this meetup and connect so many Texas chapters in one place. Amazing turnout and even better vibes. Texas chapters really held it down!",
+        image: at[0],
+        photos: at,
+        highlights: [
+          "ColorStack University of North Texas",
+          "ColorStack UT Austin",
+          "ColorStack UTA",
+          "ColorStack UNT",
+          "ColorStack UH",
+          "ColorStack Prairie View A&M",
+          "ColorStack Loyola",
+        ],
+        recap: "This is what community looks like.",
         instagram: "@colorstackutd",
       },
       {

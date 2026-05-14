@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import hajarImg from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
 import oluwadamilareImg from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
@@ -107,7 +108,12 @@ function SectionHeading({ label, title }: { label: string; title: string }) {
   );
 }
 
+const YEARS = ["2025 – 2026"] as const;
+type Year = typeof YEARS[number];
+
 export default function Board() {
+  const [activeYear, setActiveYear] = useState<Year>("2025 – 2026");
+
   return (
     <div className="min-h-screen bg-background w-full">
       {/* Hero */}
@@ -119,9 +125,6 @@ export default function Board() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <p className="text-primary font-bold tracking-widest uppercase text-sm mb-4">
-              2025 – 2026
-            </p>
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
               Meet the Board
             </h1>
@@ -138,6 +141,25 @@ export default function Board() {
           </motion.div>
         </div>
       </section>
+
+      {/* Year selector */}
+      <div className="flex justify-center py-10 px-6">
+        <div className="inline-flex bg-[#f0f0f0] rounded-full p-1.5 gap-1">
+          {YEARS.map((year) => (
+            <button
+              key={year}
+              onClick={() => setActiveYear(year)}
+              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-200 ${
+                activeYear === year
+                  ? "bg-primary text-white shadow-sm"
+                  : "text-foreground/60 hover:text-foreground"
+              }`}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Leadership */}

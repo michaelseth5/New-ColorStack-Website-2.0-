@@ -1,34 +1,34 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { BookOpen, Users, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import heroImg from "@/assets/images/hero.png";
 import { useEffect, useState, useCallback } from "react";
 
-function AnimatedCounter({ end, duration = 2 }: { end: number, duration?: number }) {
+function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     let startTime: number | null = null;
     let animationFrame: number;
-
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / (duration * 1000), 1);
       const easeOut = 1 - Math.pow(1 - percentage, 3);
       setCount(Math.floor(easeOut * end));
-      if (percentage < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
+      if (percentage < 1) animationFrame = requestAnimationFrame(animate);
     };
-
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
   }, [end, duration]);
 
   return <span>{count}</span>;
 }
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -38,18 +38,21 @@ export default function Home() {
     {
       name: "Jordan Williams",
       year: "Senior, Computer Science",
-      quote: "ColorStack UTD gave me the community I didn't know I needed. Being surrounded by people who look like me and are crushing it in tech made me believe I could do it too."
+      quote:
+        "ColorStack UTD gave me the community I didn't know I needed. Being surrounded by people who look like me and are crushing it in tech made me believe I could do it too.",
     },
     {
       name: "Aaliyah Carter",
       year: "Junior, Software Engineering",
-      quote: "The resume workshops and mock interviews through ColorStack helped me land a summer internship at Microsoft. I genuinely don't think I would have gotten it without this community."
+      quote:
+        "The resume workshops and mock interviews through ColorStack helped me land a summer internship at Microsoft. I genuinely don't think I would have gotten it without this community.",
     },
     {
       name: "Marcus Thompson",
       year: "Sophomore, Computer Engineering",
-      quote: "ColorStack changed how I see myself in this industry. Walking into a room full of Black and Latinx engineers who are thriving — that's powerful. That's what this org does."
-    }
+      quote:
+        "Walking into a room full of Black and Latinx engineers who are thriving — that's powerful. ColorStack changed how I see myself in this industry.",
+    },
   ];
 
   const next = useCallback(() => {
@@ -63,17 +66,16 @@ export default function Home() {
   }, [testimonials.length]);
 
   useEffect(() => {
-    const id = setInterval(next, 4000);
+    const id = setInterval(next, 4500);
     return () => clearInterval(id);
   }, [next]);
 
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Section */}
-      <section className="w-full min-h-[90vh] md:min-h-[85vh] flex flex-col md:flex-row border-b">
-        {/* Left Column - Image */}
-        <div className="w-full md:w-[55%] h-[50vh] md:h-auto relative overflow-hidden">
-          <div className="absolute inset-0 bg-secondary/10 z-10"></div>
+      {/* ── Hero ────────────────────────────────────── */}
+      <section className="w-full flex flex-col md:flex-row min-h-[calc(100vh-64px)]">
+        {/* Left – photo */}
+        <div className="w-full md:w-[55%] h-[52vw] md:h-auto relative overflow-hidden">
           <img
             src={heroImg}
             alt="Black and Latinx computing students at UTD"
@@ -81,251 +83,268 @@ export default function Home() {
           />
         </div>
 
-        {/* Right Column - Content */}
-        <div className="w-full md:w-[45%] flex flex-col justify-center bg-white p-8 md:p-16 lg:p-24">
+        {/* Right – text on light-tinted bg (mirrors OSU's blush panel) */}
+        <div className="w-full md:w-[45%] flex flex-col justify-center bg-[#fdf4ee] px-10 md:px-16 lg:px-20 py-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight mb-6">
-              Welcome to <span className="text-primary block mt-2">ColorStack</span> at UT Dallas
+            <h1 className="text-[clamp(2.4rem,4vw,3.8rem)] font-bold tracking-tight text-foreground leading-[1.12] mb-6">
+              Welcome to{" "}
+              <span className="text-primary">ColorStack</span>
+              <br />
+              at UT Dallas
             </h1>
-            <p className="text-xl text-muted-foreground mb-10 max-w-md">
+            <p className="text-[1.05rem] text-foreground/70 mb-10 max-w-sm leading-relaxed">
               Increasing the number of Black and Latinx students who graduate with computing degrees and go on to thrive in tech careers.
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 py-6 text-lg font-bold w-fit shadow-lg shadow-primary/25" data-testid="button-hero-join">
-              Become a Member
-            </Button>
 
-            {/* Sponsors Marquee */}
-            <div className="mt-20 overflow-hidden w-full">
-              <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">Our Supporters</p>
-              <div className="flex w-[200%] gap-8 animate-marquee items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <span className="text-2xl font-bold font-sans">Google</span>
-                <span className="text-2xl font-bold font-sans">Microsoft</span>
-                <span className="text-2xl font-bold font-sans">Goldman Sachs</span>
-                <span className="text-2xl font-bold font-sans">Capital One</span>
-                <span className="text-2xl font-bold font-sans">Salesforce</span>
-                <span className="text-2xl font-bold font-sans">Stripe</span>
-                <span className="text-2xl font-bold font-sans">Dropbox</span>
-                {/* Duplicate for infinite effect */}
-                <span className="text-2xl font-bold font-sans">Google</span>
-                <span className="text-2xl font-bold font-sans">Microsoft</span>
-                <span className="text-2xl font-bold font-sans">Goldman Sachs</span>
-                <span className="text-2xl font-bold font-sans">Capital One</span>
-                <span className="text-2xl font-bold font-sans">Salesforce</span>
-                <span className="text-2xl font-bold font-sans">Stripe</span>
-                <span className="text-2xl font-bold font-sans">Dropbox</span>
+            <Link href="/about">
+              <button
+                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-3.5 text-[15px] font-semibold shadow-sm transition-all hover:shadow-md hover:-translate-y-px active:translate-y-0"
+                data-testid="button-hero-join"
+              >
+                Become a Member
+              </button>
+            </Link>
+
+            {/* Supporters marquee */}
+            <div className="mt-14 overflow-hidden w-full">
+              <p className="text-[11px] font-bold text-foreground/40 uppercase tracking-[0.15em] mb-4">
+                Our Supporters
+              </p>
+              <div className="flex w-[200%] gap-10 animate-marquee items-center opacity-50">
+                {["Google", "Microsoft", "Goldman Sachs", "Capital One", "Salesforce", "Stripe", "Dropbox"].map(
+                  (s) => (
+                    <span key={s} className="text-xl font-bold whitespace-nowrap text-foreground">
+                      {s}
+                    </span>
+                  )
+                )}
+                {["Google", "Microsoft", "Goldman Sachs", "Capital One", "Salesforce", "Stripe", "Dropbox"].map(
+                  (s) => (
+                    <span key={`${s}-2`} className="text-xl font-bold whitespace-nowrap text-foreground">
+                      {s}
+                    </span>
+                  )
+                )}
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Dark Green Band */}
-      <section className="bg-secondary py-16 md:py-24 text-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+      {/* ── Mission banner ──────────────────────────── */}
+      <section className="bg-[#1a1a1a] py-20 md:py-28 text-center px-4">
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          className="text-[clamp(2.6rem,6vw,5.5rem)] font-bold text-white tracking-tight"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter">Our Mission.</h2>
-        </motion.div>
+          Our Mission.
+        </motion.h2>
       </section>
 
-      {/* Mission Text */}
-      <section className="bg-white py-20 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
+      {/* ── Mission text ────────────────────────────── */}
+      <section className="bg-white py-20 px-6">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-            className="text-2xl md:text-3xl lg:text-4xl font-medium text-foreground leading-relaxed"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="text-[1.35rem] md:text-[1.65rem] font-medium text-foreground/85 leading-relaxed"
           >
-            We exist to increase the number of Black and Latinx students who graduate with computing degrees and go on to have successful careers in tech. <span className="font-bold text-primary block mt-4">Representation changes everything.</span>
+            We exist to increase the number of Black and Latinx students who graduate with computing degrees and go on to have successful careers in tech.{" "}
+            <span className="text-primary font-semibold">Representation changes everything.</span>
           </motion.p>
         </div>
       </section>
 
-      {/* Feature Cards */}
-      <section className="bg-[#F5F5F5] py-24 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <BookOpen size={40} strokeWidth={1.5} />,
-                title: "Workshops",
-                desc: "Technical deep-dives, resume reviews, and interview prep to get you ready for the world's best tech companies."
-              },
-              {
-                icon: <Briefcase size={40} strokeWidth={1.5} />,
-                title: "Professional Development",
-                desc: "Direct access to recruiters, coffee chats with engineers, and career fair prep to land top-tier internships."
-              },
-              {
-                icon: <Users size={40} strokeWidth={1.5} />,
-                title: "Community",
-                desc: "A network of Black and Latinx peers who support, challenge, and celebrate each other through every step of the journey."
-              }
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-border/50 hover:border-primary/50 relative overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
-                <div className="text-secondary group-hover:text-primary transition-colors duration-300 mb-6">
-                  {feature.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">{feature.title}</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+      {/* ── Feature cards ───────────────────────────── */}
+      <section className="bg-[#f7f7f7] py-24 px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Workshops",
+              desc: "Resume reviews, interview prep, and technical deep-dives to get you ready for the world's best tech companies.",
+            },
+            {
+              title: "Professional Development",
+              desc: "Coffee chats with engineers, recruiting events, and career fair prep to land top-tier internships and new grad roles.",
+            },
+            {
+              title: "Community",
+              desc: "A network of Black and Latinx peers who support, challenge, and celebrate each other through every step of the journey.",
+            },
+          ].map((feature, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="bg-white rounded-2xl p-8 border border-border/60 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group"
+            >
+              <div className="w-1 h-8 bg-primary rounded-full mb-6 group-hover:h-12 transition-all duration-300" />
+              <h3 className="text-lg font-bold mb-3 text-foreground">{feature.title}</h3>
+              <p className="text-[0.92rem] text-foreground/60 leading-relaxed">{feature.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Impact Numbers */}
-      <section className="bg-secondary py-24 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x-0 md:divide-x divide-white/20">
-            {[
-              { num: 150, label: "Active Members", suffix: "+" },
-              { num: 35, label: "Events This Year", suffix: "+" },
-              { num: 60, label: "Internship Offers", suffix: "+" },
-              { num: 15, label: "Industry Partners", suffix: "+" }
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex flex-col items-center justify-center p-4"
-              >
-                <div className="text-5xl md:text-6xl font-black text-white mb-2 flex items-center">
-                  <AnimatedCounter end={stat.num} />{stat.suffix}
-                </div>
-                <p className="text-primary font-bold tracking-wider uppercase text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
+      {/* ── Stats ───────────────────────────────────── */}
+      <section className="bg-[#1a1a1a] py-24 px-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { num: 150, label: "Active Members", suffix: "+" },
+            { num: 35, label: "Events This Year", suffix: "+" },
+            { num: 60, label: "Internship Offers", suffix: "+" },
+            { num: 15, label: "Industry Partners", suffix: "+" },
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <div className="text-[3rem] md:text-[3.5rem] font-black text-white leading-none mb-2">
+                <AnimatedCounter end={stat.num} />
+                {stat.suffix}
+              </div>
+              <p className="text-primary text-[12px] font-bold uppercase tracking-widest">{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Voices of ColorStack UTD */}
-      <section className="bg-white py-24 px-4 overflow-hidden">
-        <div className="container mx-auto">
+      {/* ── Testimonials ────────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-14"
           >
-            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">Voices of ColorStack UTD</h2>
-            <p className="text-xl text-muted-foreground">Hear directly from our members.</p>
+            <h2 className="text-[2rem] md:text-[2.6rem] font-bold text-foreground mb-2">
+              Voices of ColorStack UTD
+            </h2>
+            <p className="text-foreground/50 text-[0.95rem]">Hear directly from our members.</p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto relative overflow-hidden">
+          <div className="relative overflow-hidden">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={currentTestimonial}
                 custom={direction}
-                initial={{ opacity: 0, x: direction * 60 }}
+                initial={{ opacity: 0, x: direction * 40 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -60 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                exit={{ opacity: 0, x: direction * -40 }}
+                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="bg-[#F5F5F5] rounded-3xl p-10 md:p-16 text-center border border-border/50">
-                  <p className="text-2xl md:text-3xl font-medium italic text-foreground leading-relaxed mb-10">
+                <div className="bg-[#fdf4ee] rounded-2xl px-10 md:px-16 py-12 text-center">
+                  <p className="text-[1.2rem] md:text-[1.45rem] font-medium italic text-foreground/80 leading-relaxed mb-8">
                     "{testimonials[currentTestimonial].quote}"
                   </p>
-                  <div>
-                    <h4 className="text-xl font-bold text-secondary mb-1">{testimonials[currentTestimonial].name}</h4>
-                    <p className="text-primary font-medium">{testimonials[currentTestimonial].year}</p>
-                  </div>
+                  <p className="font-bold text-foreground">{testimonials[currentTestimonial].name}</p>
+                  <p className="text-primary text-sm font-medium mt-1">{testimonials[currentTestimonial].year}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <button onClick={prev} className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors" data-testid="testimonial-prev">
-                <ChevronLeft size={20} />
+
+            <div className="flex items-center justify-center gap-3 mt-7">
+              <button
+                onClick={prev}
+                className="p-2 rounded-full border border-border hover:border-primary/60 hover:text-primary transition-colors"
+                data-testid="testimonial-prev"
+              >
+                <ChevronLeft size={18} />
               </button>
               {testimonials.map((_, i) => (
-                <button key={i} onClick={() => { setDirection(i > currentTestimonial ? 1 : -1); setCurrentTestimonial(i); }} className={`w-2.5 h-2.5 rounded-full transition-colors ${i === currentTestimonial ? "bg-primary" : "bg-border"}`} />
+                <button
+                  key={i}
+                  onClick={() => { setDirection(i > currentTestimonial ? 1 : -1); setCurrentTestimonial(i); }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentTestimonial ? "bg-primary w-5" : "bg-border"}`}
+                />
               ))}
-              <button onClick={next} className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors" data-testid="testimonial-next">
-                <ChevronRight size={20} />
+              <button
+                onClick={next}
+                className="p-2 rounded-full border border-border hover:border-primary/60 hover:text-primary transition-colors"
+                data-testid="testimonial-next"
+              >
+                <ChevronRight size={18} />
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Get Involved */}
-      <section className="bg-[#F5F5F5] py-24 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* ── Get Involved ────────────────────────────── */}
+      <section className="bg-[#f7f7f7] py-24 px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Sponsorship",
+              desc: "Connect your company with the next generation of Black and Latinx tech talent at UTD.",
+              cta: "Partner with us",
+              href: "/sponsors",
+              accent: false,
+            },
+            {
+              title: "Join the Community",
+              desc: "Become a member of ColorStack UTD and take your computing career to the next level.",
+              cta: "Become a Member",
+              href: "/about",
+              accent: true,
+            },
+            {
+              title: "Contact Us",
+              desc: "Questions? Want to collaborate? We'd love to hear from you.",
+              cta: "Get in Touch",
+              href: "/about",
+              accent: false,
+            },
+          ].map((card, i) => (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
               viewport={{ once: true }}
-              className="bg-white rounded-3xl p-10 text-center shadow-sm border border-border/50 flex flex-col items-center group"
+              transition={{ delay: i * 0.08 }}
+              className={`rounded-2xl p-8 flex flex-col ${
+                card.accent ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-white border border-border/60"
+              }`}
             >
-              <div className="h-16 w-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                <Briefcase size={32} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Sponsorship</h3>
-              <p className="text-muted-foreground mb-8 flex-1">Connect your company with the next generation of Black and Latinx tech talent at UTD.</p>
-              <Link href="/sponsors">
-                <Button className="bg-secondary hover:bg-secondary/90 w-full rounded-full py-6 text-lg font-bold group-hover:shadow-lg transition-all" data-testid="button-partner">
-                  Partner with us
-                </Button>
+              <h3 className={`text-lg font-bold mb-3 ${card.accent ? "text-white" : "text-foreground"}`}>
+                {card.title}
+              </h3>
+              <p className={`text-sm leading-relaxed mb-8 flex-1 ${card.accent ? "text-white/85" : "text-foreground/60"}`}>
+                {card.desc}
+              </p>
+              <Link href={card.href}>
+                <button
+                  className={`rounded-full px-6 py-3 text-[14px] font-semibold transition-all hover:-translate-y-px ${
+                    card.accent
+                      ? "bg-white text-primary hover:bg-white/90"
+                      : "bg-foreground text-white hover:bg-foreground/90"
+                  }`}
+                  data-testid={`button-card-${i}`}
+                >
+                  {card.cta}
+                </button>
               </Link>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-primary rounded-3xl p-10 text-center shadow-lg shadow-primary/20 flex flex-col items-center"
-            >
-              <div className="h-16 w-16 bg-white/20 text-white rounded-full flex items-center justify-center mb-6">
-                <Users size={32} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Join the Community</h3>
-              <p className="text-white/90 mb-8 flex-1">Become a member of ColorStack UTD and take your computing career to the next level.</p>
-              <Button className="bg-white text-primary hover:bg-white/90 w-full rounded-full py-6 text-lg font-bold shadow-md" data-testid="button-join-community">
-                Become a Member
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-white rounded-3xl p-10 text-center shadow-sm border border-border/50 flex flex-col items-center group"
-            >
-              <div className="h-16 w-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                <BookOpen size={32} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
-              <p className="text-muted-foreground mb-8 flex-1">Questions? Want to collaborate? We'd love to hear from you.</p>
-              <Link href="/about">
-                <Button variant="outline" className="w-full rounded-full py-6 text-lg font-bold border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-all group-hover:shadow-lg" data-testid="button-contact">
-                  Get in Touch
-                </Button>
-              </Link>
-            </motion.div>
-          </div>
+          ))}
         </div>
       </section>
     </div>

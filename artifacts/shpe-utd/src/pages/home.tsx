@@ -431,7 +431,7 @@ export default function Home() {
         </div>
 
         {/* Right – welcome panel */}
-        <div className="w-full md:w-[45%] flex flex-col justify-center bg-[#114634] px-10 md:px-16 lg:px-20 py-16 relative overflow-hidden">
+        <div className="w-full md:w-[45%] flex flex-col bg-[#114634] px-10 md:px-14 lg:px-18 py-10 md:py-12 relative overflow-hidden">
           {/* Subtle circuit pattern */}
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.05]"
@@ -441,18 +441,18 @@ export default function Home() {
             }}
           />
 
-          <div className="relative z-10">
+          <div className="relative z-10 flex flex-col h-full flex-1 justify-between gap-6">
 
-            {/* Wordmark */}
+            {/* TOP – Wordmark */}
             <motion.div
               initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.65, delay: 0.05, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="flex items-center gap-4 mb-8"
+              className="flex items-center gap-4"
             >
               <div className="relative flex-shrink-0">
-                <img src={logo} alt="ColorStack" className="h-16 w-16 rounded-2xl object-contain bg-secondary/80 p-2 shadow-lg" />
-                <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-lg bg-white shadow-md border border-white/80 flex items-center justify-center p-0.5">
+                <img src={logo} alt="ColorStack" className="h-14 w-14 rounded-2xl object-contain bg-secondary/80 p-2 shadow-lg" />
+                <div className="absolute -bottom-2 -right-2 h-7 w-7 rounded-lg bg-white shadow-md border border-white/80 flex items-center justify-center p-0.5">
                   <img src={utdIcon} alt="UT Dallas" className="h-full w-full object-contain" />
                 </div>
               </div>
@@ -462,85 +462,91 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* // Welcome To */}
-            <motion.p
-              initial={{ opacity: 0, y: 16, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.18, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              style={{ fontFamily: "'Fira Code', monospace" }}
-              className="text-[#EC7524]/65 text-xs mb-3 tracking-widest"
-            >
-              // Welcome To
-            </motion.p>
+            {/* MIDDLE – main title block */}
+            <div className="flex flex-col">
+              {/* // Welcome To */}
+              <motion.p
+                initial={{ opacity: 0, y: 16, filter: "blur(5px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.55, delay: 0.18, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                style={{ fontFamily: "'Fira Code', monospace" }}
+                className="text-[#EC7524]/65 text-sm mb-4 tracking-widest"
+              >
+                // Welcome To
+              </motion.p>
 
-            {/* ColorStack title */}
-            <motion.div
-              initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="relative inline-block mb-1"
-            >
-              <h1 className="text-[clamp(2.6rem,4vw,3.8rem)] font-black text-white leading-none tracking-tight">
-                ColorStack
-                {showCursor && (
-                  <motion.span
-                    className="font-thin text-[#EC7524] ml-0.5"
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 0.7, repeat: Infinity }}
-                  >
-                    |
-                  </motion.span>
-                )}
-              </h1>
+              {/* ColorStack title */}
               <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.6, delay: 0.72, ease: "easeOut" as const }}
-                className="absolute -bottom-1 left-0 h-[3px] w-full bg-[#EC7524] origin-left rounded-full"
-              />
-            </motion.div>
+                initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.3, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                className="relative inline-block mb-2"
+              >
+                <h1 className="text-[clamp(3.2rem,5vw,5.5rem)] font-black text-white leading-none tracking-tight">
+                  ColorStack
+                  {showCursor && (
+                    <motion.span
+                      className="font-thin text-[#EC7524] ml-1"
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 0.7, repeat: Infinity }}
+                    >
+                      |
+                    </motion.span>
+                  )}
+                </h1>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.6, delay: 0.72, ease: "easeOut" as const }}
+                  className="absolute -bottom-1 left-0 h-[4px] w-full bg-[#EC7524] origin-left rounded-full"
+                />
+              </motion.div>
 
-            {/* At The University... */}
-            <motion.p
-              initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.44, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-white/70 font-medium text-[1rem] mt-3 mb-6 leading-snug"
-            >
-              At The University Of Texas At Dallas
-            </motion.p>
+              {/* At The University... */}
+              <motion.p
+                initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.55, delay: 0.44, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                className="text-white/70 font-medium text-[clamp(0.9rem,1.4vw,1.1rem)] mt-4 leading-snug"
+              >
+                At The University Of Texas At Dallas
+              </motion.p>
+            </div>
 
-            {/* Body copy */}
-            <motion.p
-              initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.68, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[0.95rem] text-white/50 mb-9 max-w-sm leading-relaxed"
-            >
-              Building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
-            </motion.p>
+            {/* BOTTOM – body copy + buttons */}
+            <div className="flex flex-col gap-6">
+              {/* Body copy */}
+              <motion.p
+                initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.55, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                className="text-[clamp(0.9rem,1.3vw,1.05rem)] text-white/55 leading-relaxed"
+              >
+                Building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
+              </motion.p>
 
-            {/* Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.8, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="flex flex-wrap gap-4"
-            >
-              <Link href="/join">
-                <button
-                  data-testid="button-hero-join"
-                  className="bg-[#EC7524] hover:bg-[#d46620] text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-[#EC7524]/20 text-[15px]"
-                >
-                  Join The Chapter
-                </button>
-              </Link>
-              <Link href="/about">
-                <button className="bg-transparent border-2 border-white/40 hover:border-white/80 text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 text-[15px]">
-                  Learn More
-                </button>
-              </Link>
-            </motion.div>
+              {/* Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.55, delay: 0.68, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                className="flex flex-wrap gap-4"
+              >
+                <Link href="/join">
+                  <button
+                    data-testid="button-hero-join"
+                    className="bg-[#EC7524] hover:bg-[#d46620] text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-[#EC7524]/20 text-[15px]"
+                  >
+                    Join The Chapter
+                  </button>
+                </Link>
+                <Link href="/about">
+                  <button className="bg-transparent border-2 border-white/40 hover:border-white/80 text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 text-[15px]">
+                    Learn More
+                  </button>
+                </Link>
+              </motion.div>
+            </div>
 
           </div>
         </div>

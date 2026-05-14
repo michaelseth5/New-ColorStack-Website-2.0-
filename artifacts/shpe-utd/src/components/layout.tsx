@@ -54,12 +54,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-2" data-testid="link-home">
+          <Link href="/" className="flex-shrink-0 flex items-center gap-3" data-testid="link-home">
             <div
               aria-hidden="true"
               style={{
-                width: 44,
-                height: 44,
+                width: 52,
+                height: 52,
                 backgroundImage: `url(${logoMark})`,
                 backgroundSize: "500%",
                 backgroundPosition: "center center",
@@ -67,9 +67,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 flexShrink: 0,
               }}
             />
-            <span className="text-[1.1rem] font-black text-foreground tracking-tight leading-none">
-              Color<span className="text-primary">Stack</span>
-            </span>
+            <div className="flex flex-col leading-none">
+              <span className="text-[1.25rem] font-black text-foreground tracking-tight">
+                Color<span className="text-primary">Stack</span>
+              </span>
+              <span className="text-[0.7rem] font-bold text-foreground/50 tracking-widest uppercase mt-0.5">
+                UT Dallas
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}

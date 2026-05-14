@@ -223,12 +223,11 @@ export default function Home() {
 
       {/* ── Stats ───────────────────────────────────── */}
       <section className="bg-[#1a1a1a] py-24 px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
-            { num: 150, label: "Active Members", suffix: "+" },
-            { num: 35, label: "Events This Year", suffix: "+" },
-            { num: 60, label: "Internship Offers", suffix: "+" },
-            { num: 15, label: "Industry Partners", suffix: "+" },
+            { num: 60, label: "Active Members", suffix: "+" },
+            { num: 10, label: "Events This Year", suffix: "+" },
+            { num: 20, label: "Internship Offers", suffix: "+" },
           ].map((stat, i) => (
             <motion.div
               key={i}

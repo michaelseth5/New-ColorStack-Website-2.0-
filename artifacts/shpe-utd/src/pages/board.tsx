@@ -29,27 +29,28 @@ interface Officer {
 }
 
 const leadership: Officer[] = [
-  { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg },
+  { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
   { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
   { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
-  { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg },
-  { name: "Marwan Hegazy", title: "Secretary", image: marwanImg },
+  { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },
+  { name: "Marwan Hegazy", title: "Secretary", image: marwanImg, linkedinUrl: "https://www.linkedin.com/in/marwan-hegazy/" },
 ];
 
 const operations: Officer[] = [
-  { name: "Noha Markose", title: "Public Communications", image: nohaImg },
+  { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
-  { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg },
-  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: placeholderImg },
+  { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/" },
+  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
 ];
 
 interface Ambassador {
   name: string;
   image: string;
+  linkedinUrl?: string;
 }
 
 const ambassadors: Ambassador[] = [
-  { name: "Nadir Muktar", image: nadirImg },
+  { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
   { name: "Jose Rogel", image: joseImg },
   { name: "Sabrina Abubaker", image: sabrinaImg },
   { name: "Timage Abubaker", image: timageImg },
@@ -235,9 +236,9 @@ export default function Board() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
-                className="flex flex-col items-center text-center group"
+                className="flex flex-col group bg-white rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="w-full aspect-square rounded-2xl overflow-hidden mb-3 relative">
+                <div className="w-full aspect-square overflow-hidden relative">
                   <img
                     src={amb.image}
                     alt={amb.name}
@@ -245,12 +246,25 @@ export default function Board() {
                   />
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
                 </div>
-                <p className="text-xs font-bold tracking-widest text-primary uppercase mb-1">
-                  Ambassador
-                </p>
-                <p className="font-semibold text-foreground text-sm leading-snug">
-                  {amb.name}
-                </p>
+                <div className="p-3 flex flex-col">
+                  <p className="text-[0.6rem] font-bold tracking-widest text-primary uppercase mb-1">
+                    Ambassador
+                  </p>
+                  <p className="font-semibold text-foreground text-sm leading-snug mb-2">
+                    {amb.name}
+                  </p>
+                  {amb.linkedinUrl && (
+                    <a
+                      href={amb.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 bg-[#114634] hover:bg-[#0d3528] text-white rounded-lg px-3 py-2 transition-colors duration-200 w-full justify-center"
+                    >
+                      <Linkedin size={13} strokeWidth={1.8} />
+                      <span className="text-[0.68rem] font-semibold">Connect On LinkedIn</span>
+                    </a>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>

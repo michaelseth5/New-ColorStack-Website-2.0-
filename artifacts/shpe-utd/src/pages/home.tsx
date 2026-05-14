@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Target, Users, Briefcase } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState, useCallback, useRef } from "react";
 
@@ -248,6 +248,69 @@ export default function Home() {
               </button>
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── How We Deliver ──────────────────────────── */}
+      <section className="bg-[#fdf4ee] py-20 md:py-28 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-black text-foreground text-center mb-14"
+          >
+            We Get Our Members Cracked Through:
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+            {[
+              {
+                icon: <Target size={28} strokeWidth={1.8} />,
+                title: "Personalized Career Roadmap",
+                desc: "We map out exactly what every member needs to learn, build, and accomplish to land their target role in tech.",
+              },
+              {
+                icon: <Users size={28} strokeWidth={1.8} />,
+                title: "Mentorship",
+                desc: "Upperclassmen and industry professionals pour into our members directly so no one has to figure it out alone.",
+              },
+              {
+                icon: <Briefcase size={28} strokeWidth={1.8} />,
+                title: "Industry Exposure",
+                desc: "Once our members are built, we put them in front of the recruiters, companies, and opportunities that matter. No talented student goes unseen.",
+              },
+            ].map((pillar, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-start"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+                  {pillar.icon}
+                </div>
+                <h3 className="text-lg font-black text-foreground mb-3">{pillar.title}</h3>
+                <p className="text-[0.95rem] text-foreground/65 leading-relaxed">{pillar.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-black text-foreground text-center leading-tight"
+          >
+            Then We{" "}
+            <span className="text-primary">Showcase</span>
+            {" "}Them To Industry Recruiters.
+          </motion.p>
         </div>
       </section>
 

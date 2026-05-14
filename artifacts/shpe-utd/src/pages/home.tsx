@@ -264,22 +264,22 @@ export default function Home() {
             We Get Our Members Cracked Through:
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {[
               {
-                icon: <Target size={28} strokeWidth={1.8} />,
-                title: "Personalized Career Roadmap",
-                desc: "We map out exactly what every member needs to learn, build, and accomplish to land their target role in tech.",
+                title: "Get Cracked",
+                desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
+                img: `${BASE}/speed.jpg`,
               },
               {
-                icon: <Users size={28} strokeWidth={1.8} />,
-                title: "Mentorship",
-                desc: "Upperclassmen and industry professionals pour into our members directly so no one has to figure it out alone.",
+                title: "Build Community",
+                desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
+                img: `${BASE}/community.jpg`,
               },
               {
-                icon: <Briefcase size={28} strokeWidth={1.8} />,
-                title: "Industry Exposure",
-                desc: "Once our members are built, we put them in front of the recruiters, companies, and opportunities that matter. No talented student goes unseen.",
+                title: "Get Connected",
+                desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
+                img: `${BASE}/connected.png`,
               },
             ].map((pillar, i) => (
               <motion.div
@@ -289,13 +289,16 @@ export default function Home() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-start"
+                className="bg-white rounded-2xl p-7 flex flex-col shadow-sm border border-black/5"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
-                  {pillar.icon}
-                </div>
-                <h3 className="text-lg font-black text-foreground mb-3">{pillar.title}</h3>
-                <p className="text-[0.95rem] text-foreground/65 leading-relaxed">{pillar.desc}</p>
+                <h3 className="text-xl font-black text-foreground mb-3">{pillar.title}</h3>
+                <p className="text-[0.93rem] text-foreground/65 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
+                <img
+                  src={pillar.img}
+                  alt={pillar.title}
+                  className="w-full rounded-xl object-cover"
+                  style={{ maxHeight: "220px" }}
+                />
               </motion.div>
             ))}
           </div>

@@ -172,7 +172,7 @@ export default function Board() {
               <span className="text-white/30">/&gt;</span>
             </h1>
             <p className="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">
-              Built By Students. Driven By Community. Here To Make Sure You Land.
+              Built By Students. Driven By Community. Here To Make Sure You Secure "The Bag".
             </p>
           </motion.div>
         </div>

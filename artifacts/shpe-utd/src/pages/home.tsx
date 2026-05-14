@@ -6,9 +6,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
 const logo = `${BASE}/logo-bg.png`;
-const speedImg = `${BASE}/speed.jpg`;
-const communityImg = `${BASE}/community.jpg`;
-const connectedImg = `${BASE}/connected.png`;
+
 
 const carouselSlides = [
   { src: `${BASE}/gbm-1.jpg`, event: "First GBM", date: "Sep 15, 2025" },
@@ -309,17 +307,6 @@ export default function Home() {
             ))}
           </div>
 
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-black text-foreground text-center leading-tight"
-          >
-            Then We{" "}
-            <span className="text-primary">Showcase</span>
-            {" "}Them To Industry Recruiters.
-          </motion.p>
         </div>
       </section>
 
@@ -354,55 +341,6 @@ export default function Home() {
           >
             ColorStack's core mission is to increase the number of Black, Latinx, and Indigenous students who graduate with Computer Science degrees and launch rewarding technical careers. We achieve this by building community, providing academic support, and fostering career development opportunities for underrepresented students in computing.
           </motion.p>
-        </div>
-      </section>
-
-      {/* ── Mission pillars ─────────────────────────── */}
-      <section className="bg-[#f7f7f7] py-24 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              number: "01",
-              title: "Get Cracked",
-              desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
-              img: speedImg,
-            },
-            {
-              number: "02",
-              title: "Build Community",
-              desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
-              img: communityImg,
-            },
-            {
-              number: "03",
-              title: "Get Connected",
-              desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
-              img: connectedImg,
-            },
-          ].map((pillar, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="bg-white rounded-2xl p-8 border border-border/60 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden"
-            >
-              <span className="text-[3rem] font-black text-primary/15 leading-none mb-4 group-hover:text-primary/25 transition-colors">
-                {pillar.number}
-              </span>
-              <h3 className="text-xl font-black mb-4 text-foreground">{pillar.title}</h3>
-              <p className="text-[0.92rem] text-foreground/60 leading-relaxed">{pillar.desc}</p>
-              {"img" in pillar && pillar.img && (
-                <img
-                  src={pillar.img}
-                  alt=""
-                  className="mt-6 w-full rounded-xl object-cover opacity-50"
-                />
-              )}
-            </motion.div>
-          ))}
         </div>
       </section>
 

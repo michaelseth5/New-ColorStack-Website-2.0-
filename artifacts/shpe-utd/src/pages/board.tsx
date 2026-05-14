@@ -1,10 +1,21 @@
 import { motion } from "framer-motion";
-import board1 from "@/assets/images/board-1.png";
-import board2 from "@/assets/images/board-2.png";
-import board3 from "@/assets/images/board-3.png";
-import board4 from "@/assets/images/board-4.png";
-import board5 from "@/assets/images/board-5.png";
-import board6 from "@/assets/images/board-6.png";
+
+import hajarImg from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
+import oluwadamilareImg from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
+import michaelImg from "@assets/Michael_Katongole_1778782883428.png";
+import ramziImg from "@assets/Ramzi_Burhan_1778782883429.jpg";
+import marwanImg from "@assets/Marwan_Hegazy_1778782883427.jpg";
+import nohaImg from "@assets/Noha_Markose_1778782883428.jpg";
+import akramImg from "@assets/Akram_Hassen_1778782883426.jpg";
+import musaImg from "@assets/Musa_Mudesir_1778782883428.jpg";
+import placeholderImg from "@assets/og_1778782883429.png";
+import nadirImg from "@assets/Nadir_Muktar_1778782883428.jpg";
+import joseImg from "@assets/Jose_Rogel_1778782883427.png";
+import sabrinaImg from "@assets/Sabrina_Abubaker_1778782883430.jpg";
+import timageImg from "@assets/Timage_Abubaker_1778782883430.jpg";
+import hassetImg from "@assets/Hasset_Getachew_1778782883426.jpg";
+import henosImg from "@assets/Henos_Tekie_1778782883427.jpg";
+import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
 
 interface Officer {
   name: string;
@@ -13,33 +24,38 @@ interface Officer {
 }
 
 const leadership: Officer[] = [
-  { name: "Hajar Abdulkadir", title: "Co-President", image: board1 },
-  { name: "Oluwadamilare Sunmola", title: "Co-President", image: board2 },
-  { name: "Michael Katongole", title: "Vice President", image: board3 },
-  { name: "Ramzi Burhan", title: "Treasurer", image: board4 },
-  { name: "Marwan Hegazy", title: "Secretary", image: board5 },
+  { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg },
+  { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg },
+  { name: "Michael Katongole", title: "Vice President", image: michaelImg },
+  { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg },
+  { name: "Marwan Hegazy", title: "Secretary", image: marwanImg },
 ];
 
 const operations: Officer[] = [
-  { name: "Noha Markose", title: "Public Communications", image: board6 },
-  { name: "Akram Hassen", title: "Academic & Career Chair", image: board1 },
-  { name: "Musa Mudesir", title: "Corporate & Outreach", image: board2 },
-  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: board3 },
+  { name: "Noha Markose", title: "Public Communications", image: nohaImg },
+  { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg },
+  { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg },
+  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: placeholderImg },
 ];
 
-const ambassadors = [
-  "Nadir Muktar",
-  "Jose Rogel",
-  "Sabrina Abubaker",
-  "Timage Abubaker",
-  "Hasset Getachew",
-  "Henos Tekie",
+interface Ambassador {
+  name: string;
+  image: string;
+}
+
+const ambassadors: Ambassador[] = [
+  { name: "Nadir Muktar", image: nadirImg },
+  { name: "Jose Rogel", image: joseImg },
+  { name: "Sabrina Abubaker", image: sabrinaImg },
+  { name: "Timage Abubaker", image: timageImg },
+  { name: "Hasset Getachew", image: hassetImg },
+  { name: "Henos Tekie", image: henosImg },
 ];
 
 const advisor: Officer = {
   name: "Dr. Ravi Prakash",
   title: "Faculty Advisor",
-  image: board4,
+  image: raviImg,
 };
 
 const fadeUp = {
@@ -65,7 +81,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
         <img
           src={officer.image}
           alt={officer.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
       </div>
@@ -136,10 +152,7 @@ export default function Board() {
 
         {/* Operations & Outreach */}
         <section className="py-20 border-b border-border">
-          <SectionHeading
-            label="Operations & Outreach"
-            title="Operations Team"
-          />
+          <SectionHeading label="Operations & Outreach" title="Operations Team" />
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {operations.map((officer, idx) => (
               <OfficerCard key={officer.name} officer={officer} index={idx} />
@@ -150,27 +163,30 @@ export default function Board() {
         {/* Ambassadors */}
         <section className="py-20 border-b border-border">
           <SectionHeading label="Community" title="Ambassadors" />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-            {ambassadors.map((name, idx) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+            {ambassadors.map((amb, idx) => (
               <motion.div
-                key={name}
+                key={amb.name}
                 custom={idx}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
-                className="bg-[#fdf4ee] rounded-xl px-4 py-5 text-center border border-primary/10 hover:border-primary/40 transition-colors"
+                className="flex flex-col items-center text-center group"
               >
-                <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-3">
-                  <span className="text-primary font-bold text-lg">
-                    {name.charAt(0)}
-                  </span>
+                <div className="w-full aspect-square rounded-2xl overflow-hidden mb-3 relative">
+                  <img
+                    src={amb.image}
+                    alt={amb.name}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
                 </div>
-                <p className="font-semibold text-foreground text-sm leading-snug">
-                  {name}
-                </p>
-                <p className="text-primary text-xs font-bold tracking-wider uppercase mt-1">
+                <p className="text-xs font-bold tracking-widest text-primary uppercase mb-1">
                   Ambassador
+                </p>
+                <p className="font-semibold text-foreground text-sm leading-snug">
+                  {amb.name}
                 </p>
               </motion.div>
             ))}

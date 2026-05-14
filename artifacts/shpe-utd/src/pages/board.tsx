@@ -1,7 +1,4 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
 import board1 from "@/assets/images/board-1.png";
 import board2 from "@/assets/images/board-2.png";
 import board3 from "@/assets/images/board-3.png";
@@ -9,124 +6,184 @@ import board4 from "@/assets/images/board-4.png";
 import board5 from "@/assets/images/board-5.png";
 import board6 from "@/assets/images/board-6.png";
 
-type Year = "2023-2024" | "2024-2025" | "2025-2026";
-
 interface Officer {
   name: string;
   title: string;
   image: string;
-  color: "orange" | "green";
 }
 
-const officersData: Record<Year, Officer[]> = {
-  "2025-2026": [
-    { name: "Jordan Williams", title: "PRESIDENT", image: board1, color: "orange" },
-    { name: "Aaliyah Carter", title: "VICE PRESIDENT", image: board2, color: "green" },
-    { name: "Marcus Thompson", title: "SECRETARY", image: board3, color: "orange" },
-    { name: "Destiny Reyes", title: "TREASURER", image: board4, color: "green" },
-    { name: "Elijah Johnson", title: "EVENTS CHAIR", image: board5, color: "orange" },
-    { name: "Camila Flores", title: "PROFESSIONAL DEV CHAIR", image: board6, color: "green" },
-    { name: "Isaiah Brooks", title: "WEBMASTER", image: board1, color: "orange" },
-    { name: "Natalie Morales", title: "COMMUNITY CHAIR", image: board2, color: "green" },
-  ],
-  "2024-2025": [
-    { name: "Darius Mitchell", title: "PRESIDENT", image: board5, color: "green" },
-    { name: "Sofia Ramirez", title: "VICE PRESIDENT", image: board3, color: "orange" },
-    { name: "Caleb Washington", title: "SECRETARY", image: board4, color: "green" },
-    { name: "Jasmine Cruz", title: "TREASURER", image: board6, color: "orange" },
-  ],
-  "2023-2024": [
-    { name: "Andre Davis", title: "PRESIDENT", image: board4, color: "orange" },
-    { name: "Isabella Torres", title: "VICE PRESIDENT", image: board2, color: "green" },
-    { name: "Malik Robinson", title: "SECRETARY", image: board1, color: "orange" },
-    { name: "Gabriela Vega", title: "TREASURER", image: board3, color: "green" },
-  ]
+const leadership: Officer[] = [
+  { name: "Hajar Abdulkadir", title: "Co-President", image: board1 },
+  { name: "Oluwadamilare Sunmola", title: "Co-President", image: board2 },
+  { name: "Michael Katongole", title: "Vice President", image: board3 },
+  { name: "Ramzi Burhan", title: "Treasurer", image: board4 },
+  { name: "Marwan Hegazy", title: "Secretary", image: board5 },
+];
+
+const operations: Officer[] = [
+  { name: "Noha Markose", title: "Public Communications", image: board6 },
+  { name: "Akram Hassen", title: "Academic & Career Chair", image: board1 },
+  { name: "Musa Mudesir", title: "Corporate & Outreach", image: board2 },
+  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: board3 },
+];
+
+const ambassadors = [
+  "Nadir Muktar",
+  "Jose Rogel",
+  "Sabrina Abubaker",
+  "Timage Abubaker",
+  "Hasset Getachew",
+  "Henos Tekie",
+];
+
+const advisor: Officer = {
+  name: "Dr. Ravi Prakash",
+  title: "Faculty Advisor",
+  image: board4,
 };
 
-export default function Board() {
-  const [activeYear, setActiveYear] = useState<Year>("2025-2026");
-  const years: Year[] = ["2023-2024", "2024-2025", "2025-2026"];
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, delay: i * 0.08, ease: "easeOut" },
+  }),
+};
 
+function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
   return (
-    <div className="min-h-screen bg-background w-full pb-24">
-      {/* Header */}
-      <section className="bg-secondary py-20 px-4 text-center flex flex-col items-center justify-center border-b-8 border-primary">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-mono font-bold text-white tracking-tight">
-            &lt; Meet The Board /&gt;
-          </h1>
-          <p className="text-white/80 mt-6 text-xl max-w-2xl mx-auto font-medium">
-            The dedicated student leaders behind ColorStack at UTD.
-          </p>
-        </motion.div>
+    <motion.div
+      custom={index}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      className="flex flex-col items-center text-center group"
+    >
+      <div className="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-[#fdf4ee] relative">
+        <img
+          src={officer.image}
+          alt={officer.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+      </div>
+      <p className="text-xs font-bold tracking-widest text-primary uppercase mb-1">
+        {officer.title}
+      </p>
+      <h3 className="text-lg font-bold text-foreground leading-snug">
+        {officer.name}
+      </h3>
+    </motion.div>
+  );
+}
+
+function SectionHeading({ label, title }: { label: string; title: string }) {
+  return (
+    <div className="mb-10">
+      <p className="text-primary font-bold text-sm tracking-widest uppercase mb-2">
+        {label}
+      </p>
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground">{title}</h2>
+      <div className="mt-4 h-1 w-16 bg-primary rounded-full" />
+    </div>
+  );
+}
+
+export default function Board() {
+  return (
+    <div className="min-h-screen bg-background w-full">
+      {/* Hero */}
+      <section className="relative bg-secondary overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent" />
+        <div className="relative container mx-auto px-6 py-24 md:py-32 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <p className="text-primary font-bold tracking-widest uppercase text-sm mb-4">
+              2025 – 2026
+            </p>
+            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+              Meet the Board
+            </h1>
+            <p className="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">
+              We equip every member with the technical foundation to build
+              full-scale applications — from cloud infrastructure on AWS and
+              Azure to production-ready code and Data Structures &amp; Algorithms.
+              We also connect members with internships, new grad roles, and
+              industry relationships so no talented student goes unseen.{" "}
+              <span className="text-white font-semibold">
+                We build builders. We open doors.
+              </span>
+            </p>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 mt-12">
-        {/* Year Toggle */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          {years.map((year) => (
-            <button
-              key={year}
-              onClick={() => setActiveYear(year)}
-              className={`px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 ${
-                activeYear === year
-                  ? "bg-primary text-white shadow-lg shadow-primary/30"
-                  : "bg-white text-muted-foreground hover:bg-gray-100 hover:text-foreground shadow-sm"
-              }`}
-              data-testid={`tab-year-${year}`}
-            >
-              {year}
-            </button>
-          ))}
-        </div>
+      <div className="container mx-auto px-6 max-w-6xl">
+        {/* Leadership */}
+        <section className="py-20 border-b border-border">
+          <SectionHeading label="Executive Leadership" title="Leadership" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
+            {leadership.map((officer, idx) => (
+              <OfficerCard key={officer.name} officer={officer} index={idx} />
+            ))}
+          </div>
+        </section>
 
-        {/* Officer Grid */}
-        <motion.div
-          key={activeYear}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-        >
-          {officersData[activeYear].map((officer, idx) => (
-            <div key={`${activeYear}-${idx}`} className="flex flex-col group">
-              {/* Photo Card */}
-              <div
-                className={`w-full aspect-square rounded-3xl overflow-hidden mb-6 p-4 relative ${
-                  officer.color === "orange" ? "bg-primary/10" : "bg-secondary/10"
-                } transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl`}
+        {/* Operations & Outreach */}
+        <section className="py-20 border-b border-border">
+          <SectionHeading
+            label="Operations & Outreach"
+            title="Operations Team"
+          />
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {operations.map((officer, idx) => (
+              <OfficerCard key={officer.name} officer={officer} index={idx} />
+            ))}
+          </div>
+        </section>
+
+        {/* Ambassadors */}
+        <section className="py-20 border-b border-border">
+          <SectionHeading label="Community" title="Ambassadors" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {ambassadors.map((name, idx) => (
+              <motion.div
+                key={name}
+                custom={idx}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                className="bg-[#fdf4ee] rounded-xl px-4 py-5 text-center border border-primary/10 hover:border-primary/40 transition-colors"
               >
-                <div className={`absolute inset-0 opacity-20 ${officer.color === "orange" ? "bg-primary" : "bg-secondary"}`}></div>
-                <img
-                  src={officer.image}
-                  alt={officer.name}
-                  className="w-full h-full object-cover rounded-2xl relative z-10 shadow-md grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-
-              {/* Info */}
-              <div className="text-center flex-1 flex flex-col">
-                <h3 className="text-2xl font-bold text-foreground mb-1">{officer.name}</h3>
-                <p className="text-primary font-black uppercase tracking-wider text-sm mb-6 flex-1">
-                  {officer.title}
+                <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-primary font-bold text-lg">
+                    {name.charAt(0)}
+                  </span>
+                </div>
+                <p className="font-semibold text-foreground text-sm leading-snug">
+                  {name}
                 </p>
+                <p className="text-primary text-xs font-bold tracking-wider uppercase mt-1">
+                  Ambassador
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
-                <Button
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full font-bold shadow-md w-full py-6 group-hover:shadow-lg transition-all"
-                  data-testid={`button-book-${idx}`}
-                >
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Book a Time
-                </Button>
-              </div>
-            </div>
-          ))}
-        </motion.div>
+        {/* Faculty Advisor */}
+        <section className="py-20">
+          <SectionHeading label="Faculty" title="Faculty Advisor" />
+          <div className="max-w-xs">
+            <OfficerCard officer={advisor} index={0} />
+          </div>
+        </section>
       </div>
     </div>
   );

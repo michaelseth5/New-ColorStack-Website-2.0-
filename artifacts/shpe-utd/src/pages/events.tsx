@@ -14,6 +14,7 @@ const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
 const at = Array.from({ length: 8 }, (_, i) => `${BASE}/at-${i + 1}.jpg`);
 const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
 const tp = Array.from({ length: 5 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
+const api101 = `${BASE}/api101.jpg`;
 
 type EventTab = "Upcoming" | "Past";
 
@@ -304,6 +305,23 @@ export default function Events() {
           "Reviewed 12 industry-level projects using AWS, Azure, Kubernetes, Docker, and BigQuery",
         ],
         recap: "Thank you to panelists Sofia Gutierrez, Loryn Higginbotham, Christian Reynolds, and Dami Oyadiran for giving your time, wisdom, and energy to the next generation of tech professionals.",
+        instagram: "@colorstackutd",
+      },
+      {
+        title: "API 101: Wall St. Decoded",
+        date: "MAR 27",
+        time: "March 27, 2026",
+        location: "UT Dallas",
+        desc: "ColorStack UTD hosted a hands-on workshop with one clear goal: get members comfortable working with APIs and understanding how they power tools across web design and tech. Led by Oluwadamilare Sunmola, with Michael Katongole opening on HTTP fundamentals, REST API architecture, and JSON.",
+        image: api101,
+        photos: [api101],
+        highlights: [
+          "HTTP fundamentals — requests, responses, status codes, and client-server communication",
+          "Python Flask + JavaScript — backend routes exposed via Flask, consumed with fetch() on the frontend",
+          "Live Yahoo Finance & Gemini API integration — real stock data + AI-powered analysis in one app",
+          "Version control with GitHub — initializing repos, committing, and pushing professional workflows",
+        ],
+        recap: "To every attendee who showed up, engaged, and put in the work: mastery is built one session at a time. Last night was a meaningful step in that direction.",
         instagram: "@colorstackutd",
       },
       {

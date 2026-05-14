@@ -2,12 +2,6 @@ uploads = []
 outputs = []
 
 [[generated]]
-id = "Pc8dB5ctMmIgTDbxPVGvx"
-uri = "file://artifacts/colorstack-utd/src/assets/images/team-1.png"
-type = "image"
-title = "Headshot of a Black male student"
-
-[[generated]]
 id = "-0KzcX6BrlN2bUhMw9EiL"
 uri = "file://artifacts/colorstack-utd/src/assets/images/team-2.png"
 type = "image"

@@ -1,0 +1,14 @@
+📸 [Insert API 101 Workshop Photo Here]
+API 101: Wall St. Decoded Recap
+📅 March 27, 2026
+On March 26th, ColorStack UTD hosted API 101: Wall St. Decoded with one clear goal: to get our members more comfortable working with APIs and understanding how they power the tools used across web design and technology. ✨
+A huge thank you to Oluwadamilare Sunmola for leading the workshop, bringing strong technical depth, clear communication, and the ability to break down complex concepts into something tangible and actionable for every skill level in the room.
+Michael Katongole opened by covering HTTP fundamentals, REST API architecture, and JSON as the backbone of financial data exchange, setting the technical foundation for the full-stack build ahead.
+From there, the workshop covered:
+How information travels over the web. Attendees were introduced to the fundamentals of HTTP, including the structure of requests and responses, status codes, and the mechanics of client-server communication.
+Python Flask and JavaScript working together. The session demonstrated how a Flask backend exposes API routes, and how the fetch() method on the frontend communicates with those routes to dynamically retrieve and render data in real time.
+@app.route in depth. Attendees explored how Flask's route decorator maps a URL path to a Python function, enabling the server to receive frontend requests, query external APIs, and return structured JSON data seamlessly.
+Live Yahoo Finance and Gemini API Integration. Participants integrated two real-world APIs simultaneously, pulling live stock data through Yahoo Finance and leveraging Google's Gemini API to add AI-powered analysis, applying every concept covered throughout the session in a fully functional application built from scratch.
+Version Control with GitHub. Attendees were introduced to Git fundamentals, including how to initialize a repository, commit changes, and push code to GitHub, establishing professional development workflows from day one.
+To every attendee who showed up, engaged, and put in the work: mastery is built one session at a time. Last night was a meaningful step in that direction. 💚
+#ColorStackUTD #API101 #TechWorkshop #HispanicInTech #BlackInTech #UTDallas #FinTech #Flask #Python #GitHub #Gemini #WallStreetDecoded

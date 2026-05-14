@@ -69,8 +69,10 @@ function EventCarousel() {
   return (
     <section className="bg-[#114634] py-16 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-black text-white mb-10 text-center tracking-tight">
-          Our Events
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-10 text-center tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
+          <span className="text-white/30">&lt;</span>
+          <span className="text-white"> Our Events </span>
+          <span className="text-white/30">/&gt;</span>
         </h2>
 
         <div className="relative">
@@ -231,6 +233,7 @@ export default function Home() {
               <span className="text-primary">cracked.</span>
               <br />
               Then we make sure the world knows it.
+              <span className="cursor-blink text-primary ml-1 font-light">|</span>
             </h1>
             <p className="text-[1.05rem] text-foreground/70 mb-10 max-w-sm leading-relaxed">
               ColorStack UTD is building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
@@ -258,14 +261,18 @@ export default function Home() {
           whileInView="show"
           viewport={{ once: true }}
           className="text-[clamp(2.6rem,6vw,5.5rem)] font-bold text-white tracking-tight"
+          style={{ fontFamily: "'Fira Code', monospace" }}
         >
-          Our Mission.
+          <span className="text-white/30">&lt;</span>
+          <span className="text-white"> Our Mission </span>
+          <span className="text-white/30">/&gt;</span>
         </motion.h2>
       </section>
 
       {/* ── Mission text ────────────────────────────── */}
       <section className="bg-white py-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
+          <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-5 tracking-wide">// what we do</p>
           <motion.p
             variants={fadeUp}
             initial="hidden"

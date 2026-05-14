@@ -20,8 +20,10 @@ export default function Sponsors() {
           transition={{ duration: 0.5 }}
           className="relative z-10"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
-            Our Sponsors
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
+            <span className="text-white/30">&lt;</span>
+            <span className="text-white"> Our Sponsors </span>
+            <span className="text-white/30">/&gt;</span>
           </h1>
           <p className="text-white/90 text-xl md:text-2xl font-medium max-w-3xl mx-auto">
             The companies that invest in our members and get some of the most technically prepared Black and Latinx engineers in return.

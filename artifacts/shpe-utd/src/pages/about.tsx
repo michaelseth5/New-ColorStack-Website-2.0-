@@ -55,7 +55,12 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="flex-1"
           >
-            <h2 className="text-4xl font-black text-secondary mb-8">Our Story</h2>
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// who we are</p>
+            <h2 className="text-4xl font-black text-secondary mb-8" style={{ fontFamily: "'Fira Code', monospace" }}>
+              <span className="text-secondary/30">&lt;</span>
+              <span> Our Story </span>
+              <span className="text-secondary/30">/&gt;</span>
+            </h2>
             <div className="space-y-6 text-lg text-foreground/80 leading-relaxed font-medium">
               <p>
                 ColorStack at UT Dallas was built with one goal: get more Black and Latinx students into top tech roles. Not just through the door. To the top.
@@ -90,7 +95,12 @@ export default function About() {
       <section className="bg-[#F5F5F5] py-24 px-4 border-y border-border">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-foreground">Our Core Values</h2>
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// what drives us</p>
+            <h2 className="text-4xl font-black text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
+              <span className="text-foreground/25">&lt;</span>
+              <span> Our Core Values </span>
+              <span className="text-foreground/25">/&gt;</span>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

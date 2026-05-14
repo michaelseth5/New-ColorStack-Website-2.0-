@@ -352,8 +352,10 @@ export default function Events() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
-            Upcoming Events
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
+            <span className="text-white/30">&lt;</span>
+            <span className="text-white"> Our Events </span>
+            <span className="text-white/30">/&gt;</span>
           </h1>
           <p className="text-white/80 text-xl font-medium max-w-2xl mx-auto">
             Discover opportunities to learn, grow, and connect with the ColorStack UTD community.

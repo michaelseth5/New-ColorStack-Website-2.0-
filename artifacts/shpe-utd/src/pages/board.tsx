@@ -86,10 +86,10 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
         />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
       </div>
-      <p className="text-xs font-bold tracking-widest text-primary uppercase mb-1">
-        {officer.title}
+      <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.65rem] text-foreground/45 mb-1 leading-tight">
+        role = "{officer.title}"
       </p>
-      <h3 className="text-lg font-bold text-foreground leading-snug">
+      <h3 className="text-base font-bold text-foreground leading-snug">
         {officer.name}
       </h3>
     </motion.div>
@@ -99,10 +99,14 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
 function SectionHeading({ label, title }: { label: string; title: string }) {
   return (
     <div className="mb-10">
-      <p className="text-primary font-bold text-sm tracking-widest uppercase mb-2">
-        {label}
+      <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-2 tracking-wide">
+        // {label.toLowerCase()}
       </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
+        <span className="text-foreground/25">&lt;</span>
+        <span> {title} </span>
+        <span className="text-foreground/25">/&gt;</span>
+      </h2>
       <div className="mt-4 h-1 w-16 bg-primary rounded-full" />
     </div>
   );
@@ -125,8 +129,10 @@ export default function Board() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-              Meet the Board
+            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6" style={{ fontFamily: "'Fira Code', monospace" }}>
+              <span className="text-white/30">&lt;</span>
+              <span className="text-white"> Meet The Board </span>
+              <span className="text-white/30">/&gt;</span>
             </h1>
             <p className="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">
               We equip every member with the technical foundation to build

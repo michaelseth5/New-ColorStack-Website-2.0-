@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Linkedin } from "lucide-react";
 
 import hajarImg from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
 import oluwadamilareImg from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
@@ -22,19 +23,22 @@ interface Officer {
   name: string;
   title: string;
   image: string;
+  classYear?: string;
+  bio?: string;
+  linkedinUrl?: string;
 }
 
 const leadership: Officer[] = [
   { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg },
-  { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg },
-  { name: "Michael Katongole", title: "Vice President", image: michaelImg },
+  { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
+  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
   { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg },
   { name: "Marwan Hegazy", title: "Secretary", image: marwanImg },
 ];
 
 const operations: Officer[] = [
   { name: "Noha Markose", title: "Public Communications", image: nohaImg },
-  { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg },
+  { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
   { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg },
   { name: "Maareb Fadlalah", title: "Fundraising Chair", image: placeholderImg },
 ];
@@ -76,9 +80,10 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      className="flex flex-col items-center text-center group"
+      className="flex flex-col group bg-white rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300"
     >
-      <div className="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-[#fdf4ee] relative">
+      {/* Photo */}
+      <div className="w-full aspect-square overflow-hidden bg-[#fdf4ee] relative">
         <img
           src={officer.image}
           alt={officer.name}
@@ -86,12 +91,42 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
         />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
       </div>
-      <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.65rem] text-foreground/45 mb-1 leading-tight">
-        role = "{officer.title}"
-      </p>
-      <h3 className="text-base font-bold text-foreground leading-snug">
-        {officer.name}
-      </h3>
+
+      {/* Info */}
+      <div className="p-4 flex flex-col flex-1">
+        {/* Name */}
+        <h3 className="text-base font-bold text-foreground leading-snug mb-1">
+          {officer.name}
+        </h3>
+
+        {/* Role */}
+        <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.62rem] text-[#EC7524] mb-1 leading-tight">
+          role = "{officer.title}"
+        </p>
+
+        {/* Class year */}
+        {officer.classYear && (
+          <p className="text-[0.72rem] text-muted-foreground mb-2">{officer.classYear}</p>
+        )}
+
+        {/* Bio */}
+        {officer.bio && (
+          <p className="text-[0.78rem] text-foreground/70 leading-relaxed mb-3 flex-1">{officer.bio}</p>
+        )}
+
+        {/* LinkedIn button */}
+        {officer.linkedinUrl && (
+          <a
+            href={officer.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto flex items-center gap-2 bg-[#114634] hover:bg-[#0d3528] text-white rounded-lg px-3 py-2 transition-colors duration-200 w-full justify-center"
+          >
+            <Linkedin size={14} strokeWidth={1.8} />
+            <span className="text-[0.72rem] font-semibold">Connect On LinkedIn</span>
+          </a>
+        )}
+      </div>
     </motion.div>
   );
 }

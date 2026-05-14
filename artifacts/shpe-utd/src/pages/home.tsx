@@ -11,6 +11,7 @@ import eboardMarwan from "@assets/Marwan_Hegazy_1778782883427.jpg";
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
 const logo = `${BASE}/logo-bg.png`;
+const utdIcon = `${BASE}/utd-icon.png`;
 
 
 const carouselSlides = [
@@ -230,7 +231,25 @@ export default function Home() {
             initial="hidden"
             animate="show"
           >
-            <img src={logo} alt="ColorStack at UTD" className="h-24 w-auto rounded-2xl mb-8 object-contain bg-secondary p-3" />
+            {/* Featured wordmark */}
+            <div className="flex items-center gap-5 mb-10">
+              {/* Logo mark with UTD badge */}
+              <div className="relative flex-shrink-0">
+                <img
+                  src={logo}
+                  alt="ColorStack"
+                  className="h-28 w-28 rounded-3xl object-contain bg-secondary p-3 shadow-lg"
+                />
+                <div className="absolute -bottom-2.5 -right-2.5 h-11 w-11 rounded-xl bg-white shadow-md border border-white/80 flex items-center justify-center p-1">
+                  <img src={utdIcon} alt="UT Dallas" className="h-full w-full object-contain" />
+                </div>
+              </div>
+              {/* Wordmark text */}
+              <div>
+                <p className="text-[2rem] font-black text-foreground leading-none tracking-tight">ColorStack</p>
+                <p className="text-[#EC7524] font-black text-sm tracking-[0.22em] uppercase mt-1.5">AT UTD</p>
+              </div>
+            </div>
             <h1 className="text-[clamp(2.4rem,4vw,3.8rem)] font-bold tracking-tight text-foreground leading-[1.12] mb-6">
               We get our members{" "}
               <span className="text-primary">cracked.</span>

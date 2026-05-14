@@ -432,12 +432,12 @@ export default function Home() {
         </div>
 
         {/* Right – welcome panel */}
-        <div className="w-full md:w-[45%] flex flex-col justify-center bg-[#114634] px-10 md:px-16 lg:px-20 py-16 relative overflow-hidden">
+        <div className="w-full md:w-[45%] flex flex-col justify-center bg-[#fdf4ee] px-10 md:px-16 lg:px-20 py-16 relative overflow-hidden">
           {/* Subtle circuit pattern */}
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.05]"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23fff'/%3E%3Ccircle cx='80' cy='0' r='1.5' fill='%23fff'/%3E%3Ccircle cx='0' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%23fff'/%3E%3Cline x1='0' y1='0' x2='40' y2='0' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='0' y1='0' x2='0' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='40' y2='80' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='80' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='80' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='40' y2='0' stroke='%23fff' stroke-width='0.4'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='80' cy='0' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='0' cy='80' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%231a1a1a'/%3E%3Cline x1='0' y1='0' x2='40' y2='0' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='0' y1='0' x2='0' y2='40' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='40' y2='80' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='80' y2='40' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='80' y2='40' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='40' y2='0' stroke='%231a1a1a' stroke-width='0.4'/%3E%3C/svg%3E")`,
               backgroundSize: "80px 80px",
             }}
           />
@@ -458,7 +458,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <p className="text-white font-black text-base leading-none tracking-tight">ColorStack</p>
+                <p className="text-[#1a1a1a] font-black text-base leading-none tracking-tight">ColorStack</p>
                 <p className="text-[#EC7524] font-bold text-[11px] tracking-[0.22em] uppercase mt-1">AT UTD</p>
               </div>
             </motion.div>
@@ -481,7 +481,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="relative inline-block mb-1"
             >
-              <h1 className="text-[clamp(2.6rem,4vw,3.8rem)] font-black text-white leading-none tracking-tight">
+              <h1 className="text-[clamp(2.6rem,4vw,3.8rem)] font-black text-[#1a1a1a] leading-none tracking-tight">
                 ColorStack
                 {showCursor && (
                   <motion.span
@@ -506,7 +506,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.55, delay: 0.44, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-white/70 font-medium text-[1rem] mt-3 mb-6 leading-snug"
+              className="text-[#1a1a1a]/70 font-medium text-[1rem] mt-3 mb-6 leading-snug"
             >
               At The University Of Texas At Dallas
             </motion.p>
@@ -516,7 +516,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.6, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[clamp(1.15rem,2vw,1.5rem)] font-bold text-white/90 leading-snug mb-4 max-w-sm"
+              className="text-[clamp(1.15rem,2vw,1.5rem)] font-bold text-[#1a1a1a]/90 leading-snug mb-4 max-w-sm"
             >
               We get our members{" "}
               <span className="text-[#EC7524]">cracked.</span>
@@ -529,7 +529,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.55, delay: 0.68, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[0.95rem] text-white/50 mb-9 max-w-sm leading-relaxed"
+              className="text-[0.95rem] text-[#1a1a1a]/55 mb-9 max-w-sm leading-relaxed"
             >
               Building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
             </motion.p>
@@ -550,7 +550,7 @@ export default function Home() {
                 </button>
               </Link>
               <Link href="/about">
-                <button className="bg-transparent border-2 border-white/40 hover:border-white/80 text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 text-[15px]">
+                <button className="bg-transparent border-2 border-[#1a1a1a]/30 hover:border-[#1a1a1a]/70 text-[#1a1a1a] font-bold px-8 py-3.5 rounded-full transition-all duration-200 text-[15px]">
                   Learn More
                 </button>
               </Link>

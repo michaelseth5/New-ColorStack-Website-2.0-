@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Terminal, GitMerge, Globe } from "lucide-react";
+import { ChevronLeft, ChevronRight, Terminal, GitMerge, Globe, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState, useCallback, useRef } from "react";
 import eboardHajar from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
@@ -171,6 +171,205 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 };
 
+const NODES = [
+  { cx: 60,  cy: 65,  r: 6 },
+  { cx: 195, cy: 30,  r: 4 },
+  { cx: 310, cy: 105, r: 8 },
+  { cx: 160, cy: 195, r: 5 },
+  { cx: 320, cy: 235, r: 4 },
+  { cx: 85,  cy: 250, r: 6 },
+  { cx: 400, cy: 50,  r: 5 },
+  { cx: 445, cy: 190, r: 7 },
+  { cx: 370, cy: 310, r: 4 },
+  { cx: 215, cy: 315, r: 6 },
+  { cx: 495, cy: 300, r: 5 },
+  { cx: 130, cy: 130, r: 3 },
+  { cx: 270, cy: 165, r: 4 },
+];
+
+const EDGES: [number, number][] = [
+  [0,1],[1,2],[2,6],[0,5],[1,11],[11,3],[3,4],[2,4],[5,3],
+  [6,7],[7,4],[4,9],[7,10],[3,9],[5,9],[8,10],[4,8],[12,3],[12,2],[1,12],
+];
+
+function NetworkGraph() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.1, delay: 0.4, ease: "easeOut" as const }}
+      className="relative select-none"
+    >
+      <div className="absolute inset-0 rounded-full blur-[90px] bg-[#EC7524]/15 scale-90 pointer-events-none" />
+      <svg
+        viewBox="0 0 555 370"
+        className="w-full max-w-[520px] lg:max-w-[560px] relative z-10"
+        style={{ filter: "drop-shadow(0 0 18px rgba(236,117,36,0.18))" }}
+        aria-hidden="true"
+      >
+        {EDGES.map(([a, b], i) => (
+          <motion.line
+            key={`e${i}`}
+            x1={NODES[a].cx} y1={NODES[a].cy}
+            x2={NODES[b].cx} y2={NODES[b].cy}
+            stroke="#EC7524"
+            strokeWidth="1.2"
+            animate={{ opacity: [0.12, 0.42, 0.12] }}
+            transition={{ duration: 2.8 + (i % 6) * 0.35, repeat: Infinity, ease: "easeInOut", delay: (i % 8) * 0.28 }}
+          />
+        ))}
+        {NODES.map((n, i) => (
+          <g key={`n${i}`}>
+            {/* Pulse glow ring */}
+            <motion.g
+              style={{ transformOrigin: `${n.cx}px ${n.cy}px` }}
+              animate={{ scale: [0.6, 2, 0.6], opacity: [0, 0.18, 0] }}
+              transition={{ duration: 3.2 + i * 0.22, repeat: Infinity, ease: "easeInOut", delay: i * 0.18 }}
+            >
+              <circle cx={n.cx} cy={n.cy} r={n.r * 2.2} fill="#EC7524" />
+            </motion.g>
+            {/* Main node */}
+            <motion.g
+              style={{ transformOrigin: `${n.cx}px ${n.cy}px` }}
+              animate={{ scale: [1, 1.3, 1], opacity: [0.65, 1, 0.65] }}
+              transition={{ duration: 2.6 + i * 0.19, repeat: Infinity, ease: "easeInOut", delay: i * 0.16 }}
+            >
+              <circle cx={n.cx} cy={n.cy} r={n.r} fill="#EC7524" />
+              <circle cx={n.cx} cy={n.cy} r={n.r * 0.38} fill="white" opacity="0.95" />
+            </motion.g>
+          </g>
+        ))}
+      </svg>
+    </motion.div>
+  );
+}
+
+function HeroWelcome() {
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowCursor(false), 2200);
+    return () => clearTimeout(t);
+  }, []);
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 32 },
+    show: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: i * 0.14 },
+    }),
+  };
+
+  return (
+    <section
+      className="relative w-full min-h-screen overflow-hidden flex items-center"
+      style={{ background: "linear-gradient(170deg, #114634 0%, #0d3226 55%, #080f0a 100%)" }}
+    >
+      {/* Circuit board dot+line pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.07]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23fff'/%3E%3Ccircle cx='80' cy='0' r='1.5' fill='%23fff'/%3E%3Ccircle cx='0' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%23fff'/%3E%3Cline x1='0' y1='0' x2='40' y2='0' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='0' y1='0' x2='0' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='40' y2='80' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='80' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='80' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='40' y2='0' stroke='%23fff' stroke-width='0.4'/%3E%3C/svg%3E")`,
+          backgroundSize: "80px 80px",
+        }}
+      />
+      {/* Bottom fade to near-black */}
+      <div className="absolute inset-x-0 bottom-0 h-48 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, #080f0a)" }}
+      />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 md:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+        {/* Left: Text */}
+        <div className="flex-1 max-w-xl">
+          <motion.p
+            custom={0} variants={textVariants} initial="hidden" animate="show"
+            style={{ fontFamily: "'Fira Code', monospace" }}
+            className="text-[#EC7524]/70 text-sm mb-4 tracking-wider"
+          >
+            // Welcome To
+          </motion.p>
+
+          <motion.div custom={1} variants={textVariants} initial="hidden" animate="show">
+            <div className="relative inline-block mb-1">
+              <span className="text-[clamp(3.5rem,7vw,5.5rem)] font-black text-white leading-none tracking-tight">
+                ColorStack
+              </span>
+              {showCursor && (
+                <motion.span
+                  className="text-[clamp(3.5rem,7vw,5.5rem)] font-thin text-[#EC7524] leading-none ml-1"
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.7, repeat: Infinity }}
+                >
+                  |
+                </motion.span>
+              )}
+              {/* Orange underline accent */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" as const }}
+                className="absolute -bottom-1 left-0 h-[3px] w-full bg-[#EC7524] origin-left rounded-full"
+              />
+            </div>
+          </motion.div>
+
+          <motion.p
+            custom={2} variants={textVariants} initial="hidden" animate="show"
+            className="text-white/75 text-xl md:text-2xl font-medium mt-4 mb-8 leading-snug"
+          >
+            At The University Of Texas At Dallas
+          </motion.p>
+
+          <motion.p
+            custom={3} variants={textVariants} initial="hidden" animate="show"
+            className="text-white/55 text-base leading-relaxed mb-10 max-w-md"
+          >
+            Building the next generation of Black, Latinx, and Indigenous engineers. Come get technical. Come get connected. Come get cracked.
+          </motion.p>
+
+          <motion.div
+            custom={4} variants={textVariants} initial="hidden" animate="show"
+            className="flex flex-wrap gap-4"
+          >
+            <Link href="/join">
+              <button className="bg-[#EC7524] hover:bg-[#d46620] text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-[#EC7524]/25 text-[15px]">
+                Join The Chapter
+              </button>
+            </Link>
+            <Link href="/about">
+              <button className="bg-transparent border-2 border-white/50 hover:border-white text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px text-[15px]">
+                Learn More
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Right: Animated graphic */}
+        <div className="flex-1 flex items-center justify-center w-full max-w-[560px]">
+          <NetworkGraph />
+        </div>
+      </div>
+
+      {/* Scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+      >
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown size={22} className="text-white/30" />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -213,6 +412,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full">
+      <HeroWelcome />
+
       {/* ── Hero ────────────────────────────────────── */}
       <section className="w-full flex flex-col md:flex-row min-h-[calc(100vh-64px)]">
         {/* Left – photo */}

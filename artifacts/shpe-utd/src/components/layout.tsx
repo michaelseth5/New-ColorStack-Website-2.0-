@@ -54,9 +54,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 block" data-testid="link-home">
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2" data-testid="link-home">
             <div
-              aria-label="ColorStack at UTD"
+              aria-hidden="true"
               style={{
                 width: 44,
                 height: 44,
@@ -64,8 +64,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 backgroundSize: "500%",
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
+                flexShrink: 0,
               }}
             />
+            <span className="text-[1.1rem] font-black text-foreground tracking-tight leading-none">
+              Color<span className="text-primary">Stack</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}

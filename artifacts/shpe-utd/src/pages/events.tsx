@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, ArrowRight, Instagram } from "lucide-react";
-import event1 from "@/assets/images/event-1.png";
-import event2 from "@/assets/images/event-2.png";
-import event3 from "@/assets/images/event-3.png";
-import event4 from "@/assets/images/event-4.png";
+
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const gbm1 = `${BASE}/gbm-1.jpg`;
 const gbm2 = `${BASE}/gbm-2.jpg`;
@@ -21,19 +18,20 @@ type EventTab = "Upcoming" | "Past";
 interface BaseEvent {
   title: string;
   date: string;
-  time: string;
-  location: string;
+  time?: string;
+  location?: string;
   desc: string;
-  image: string;
+  image?: string;
   photos?: string[];
+  collage?: string[];
   recap?: string;
-  upNext?: string;
   highlights?: string[];
   instagram?: string;
 }
 
+/* ── Past event: full-width card with rotating photo gallery ── */
 function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
-  const photos = event.photos ?? [event.image];
+  const photos = event.photos ?? [event.image!];
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -70,7 +68,6 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
           <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
             {event.date}
           </div>
-          {/* Dot indicators */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
             {photos.map((_, i) => (
               <button
@@ -92,14 +89,18 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
             </h3>
 
             <div className="flex flex-wrap gap-x-6 gap-y-3 mb-6 text-muted-foreground font-medium">
-              <div className="flex items-center">
-                <Clock size={18} className="mr-2 text-primary" />
-                {event.time}
-              </div>
-              <div className="flex items-center">
-                <MapPin size={18} className="mr-2 text-primary" />
-                {event.location}
-              </div>
+              {event.time && (
+                <div className="flex items-center">
+                  <Clock size={18} className="mr-2 text-primary" />
+                  {event.time}
+                </div>
+              )}
+              {event.location && (
+                <div className="flex items-center">
+                  <MapPin size={18} className="mr-2 text-primary" />
+                  {event.location}
+                </div>
+              )}
             </div>
 
             <p className="text-foreground leading-relaxed mb-5">{event.desc}</p>
@@ -137,21 +138,38 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
   );
 }
 
-function StandardCard({ event, idx }: { event: BaseEvent; idx: number }) {
+/* ── Upcoming event: mood-board collage card ── */
+function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
+  const photos = event.collage ?? [];
+
   return (
     <motion.div
-      key={`event-${idx}`}
+      key={`upcoming-${idx}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: idx * 0.1 }}
       className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group"
     >
+      {/* Collage */}
       <div className="relative h-56 overflow-hidden">
-        <img
-          src={event.image}
-          alt={event.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-        />
+        {photos.length >= 4 ? (
+          <div className="grid grid-cols-2 grid-rows-2 h-full gap-0.5">
+            {photos.slice(0, 4).map((src, i) => (
+              <div key={i} className="overflow-hidden">
+                <img
+                  src={src}
+                  alt={`Community photo ${i + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="w-full h-full bg-secondary/10 flex items-center justify-center">
+            <span className="text-secondary/40 font-bold text-lg">Coming Soon</span>
+          </div>
+        )}
+        {/* Month badge */}
         <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
           {event.date}
         </div>
@@ -162,17 +180,22 @@ function StandardCard({ event, idx }: { event: BaseEvent; idx: number }) {
           {event.title}
         </h3>
 
-        <div className="space-y-3 mb-6 flex-1">
-          <div className="flex items-center text-muted-foreground font-medium">
-            <Clock size={18} className="mr-3 text-primary" />
-            {event.time}
-          </div>
-          <div className="flex items-center text-muted-foreground font-medium">
-            <MapPin size={18} className="mr-3 text-primary" />
-            {event.location}
-          </div>
-          <p className="text-foreground leading-relaxed mt-4">{event.desc}</p>
+        <div className="space-y-2 mb-4">
+          {event.time && (
+            <div className="flex items-center text-muted-foreground font-medium">
+              <Clock size={18} className="mr-3 text-primary flex-shrink-0" />
+              {event.time}
+            </div>
+          )}
+          {event.location && (
+            <div className="flex items-center text-muted-foreground font-medium">
+              <MapPin size={18} className="mr-3 text-primary flex-shrink-0" />
+              {event.location}
+            </div>
+          )}
         </div>
+
+        <p className="text-foreground leading-relaxed mb-6 flex-1">{event.desc}</p>
 
         <Button
           variant="outline"
@@ -191,36 +214,35 @@ export default function Events() {
   const events: Record<EventTab, BaseEvent[]> = {
     Upcoming: [
       {
-        title: "Resume & Portfolio Workshop",
-        date: "OCT 12",
+        title: "Resume And Portfolio Workshop",
+        date: "OCT",
         time: "5:30 PM - 7:00 PM",
-        location: "ECSW 1.315",
-        desc: "Get your resume and portfolio polished before career fair season. Peer reviews and tips from engineers at top tech companies.",
-        image: event1,
+        location: "ECSW",
+        desc: "Get Your Resume And Portfolio Polished Before Career Fair Season. Peer Reviews And Tips From Engineers At Top Tech Companies.",
+        collage: [gbm1, rn[0], sk[0], tp[0]],
       },
       {
         title: "Industry Networking Mixer",
-        date: "OCT 20",
+        date: "OCT",
         time: "6:00 PM - 8:30 PM",
         location: "Davidson-Gundy Alumni Center",
-        desc: "Connect with engineers and recruiters from our top sponsors. Business casual. Food and refreshments provided.",
-        image: event2,
+        desc: "Connect With Engineers And Recruiters From Our Top Sponsors. Business Casual. Food And Refreshments Provided.",
+        collage: [gbm2, rn[2], at[0], sk[1]],
       },
       {
-        title: "Black & Latinx in Tech Panel",
-        date: "NOV 05",
+        title: "Black And Latinx In Tech Panel",
+        date: "NOV",
         time: "4:00 PM - 5:30 PM",
-        location: "SSA 14.244",
-        desc: "Hear from Black and Latinx software engineers sharing their journeys, navigating tech, and advice for landing your first role.",
-        image: event3,
+        desc: "Hear From Black And Latinx Software Engineers Sharing Their Journeys, Navigating Tech, And Advice For Landing Your First Role.",
+        collage: [gbm3, rn[4], at[2], tp[2]],
       },
       {
         title: "ColorStack Community Social",
-        date: "NOV 22",
+        date: "NOV",
         time: "7:00 PM - 10:00 PM",
-        location: "Northside Clubhouse",
-        desc: "End-of-semester celebration with the ColorStack community. Games, food, and good company before finals.",
-        image: event4,
+        location: "Northside",
+        desc: "End-Of-Semester Celebration With The ColorStack Community. Games, Food, And Good Company Before Finals.",
+        collage: [rn[6], at[4], sk[3], tp[4]],
       },
     ],
     Past: [
@@ -229,10 +251,10 @@ export default function Events() {
         date: "SEP 15",
         time: "September 15, 2025",
         location: "UT Dallas",
-        desc: "We kicked off the semester with an incredible first General Body Meeting. Thank you to everyone who joined us, including our very own faculty advisor Ravi Prakash. We had such a meaningful time connecting, sharing our mission, and building community together.",
+        desc: "We Kicked Off The Semester With An Incredible First General Body Meeting. Thank You To Everyone Who Joined Us, Including Our Very Own Faculty Advisor Ravi Prakash. We Had Such A Meaningful Time Connecting, Sharing Our Mission, And Building Community Together.",
         image: gbm1,
         photos: [gbm1, gbm2, gbm3],
-        recap: "We're excited to continue creating spaces where students of color in tech can thrive.",
+        recap: "We're Excited To Continue Creating Spaces Where Students Of Color In Tech Can Thrive.",
         instagram: "@colorstackutd",
       },
       {
@@ -240,15 +262,15 @@ export default function Events() {
         date: "SEP 21",
         time: "September 21, 2025",
         location: "UT Dallas",
-        desc: "We hosted an engaging Resume Night where members gained practical resume tips for breaking into tech careers, LinkedIn 101 strategies to strengthen their online presence, and networking and development resources to stay involved and grow professionally.",
+        desc: "We Hosted An Engaging Resume Night Where Members Gained Practical Resume Tips For Breaking Into Tech Careers, LinkedIn 101 Strategies To Strengthen Their Online Presence, And Networking And Development Resources To Stay Involved And Grow Professionally.",
         image: rn[0],
         photos: rn,
         highlights: [
-          "Practical resume tips for breaking into tech careers",
-          "LinkedIn 101 strategies to strengthen their online presence",
-          "Networking and development resources to stay connected",
+          "Practical Resume Tips For Breaking Into Tech Careers",
+          "LinkedIn 101 Strategies To Strengthen Their Online Presence",
+          "Networking And Development Resources To Stay Connected",
         ],
-        recap: "A huge thank you to our UT Dallas University Career Center reps Brett Webb and Juna Jones-Moore, along with board members Michael, Oluwadamilare, and Akram for leading the panel and offering 1:1 resume reviews! If you're interested in accessing our Resume Night resources, be sure to join our Slack.",
+        recap: "A Huge Thank You To Our UT Dallas University Career Center Reps Brett Webb And Juna Jones-Moore, Along With Board Members Michael, Oluwadamilare, And Akram For Leading The Panel And Offering 1:1 Resume Reviews! If You're Interested In Accessing Our Resume Night Resources, Be Sure To Join Our Slack.",
         instagram: "@colorstackutd",
       },
       {
@@ -256,11 +278,11 @@ export default function Events() {
         date: "NOV 13",
         time: "November 13, 2025",
         location: "AfroTech Conference 2025",
-        desc: "Honored we could host this meetup and connect so many Texas chapters in one place. Amazing turnout and even better vibes. Texas chapters really held it down!",
+        desc: "Honored We Could Host This Meetup And Connect So Many Texas Chapters In One Place. Amazing Turnout And Even Better Vibes. Texas Chapters Really Held It Down!",
         image: at[0],
         photos: at,
         highlights: [
-          "ColorStack University of North Texas",
+          "ColorStack University Of North Texas",
           "ColorStack UT Austin",
           "ColorStack UTA",
           "ColorStack UNT",
@@ -268,7 +290,7 @@ export default function Events() {
           "ColorStack Prairie View A&M",
           "ColorStack Loyola",
         ],
-        recap: "This is what community looks like.",
+        recap: "This Is What Community Looks Like.",
         instagram: "@colorstackutd",
       },
       {
@@ -276,16 +298,16 @@ export default function Events() {
         date: "FEB 14",
         time: "February 14, 2026",
         location: "UT Dallas",
-        desc: "Thank you to everyone who came out to our Spring 2026 General Body Meeting! We kicked off the new semester with energy, community, and a full look at everything ColorStack UTD has in store.",
+        desc: "Thank You To Everyone Who Came Out To Our Spring 2026 General Body Meeting! We Kicked Off The New Semester With Energy, Community, And A Full Look At Everything ColorStack UTD Has In Store.",
         image: sk[0],
         photos: sk,
         highlights: [
-          "Who we are and what ColorStack UTD is about",
-          "Upcoming events and opportunities for Spring 2026",
-          "Networking and community building",
-          "Workshops, career prep sessions, and company partnerships",
+          "Who We Are And What ColorStack UTD Is About",
+          "Upcoming Events And Opportunities For Spring 2026",
+          "Networking And Community Building",
+          "Workshops, Career Prep Sessions, And Company Partnerships",
         ],
-        recap: "Want to stay connected and never miss an update? Join our Slack and follow along for everything we have coming this semester!",
+        recap: "Want To Stay Connected And Never Miss An Update? Join Our Slack And Follow Along For Everything We Have Coming This Semester!",
         instagram: "@colorstackutd",
       },
       {
@@ -293,18 +315,18 @@ export default function Events() {
         date: "FEB 27",
         time: "February 27, 2026",
         location: "UT Dallas",
-        desc: "ColorStack UTD hosted an incredible evening with four amazing professionals who shared first-hand stories, practical advice, and real talk about navigating early careers in tech while adapting to an AI-driven world. Hosted by VP Michael Katongole.",
+        desc: "ColorStack UTD Hosted An Incredible Evening With Four Amazing Professionals Who Shared First-Hand Stories, Practical Advice, And Real Talk About Navigating Early Careers In Tech While Adapting To An AI-Driven World. Hosted By VP Michael Katongole.",
         image: tp[0],
         photos: tp,
         highlights: [
-          "Tech unemployment is at 3.75%; the jobs aren't disappearing, they're changing",
-          "Use CodePath's TIP for structured DSA practice that simulates real interview environments",
-          "Learn Prompt Engineering; CodePath's 10-week Applied AI Engineering course teaches AI-assisted workflows and rapid prototyping",
-          "Have 6 behavioral stories ready using the CARL method (Context, Action, Result, Learning)",
-          "Join ColorStack, NSBE Professionals, and SHPE, and don't just join, lead!",
-          "Reviewed 12 industry-level projects using AWS, Azure, Kubernetes, Docker, and BigQuery",
+          "Tech Unemployment Is At 3.75%; The Jobs Aren't Disappearing, They're Changing",
+          "Use CodePath's TIP For Structured DSA Practice That Simulates Real Interview Environments",
+          "Learn Prompt Engineering; CodePath's 10-Week Applied AI Engineering Course Teaches AI-Assisted Workflows And Rapid Prototyping",
+          "Have 6 Behavioral Stories Ready Using The CARL Method (Context, Action, Result, Learning)",
+          "Join ColorStack, NSBE Professionals, And SHPE, And Don't Just Join, Lead!",
+          "Reviewed 12 Industry-Level Projects Using AWS, Azure, Kubernetes, Docker, And BigQuery",
         ],
-        recap: "Thank you to panelists Sofia Gutierrez, Loryn Higginbotham, Christian Reynolds, and Dami Oyadiran for giving your time, wisdom, and energy to the next generation of tech professionals.",
+        recap: "Thank You To Panelists Sofia Gutierrez, Loryn Higginbotham, Christian Reynolds, And Dami Oyadiran For Giving Your Time, Wisdom, And Energy To The Next Generation Of Tech Professionals.",
         instagram: "@colorstackutd",
       },
       {
@@ -312,33 +334,17 @@ export default function Events() {
         date: "MAR 27",
         time: "March 27, 2026",
         location: "UT Dallas",
-        desc: "ColorStack UTD hosted a hands-on workshop with one clear goal: get members comfortable working with APIs and understanding how they power tools across web design and tech. Led by Oluwadamilare Sunmola, with Michael Katongole opening on HTTP fundamentals, REST API architecture, and JSON.",
+        desc: "ColorStack UTD Hosted A Hands-On Workshop With One Clear Goal: Get Members Comfortable Working With APIs And Understanding How They Power Tools Across Web Design And Tech. Led By Oluwadamilare Sunmola, With Michael Katongole Opening On HTTP Fundamentals, REST API Architecture, And JSON.",
         image: api101,
         photos: [api101],
         highlights: [
-          "HTTP fundamentals: requests, responses, status codes, and client-server communication",
-          "Python Flask + JavaScript; backend routes exposed via Flask, consumed with fetch() on the frontend",
-          "Live Yahoo Finance and Gemini API integration: real stock data and AI-powered analysis in one app",
-          "Version control with GitHub: initializing repos, committing, and pushing professional workflows",
+          "HTTP Fundamentals: Requests, Responses, Status Codes, And Client-Server Communication",
+          "Python Flask And JavaScript: Backend Routes Exposed Via Flask, Consumed With Fetch() On The Frontend",
+          "Live Yahoo Finance And Gemini API Integration: Real Stock Data And AI-Powered Analysis In One App",
+          "Version Control With GitHub: Initializing Repos, Committing, And Pushing Professional Workflows",
         ],
-        recap: "To every attendee who showed up, engaged, and put in the work: mastery is built one session at a time. Last night was a meaningful step in that direction.",
+        recap: "To Every Attendee Who Showed Up, Engaged, And Put In The Work: Mastery Is Built One Session At A Time. Last Night Was A Meaningful Step In That Direction.",
         instagram: "@colorstackutd",
-      },
-      {
-        title: "Technical Interview Prep",
-        date: "SEP 18",
-        time: "6:00 PM - 8:00 PM",
-        location: "ECSW 1.315",
-        desc: "Cracking the coding interview with LeetCode deep-dives and system design walkthroughs led by senior members.",
-        image: event1,
-      },
-      {
-        title: "Coffee Chat with Google Engineers",
-        date: "SEP 25",
-        time: "3:00 PM - 5:00 PM",
-        location: "Student Union, Room 2.410",
-        desc: "Informal coffee chats with engineers from Google. Ask anything about their career paths, day-to-day work, and internship tips.",
-        image: event2,
       },
     ],
   };
@@ -358,7 +364,7 @@ export default function Events() {
             <span className="text-white/30">/&gt;</span>
           </h1>
           <p className="text-white/80 text-xl font-medium max-w-2xl mx-auto">
-            Discover opportunities to learn, grow, and connect with the ColorStack UTD community.
+            Discover Opportunities To Learn, Grow, And Connect With The ColorStack UTD Community.
           </p>
         </motion.div>
       </section>
@@ -387,13 +393,13 @@ export default function Events() {
 
         {/* Event Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {events[activeTab].map((event, idx) =>
-            event.photos ? (
-              <GBMCard key={`${activeTab}-${idx}`} event={event} idx={idx} />
-            ) : (
-              <StandardCard key={`${activeTab}-${idx}`} event={event} idx={idx} />
-            )
-          )}
+          {activeTab === "Upcoming"
+            ? events.Upcoming.map((event, idx) => (
+                <UpcomingCard key={`upcoming-${idx}`} event={event} idx={idx} />
+              ))
+            : events.Past.map((event, idx) => (
+                <GBMCard key={`past-${idx}`} event={event} idx={idx} />
+              ))}
         </div>
 
         {events[activeTab].length === 0 && (

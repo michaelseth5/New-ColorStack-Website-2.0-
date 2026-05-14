@@ -1,26 +1,192 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Clock, ArrowRight, Instagram } from "lucide-react";
 import event1 from "@/assets/images/event-1.png";
 import event2 from "@/assets/images/event-2.png";
 import event3 from "@/assets/images/event-3.png";
 import event4 from "@/assets/images/event-4.png";
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const gbm1 = `${BASE}/gbm-1.jpg`;
+const gbm2 = `${BASE}/gbm-2.jpg`;
+const gbm3 = `${BASE}/gbm-3.jpg`;
 
 type EventTab = "Upcoming" | "Past";
+
+interface BaseEvent {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  desc: string;
+  image: string;
+  photos?: string[];
+  recap?: string;
+  upNext?: string;
+  instagram?: string;
+}
+
+function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
+  const photos = event.photos ?? [event.image];
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (photos.length <= 1) return;
+    const id = setInterval(() => {
+      setCurrent((c) => (c + 1) % photos.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [photos.length]);
+
+  return (
+    <motion.div
+      key={`past-${idx}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: idx * 0.1 }}
+      className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group col-span-1 md:col-span-2 lg:col-span-3"
+    >
+      <div className="flex flex-col lg:flex-row">
+        {/* Photo gallery */}
+        <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden flex-shrink-0">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={current}
+              src={photos[current]}
+              alt={`${event.title} photo ${current + 1}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full h-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
+            {event.date}
+          </div>
+          {/* Dot indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {photos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-white scale-125" : "bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8 lg:p-10 flex flex-col flex-1 justify-between">
+          <div>
+            <h3 className="text-3xl font-bold text-secondary mb-4 group-hover:text-primary transition-colors">
+              {event.title}
+            </h3>
+
+            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-6 text-muted-foreground font-medium">
+              <div className="flex items-center">
+                <Clock size={18} className="mr-2 text-primary" />
+                {event.time}
+              </div>
+              <div className="flex items-center">
+                <MapPin size={18} className="mr-2 text-primary" />
+                {event.location}
+              </div>
+            </div>
+
+            <p className="text-foreground leading-relaxed mb-5">{event.desc}</p>
+
+            {event.upNext && (
+              <div className="bg-[#FFF8F0] border border-primary/20 rounded-2xl p-5 mb-5">
+                <p className="font-bold text-secondary mb-1">Up next: {event.upNext.split(":")[0]}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{event.upNext.split(":").slice(1).join(":").trim()}</p>
+              </div>
+            )}
+
+            {event.recap && (
+              <p className="text-muted-foreground text-sm italic leading-relaxed mb-6">{event.recap}</p>
+            )}
+          </div>
+
+          {event.instagram && (
+            <a
+              href={`https://instagram.com/${event.instagram.replace("@", "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold text-primary hover:text-secondary transition-colors"
+            >
+              <Instagram size={18} />
+              {event.instagram}
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function StandardCard({ event, idx }: { event: BaseEvent; idx: number }) {
+  return (
+    <motion.div
+      key={`event-${idx}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: idx * 0.1 }}
+      className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group"
+    >
+      <div className="relative h-56 overflow-hidden">
+        <img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        />
+        <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
+          {event.date}
+        </div>
+      </div>
+
+      <div className="p-8 flex flex-col flex-1">
+        <h3 className="text-2xl font-bold text-secondary mb-4 group-hover:text-primary transition-colors">
+          {event.title}
+        </h3>
+
+        <div className="space-y-3 mb-6 flex-1">
+          <div className="flex items-center text-muted-foreground font-medium">
+            <Clock size={18} className="mr-3 text-primary" />
+            {event.time}
+          </div>
+          <div className="flex items-center text-muted-foreground font-medium">
+            <MapPin size={18} className="mr-3 text-primary" />
+            {event.location}
+          </div>
+          <p className="text-foreground leading-relaxed mt-4">{event.desc}</p>
+        </div>
+
+        <Button
+          variant="outline"
+          className="w-full rounded-full py-6 font-bold border-2 border-primary/20 text-primary hover:bg-primary hover:text-white transition-all group-hover:border-primary"
+        >
+          Learn More <ArrowRight size={18} className="ml-2" />
+        </Button>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Events() {
   const [activeTab, setActiveTab] = useState<EventTab>("Upcoming");
 
-  const events = {
-    "Upcoming": [
+  const events: Record<EventTab, BaseEvent[]> = {
+    Upcoming: [
       {
         title: "Resume & Portfolio Workshop",
         date: "OCT 12",
         time: "5:30 PM - 7:00 PM",
         location: "ECSW 1.315",
         desc: "Get your resume and portfolio polished before career fair season. Peer reviews and tips from engineers at top tech companies.",
-        image: event1
+        image: event1,
       },
       {
         title: "Industry Networking Mixer",
@@ -28,7 +194,7 @@ export default function Events() {
         time: "6:00 PM - 8:30 PM",
         location: "Davidson-Gundy Alumni Center",
         desc: "Connect with engineers and recruiters from our top sponsors. Business casual. Food and refreshments provided.",
-        image: event2
+        image: event2,
       },
       {
         title: "Black & Latinx in Tech Panel",
@@ -36,7 +202,7 @@ export default function Events() {
         time: "4:00 PM - 5:30 PM",
         location: "SSA 14.244",
         desc: "Hear from Black and Latinx software engineers sharing their journeys, navigating tech, and advice for landing your first role.",
-        image: event3
+        image: event3,
       },
       {
         title: "ColorStack Community Social",
@@ -44,17 +210,21 @@ export default function Events() {
         time: "7:00 PM - 10:00 PM",
         location: "Northside Clubhouse",
         desc: "End-of-semester celebration with the ColorStack community. Games, food, and good company before finals.",
-        image: event4
-      }
+        image: event4,
+      },
     ],
-    "Past": [
+    Past: [
       {
-        title: "First General Meeting",
-        date: "SEP 05",
-        time: "5:30 PM - 7:00 PM",
-        location: "ECSW 1.100",
-        desc: "Kickoff meeting for the semester — learn about ColorStack UTD's mission, events, and how to get involved.",
-        image: event4
+        title: "ColorStack UTD's First GBM",
+        date: "SEP 15",
+        time: "September 15, 2025",
+        location: "UT Dallas",
+        desc: "We kicked off the semester with an incredible first General Body Meeting. Thank you to everyone who joined us — including our very own faculty advisor Ravi Prakash — we had such a meaningful time connecting, sharing our mission, and building community together.",
+        image: gbm1,
+        photos: [gbm1, gbm2, gbm3],
+        upNext: "Resume Night: Bring your resumes, questions, and curiosity — we'll be diving into strategies to strengthen your applications and level up your career journey.",
+        recap: "We're excited to continue creating spaces where students of color in tech can thrive.",
+        instagram: "@colorstackutd",
       },
       {
         title: "Technical Interview Prep",
@@ -62,7 +232,7 @@ export default function Events() {
         time: "6:00 PM - 8:00 PM",
         location: "ECSW 1.315",
         desc: "Cracking the coding interview with LeetCode deep-dives and system design walkthroughs led by senior members.",
-        image: event1
+        image: event1,
       },
       {
         title: "Coffee Chat with Google Engineers",
@@ -70,9 +240,9 @@ export default function Events() {
         time: "3:00 PM - 5:00 PM",
         location: "Student Union, Room 2.410",
         desc: "Informal coffee chats with engineers from Google — ask anything about their career paths, day-to-day work, and internship tips.",
-        image: event2
-      }
-    ]
+        image: event2,
+      },
+    ],
   };
 
   return (
@@ -117,54 +287,13 @@ export default function Events() {
 
         {/* Event Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {events[activeTab].map((event, idx) => (
-            <motion.div
-              key={`${activeTab}-${idx}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group"
-            >
-              {/* Image */}
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
-                  {event.date}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-bold text-secondary mb-4 group-hover:text-primary transition-colors">{event.title}</h3>
-
-                <div className="space-y-3 mb-6 flex-1">
-                  <div className="flex items-center text-muted-foreground font-medium">
-                    <Clock size={18} className="mr-3 text-primary" />
-                    {event.time}
-                  </div>
-                  <div className="flex items-center text-muted-foreground font-medium">
-                    <MapPin size={18} className="mr-3 text-primary" />
-                    {event.location}
-                  </div>
-                  <p className="text-foreground leading-relaxed mt-4">
-                    {event.desc}
-                  </p>
-                </div>
-
-                <Button
-                  variant="outline"
-                  className="w-full rounded-full py-6 font-bold border-2 border-primary/20 text-primary hover:bg-primary hover:text-white transition-all group-hover:border-primary"
-                  data-testid={`button-event-${idx}`}
-                >
-                  Learn More <ArrowRight size={18} className="ml-2" />
-                </Button>
-              </div>
-            </motion.div>
-          ))}
+          {events[activeTab].map((event, idx) =>
+            event.photos ? (
+              <GBMCard key={`${activeTab}-${idx}`} event={event} idx={idx} />
+            ) : (
+              <StandardCard key={`${activeTab}-${idx}`} event={event} idx={idx} />
+            )
+          )}
         </div>
 
         {events[activeTab].length === 0 && (

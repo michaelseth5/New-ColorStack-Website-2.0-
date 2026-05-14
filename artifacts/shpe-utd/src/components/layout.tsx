@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const utdIcon = `${BASE}/utd-icon.png`;
+const logo = `${BASE}/logo-bg.png`;
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);

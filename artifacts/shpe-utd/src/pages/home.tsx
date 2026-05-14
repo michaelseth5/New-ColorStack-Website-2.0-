@@ -510,19 +510,6 @@ export default function Home() {
               At The University Of Texas At Dallas
             </motion.p>
 
-            {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[clamp(1.15rem,2vw,1.5rem)] font-bold text-white/90 leading-snug mb-4 max-w-sm"
-            >
-              We get our members{" "}
-              <span className="text-[#EC7524]">cracked.</span>
-              <br />
-              Then we make sure the world knows it.
-            </motion.p>
-
             {/* Body copy */}
             <motion.p
               initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}

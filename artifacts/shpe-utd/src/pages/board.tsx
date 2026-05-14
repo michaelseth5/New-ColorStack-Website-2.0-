@@ -16,7 +16,7 @@ import joseImg from "@assets/Jose_Rogel_1778782883427.png";
 import sabrinaImg from "@assets/Sabrina_Abubaker_1778782883430.jpg";
 import timageImg from "@assets/Timage_Abubaker_1778782883430.jpg";
 import hassetImg from "@assets/Hasset_Getachew_1778782883426.jpg";
-import henosImg from "@assets/Henos_Tekie_1778782883427.jpg";
+import henosImg from "@assets/Henos_1778797249996.webp";
 import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
 
 interface Officer {

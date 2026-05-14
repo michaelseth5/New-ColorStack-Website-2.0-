@@ -83,9 +83,6 @@ export default function About() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
               <img src={aboutImg} alt="ColorStack UTD Tech Panel" className="w-full object-cover object-bottom" style={{ height: "420px" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-8">
-                <span className="text-white font-bold text-2xl">Debugging Your Path Into Tech.</span>
-              </div>
             </div>
           </motion.div>
         </div>

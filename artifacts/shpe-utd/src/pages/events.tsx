@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, ArrowRight, Instagram } from "lucide-react";
+import { MapPin, Clock, ArrowRight, Instagram, CalendarClock } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const gbm1 = `${BASE}/gbm-1.jpg`;
@@ -150,26 +150,12 @@ function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
       transition={{ duration: 0.4, delay: idx * 0.1 }}
       className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group"
     >
-      {/* Collage */}
-      <div className="relative h-56 overflow-hidden">
-        {photos.length >= 4 ? (
-          <div className="grid grid-cols-2 grid-rows-2 h-full gap-0.5">
-            {photos.slice(0, 4).map((src, i) => (
-              <div key={i} className="overflow-hidden">
-                <img
-                  src={src}
-                  alt={`Community photo ${i + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="w-full h-full bg-secondary/10 flex items-center justify-center">
-            <span className="text-secondary/40 font-bold text-lg">Coming Soon</span>
-          </div>
-        )}
-        {/* Month badge */}
+      {/* Symbol header */}
+      <div className="relative h-44 bg-secondary flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.06]"
+          style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+        />
+        <CalendarClock size={64} className="text-white/30" strokeWidth={1} />
         <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
           {event.date}
         </div>
@@ -209,7 +195,7 @@ function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
 }
 
 export default function Events() {
-  const [activeTab, setActiveTab] = useState<EventTab>("Upcoming");
+  const [activeTab, setActiveTab] = useState<EventTab>("Past");
 
   const events: Record<EventTab, BaseEvent[]> = {
     Upcoming: [
@@ -374,7 +360,7 @@ export default function Events() {
         {/* Tabs */}
         <div className="flex justify-center mb-16">
           <div className="bg-white p-1.5 rounded-full shadow-sm border border-border inline-flex">
-            {(["Upcoming", "Past"] as EventTab[]).map((tab) => (
+            {(["Past", "Upcoming"] as EventTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}

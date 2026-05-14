@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/shpe-utd/"
-title = "SHPE at UTD"
+title = "ColorStack At The University Of Texas At Dallas"
 version = "1.0.0"
 id = "artifacts/shpe-utd"
 router = "path"

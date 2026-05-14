@@ -164,29 +164,32 @@ export default function Home() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-[1.35rem] md:text-[1.65rem] font-medium text-foreground/85 leading-relaxed"
           >
-            We build technically strong students and connect them to real opportunities. From cloud infrastructure to DSA to internships,{" "}
-            <span className="text-primary font-semibold">we make sure every member has what they need to break into tech and thrive.</span>
+            Get Cracked. Build Community. Get Connected.{" "}
+            <span className="text-primary font-semibold">Everything a Black or Latinx student in tech needs — in one place.</span>
           </motion.p>
         </div>
       </section>
 
-      {/* ── Feature cards ───────────────────────────── */}
+      {/* ── Mission pillars ─────────────────────────── */}
       <section className="bg-[#f7f7f7] py-24 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              title: "Technical Training",
-              desc: "DSA practice, system design, cloud infrastructure, and mock interviews. We prepare you to pass the hardest screens in the industry.",
+              number: "01",
+              title: "Get Cracked!",
+              desc: "We Build Technically Elite Members. That Means Mastering Data Structures And Algorithms In Java And Python, Building Full-Stack Applications With JavaScript, React, Node.js, And MongoDB, And Deploying Production-Ready Projects On AWS And Azure With Full CI/CD Pipelines.",
             },
             {
-              title: "Real Opportunities",
-              desc: "Coffee chats with engineers, exclusive recruiting pipelines, and direct connections to internships and new grad roles at top tech companies.",
+              number: "02",
+              title: "Build Community!",
+              desc: "We Bring Together Individuals Who Look Like Us, From All Different Backgrounds, And Create A Space Where No One Has To Figure It Out Alone. Upperclassmen Pour Into Underclassmen, And Every Member Has Access To Mentorship, Accountability, And People Who Genuinely Want To See Them Win.",
             },
             {
-              title: "A Community That Wins",
-              desc: "Surround yourself with Black and Latinx engineers who are cracked, ambitious, and invested in each other's success.",
+              number: "03",
+              title: "Get Connected!",
+              desc: "Once Our Members Are Built, We Connect Them To The Opportunities They Deserve. Internships, New Grad Roles, And Industry Relationships. No Talented Student Goes Unseen.",
             },
-          ].map((feature, i) => (
+          ].map((pillar, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
@@ -194,11 +197,13 @@ export default function Home() {
               whileInView="show"
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="bg-white rounded-2xl p-8 border border-border/60 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group"
+              className="bg-white rounded-2xl p-8 border border-border/60 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group flex flex-col"
             >
-              <div className="w-1 h-8 bg-primary rounded-full mb-6 group-hover:h-12 transition-all duration-300" />
-              <h3 className="text-lg font-bold mb-3 text-foreground">{feature.title}</h3>
-              <p className="text-[0.92rem] text-foreground/60 leading-relaxed">{feature.desc}</p>
+              <span className="text-[3rem] font-black text-primary/15 leading-none mb-4 group-hover:text-primary/25 transition-colors">
+                {pillar.number}
+              </span>
+              <h3 className="text-xl font-black mb-4 text-foreground">{pillar.title}</h3>
+              <p className="text-[0.92rem] text-foreground/60 leading-relaxed">{pillar.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -2,6 +2,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Terminal, GitMerge, Globe, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState, useCallback, useRef } from "react";
+import colorstackLogoFull from "@assets/og_1778796414004.png";
 import eboardHajar from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
 import eboardOluwadamilare from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
 import eboardMichael from "@assets/Michael_Katongole_1778782883428.png";
@@ -448,18 +449,14 @@ export default function Home() {
               initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.65, delay: 0.05, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="flex items-center gap-4"
+              className="flex flex-col gap-1"
             >
-              <div className="relative flex-shrink-0">
-                <img src={logo} alt="ColorStack" className="h-14 w-14 rounded-2xl object-contain bg-secondary/80 p-2 shadow-lg" />
-                <div className="absolute -bottom-2 -right-2 h-7 w-7 rounded-lg bg-white shadow-md border border-white/80 flex items-center justify-center p-0.5">
-                  <img src={utdIcon} alt="UT Dallas" className="h-full w-full object-contain" />
-                </div>
-              </div>
-              <div>
-                <p className="text-white font-black text-base leading-none tracking-tight">ColorStack</p>
-                <p className="text-[#EC7524] font-bold text-[11px] tracking-[0.22em] uppercase mt-1">AT UTD</p>
-              </div>
+              <img
+                src={colorstackLogoFull}
+                alt="ColorStack"
+                className="h-auto w-[clamp(180px,22vw,280px)] object-contain"
+              />
+              <p className="text-[#EC7524] font-bold text-[11px] tracking-[0.25em] uppercase ml-1">AT UTD</p>
             </motion.div>
 
             {/* MIDDLE – main title block */}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Slack, Terminal, GitMerge, Globe } from "lucide-react";
+import { CheckCircle2, Slack, Terminal, GitMerge, Globe, Instagram, Linkedin, TreePine, Mail } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -125,6 +125,39 @@ export default function Join() {
             <span>Join Our Slack Community</span>
           </a>
           <p className="text-foreground/40 text-xs mt-3">Our Slack is where announcements, resources, and community live.</p>
+
+          {/* Contact and socials */}
+          <div className="mt-8 p-6 bg-[#f5f5f5] rounded-2xl">
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// reach out</p>
+            <h3 className="font-black text-foreground text-lg mb-4">Get In Touch</h3>
+            <a
+              href="mailto:utdcolorstack@gmail.com"
+              className="inline-flex items-center gap-2 text-[#114634] font-semibold text-sm hover:text-[#EC7524] transition-colors mb-5"
+            >
+              <Mail size={15} strokeWidth={2} />
+              utdcolorstack@gmail.com
+            </a>
+            <div className="grid grid-cols-2 gap-2.5">
+              {[
+                { Icon: Instagram, href: "https://www.instagram.com/colorstackutd/", label: "Instagram", bg: "#E1306C" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/colorstack-utd/", label: "LinkedIn", bg: "#0077B5" },
+                { Icon: TreePine, href: "https://linktr.ee/ColorStackUTD", label: "Linktree", bg: "#39A648" },
+                { Icon: Slack, href: "https://colorstack.org/join", label: "Slack", bg: "#4A154B" },
+              ].map(({ Icon, href, label, bg }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 px-4 py-3 rounded-xl text-white text-sm font-semibold hover:-translate-y-0.5 transition-transform duration-200"
+                  style={{ backgroundColor: bg }}
+                >
+                  <Icon size={16} strokeWidth={1.8} />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Right: Form */}

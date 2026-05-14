@@ -1,10 +1,16 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const utdIcon = `${BASE}/utd-icon.png`;
 const logo = `${BASE}/logo-bg.png`;
+
+const SOCIAL_LINKS = [
+  { Icon: Instagram, href: "https://www.instagram.com/colorstackutd/", label: "Instagram", handle: "@colorstackutd" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/company/colorstack-utd/", label: "LinkedIn", handle: "ColorStack UTD" },
+  { Icon: TreePine, href: "https://linktr.ee/ColorStackUTD", label: "Linktree", handle: "All Links" },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -103,6 +109,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
               )}
             </div>
 
+            {/* Social icons */}
+            <div className="flex items-center gap-1.5">
+              {SOCIAL_LINKS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="p-1.5 text-[#114634] hover:text-[#EC7524] transition-colors duration-150"
+                >
+                  <Icon size={18} strokeWidth={1.8} />
+                </a>
+              ))}
+            </div>
+
             <Link href="/join" data-testid="link-join">
               <button className="bg-primary text-white text-[14px] font-semibold px-5 py-2 rounded-full hover:bg-primary/90 transition-all hover:-translate-y-px">
                 Join
@@ -162,7 +184,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <img src={logo} alt="ColorStack at UTD" className="h-10 w-auto rounded-lg object-contain" />
             </div>
             <p className="text-white/60 max-w-sm text-sm leading-relaxed">
-              Increasing the number of Black and Latinx students who graduate with computing degrees and go on to thrive in tech careers.
+              We Get Our Members Cracked. Then We Make Sure The World Knows It.
             </p>
           </div>
 
@@ -188,17 +210,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white/40 mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm text-white/60">
-              <li>UT Dallas</li>
-              <li>800 W Campbell Rd</li>
-              <li>Richardson, TX 75080</li>
-              <li className="pt-1">
-                <a href="mailto:colorstackutd@utdallas.edu" className="text-primary hover:underline transition-colors" data-testid="footer-link-email">
-                  colorstackutd@utdallas.edu
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white/40 mb-4">Connect</h4>
+            <a
+              href="mailto:utdcolorstack@gmail.com"
+              className="text-primary hover:text-primary/80 text-sm transition-colors block mb-4"
+              data-testid="footer-link-email"
+            >
+              utdcolorstack@gmail.com
+            </a>
+            <div className="flex flex-col gap-3">
+              {SOCIAL_LINKS.map(({ Icon, href, label, handle }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 text-white/60 hover:text-white text-sm transition-colors"
+                >
+                  <Icon size={15} strokeWidth={1.8} className="text-white/40" />
+                  {handle}
                 </a>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
         </div>
 

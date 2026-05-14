@@ -291,6 +291,9 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-white rounded-2xl p-7 flex flex-col shadow-sm border border-black/5"
               >
+                <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center mb-5 flex-shrink-0">
+                  <span className="text-white text-sm font-black">{i + 1}</span>
+                </div>
                 <h3 className="text-xl font-black text-foreground mb-3">{pillar.title}</h3>
                 <p className="text-[0.93rem] text-foreground/65 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
                 <img

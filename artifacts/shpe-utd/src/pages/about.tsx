@@ -7,15 +7,26 @@ import { CheckCircle2, HeartHandshake, Zap, Trophy, Shield, Terminal, GitMerge, 
 import aboutImg from "@assets/ColorStack_UTD_Tech_Panel_1778792970743.jpg";
 
 export default function About() {
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
-    setTimeout(() => {
-      setFormStatus("success");
-      setTimeout(() => setFormStatus("idle"), 3000);
-    }, 1000);
+    const data = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("https://formspree.io/utdcolorstack@gmail.com", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setFormStatus("success");
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   const values = [
@@ -134,6 +145,12 @@ export default function About() {
             <p className="text-xl text-muted-foreground">Have a question? Send us a message and we'll get back to you.</p>
           </div>
 
+          {formStatus === "error" && (
+            <div className="mb-6 bg-red-50 text-red-700 border border-red-200 rounded-2xl px-6 py-4 text-center font-medium">
+              Something went wrong. Please try again or email us directly at{" "}
+              <a href="mailto:utdcolorstack@gmail.com" className="underline font-bold">utdcolorstack@gmail.com</a>.
+            </div>
+          )}
           {formStatus === "success" ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -154,20 +171,20 @@ export default function About() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-bold text-secondary uppercase tracking-wider">Name</label>
-                  <Input id="name" required className="bg-[#F5F5F5] border-0 py-6 text-lg rounded-xl focus-visible:ring-primary" placeholder="Your Name" />
+                  <Input id="name" name="name" required className="bg-[#F5F5F5] border-0 py-6 text-lg rounded-xl focus-visible:ring-primary" placeholder="Your Name" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-bold text-secondary uppercase tracking-wider">Email</label>
-                  <Input id="email" type="email" required className="bg-[#F5F5F5] border-0 py-6 text-lg rounded-xl focus-visible:ring-primary" placeholder="your.email@utdallas.edu" />
+                  <Input id="email" name="email" type="email" required className="bg-[#F5F5F5] border-0 py-6 text-lg rounded-xl focus-visible:ring-primary" placeholder="your.email@utdallas.edu" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-bold text-secondary uppercase tracking-wider">Subject</label>
-                <Input id="subject" required className="bg-[#F5F5F5] border-0 py-6 text-lg rounded-xl focus-visible:ring-primary" placeholder="How can we help?" />
+                <Input id="subject" name="subject" required className="bg-[#F5F5F5] border-0 py-6 text-lg rounded-xl focus-visible:ring-primary" placeholder="How can we help?" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-bold text-secondary uppercase tracking-wider">Message</label>
-                <Textarea id="message" required className="bg-[#F5F5F5] border-0 text-lg rounded-xl min-h-[150px] resize-none focus-visible:ring-primary p-4" placeholder="Your message here..." />
+                <Textarea id="message" name="message" required className="bg-[#F5F5F5] border-0 text-lg rounded-xl min-h-[150px] resize-none focus-visible:ring-primary p-4" placeholder="Your message here..." />
               </div>
 
               <Button

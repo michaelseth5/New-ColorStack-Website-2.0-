@@ -31,12 +31,31 @@ export default function Join() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-    setTimeout(() => {
-      setStatus("success");
-    }, 1000);
+    try {
+      const res = await fetch("https://formspree.io/utdcolorstack@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          major: form.major,
+          year: form.year,
+          _subject: `New ColorStack UTD Interest Form — ${form.name}`,
+        }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("idle");
+        alert("Something went wrong. Please email us at utdcolorstack@gmail.com.");
+      }
+    } catch {
+      setStatus("idle");
+      alert("Something went wrong. Please email us at utdcolorstack@gmail.com.");
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BookOpen, Map, Briefcase, Code2, ExternalLink } from "lucide-react";
+import { BookOpen, Map, Code2, ExternalLink } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -36,18 +36,7 @@ const sections: { icon: React.ReactNode; label: string; title: string; bg: strin
       { name: "CS Career Questions Wiki", desc: "Community-curated advice on internship hunting, new grad recruiting, and career progression in tech.", url: "https://www.reddit.com/r/cscareerquestions/wiki/index/", tag: "Free" },
       { name: "Levels.fyi", desc: "Compensation data, career ladders, and total comp breakdowns across top tech companies.", url: "https://www.levels.fyi", tag: "Free" },
       { name: "ColorStack Career Center", desc: "Official ColorStack career resources, resume templates, and job board built for our community.", url: "https://colorstack.org", tag: "Members" },
-    ],
-  },
-  {
-    icon: <Briefcase size={22} strokeWidth={1.8} />,
-    label: "// prep to get paid",
-    title: "Internship Prep",
-    bg: "#1a1a1a",
-    resources: [
-      { name: "Simplify", desc: "Streamline your internship applications. Autofill forms and track every application in one place.", url: "https://simplify.jobs", tag: "Free" },
-      { name: "Pitt CSC Job List", desc: "Massive community-maintained list of internships and new grad roles updated throughout recruiting season.", url: "https://github.com/pittcsc/Summer2026-Internships", tag: "Free" },
-      { name: "Interviewing.io", desc: "Anonymous mock technical interviews with engineers from top companies. Real interview experience.", url: "https://interviewing.io", tag: "Free + Paid" },
-      { name: "STAR Method Guide", desc: "Nail behavioral interviews using Situation, Task, Action, Result. Practice with the CARL framework too.", url: "https://www.themuse.com/advice/star-interview-method", tag: "Free" },
+      { name: "CARL Method Guide", desc: "Nail behavioral interviews using Challenge, Action, Result, Learning. A structured, no-fluff framework for telling your story.", url: "https://www.themuse.com/advice/star-interview-method", tag: "Free" },
     ],
   },
   {

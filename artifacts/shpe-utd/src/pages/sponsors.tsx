@@ -24,7 +24,7 @@ export default function Sponsors() {
             Our Sponsors
           </h1>
           <p className="text-white/90 text-xl md:text-2xl font-medium max-w-3xl mx-auto">
-            The companies that invest in our members — and get some of the most technically prepared Black and Latinx engineers in return.
+            The companies that invest in our members and get some of the most technically prepared Black and Latinx engineers in return.
           </p>
         </motion.div>
       </section>

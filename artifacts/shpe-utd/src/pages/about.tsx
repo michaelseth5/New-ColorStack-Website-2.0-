@@ -19,10 +19,10 @@ export default function About() {
   };
 
   const values = [
-    { icon: <Shield size={32} />, title: "Technical Rigor", desc: "We don't settle for surface-level. Our members train hard — DSA, system design, cloud, and everything in between." },
+    { icon: <Shield size={32} />, title: "Technical Rigor", desc: "We don't settle for surface-level. Our members train hard: DSA, system design, cloud, and everything in between." },
     { icon: <HeartHandshake size={32} />, title: "Real Community", desc: "A network of Black and Latinx engineers who actually show up for each other. No cap." },
     { icon: <Trophy size={32} />, title: "Winning", desc: "We measure success in internship offers, return offers, and members thriving at the companies they dreamed of." },
-    { icon: <Zap size={32} />, title: "Access", desc: "The right people, the right rooms, the right opportunities — we make sure our members get there." },
+    { icon: <Zap size={32} />, title: "Access", desc: "The right people, the right rooms, the right opportunities. We make sure our members get there." },
   ];
 
   return (
@@ -58,13 +58,13 @@ export default function About() {
             <h2 className="text-4xl font-black text-secondary mb-8">Our Story</h2>
             <div className="space-y-6 text-lg text-foreground/80 leading-relaxed font-medium">
               <p>
-                ColorStack at UT Dallas was built with one goal: get more Black and Latinx students into top tech roles. Not just through the door — to the top.
+                ColorStack at UT Dallas was built with one goal: get more Black and Latinx students into top tech roles. Not just through the door. To the top.
               </p>
               <p>
                 We build technically strong students and connect them to real opportunities. From cloud infrastructure to DSA to internships, we make sure every member has what they need to break into tech and thrive. No gatekeeping. No fluff. Just the work.
               </p>
               <p>
-                Our members don't just graduate — they land. Microsoft, Google, Goldman Sachs, and everywhere in between. We're building a generation of cracked engineers who are also connected, supported, and ready.
+                Our members don't just graduate. They land. Microsoft, Google, Goldman Sachs, and everywhere in between. We're building a generation of cracked engineers who are connected, supported, and ready.
               </p>
             </div>
           </motion.div>

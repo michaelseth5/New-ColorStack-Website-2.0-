@@ -130,7 +130,7 @@ export default function Board() {
             </h1>
             <p className="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">
               We equip every member with the technical foundation to build
-              full-scale applications — from cloud infrastructure on AWS and
+              full-scale applications, from cloud infrastructure on AWS and
               Azure to production-ready code and Data Structures &amp; Algorithms.
               We also connect members with internships, new grad roles, and
               industry relationships so no talented student goes unseen.{" "}

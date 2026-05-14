@@ -54,7 +54,7 @@ export default function Home() {
       name: "Marcus Thompson",
       year: "Sophomore, Computer Engineering",
       quote:
-        "Walking into a room full of Black and Latinx engineers who are thriving — that's powerful. ColorStack changed how I see myself in this industry.",
+        "Walking into a room full of Black and Latinx engineers who are thriving. That's powerful. ColorStack changed how I see myself in this industry.",
     },
   ];
 
@@ -103,7 +103,7 @@ export default function Home() {
               the world knows it.
             </h1>
             <p className="text-[1.05rem] text-foreground/70 mb-10 max-w-sm leading-relaxed">
-              From DSA to cloud infrastructure to internship offers — we build technically strong students and connect them to real opportunities.
+              From DSA to cloud infrastructure to internship offers, we build technically strong students and connect them to real opportunities.
             </p>
 
             <Link href="/about">
@@ -165,7 +165,7 @@ export default function Home() {
             className="text-[1.35rem] md:text-[1.65rem] font-medium text-foreground/85 leading-relaxed"
           >
             Get Cracked. Build Community. Get Connected.{" "}
-            <span className="text-primary font-semibold">Everything a Black or Latinx student in tech needs — in one place.</span>
+            <span className="text-primary font-semibold">Everything a Black or Latinx student in tech needs, in one place.</span>
           </motion.p>
         </div>
       </section>
@@ -177,17 +177,17 @@ export default function Home() {
             {
               number: "01",
               title: "Get Cracked!",
-              desc: "We Build Technically Elite Members. That Means Mastering Data Structures And Algorithms In Java And Python, Building Full-Stack Applications With JavaScript, React, Node.js, And MongoDB, And Deploying Production-Ready Projects On AWS And Azure With Full CI/CD Pipelines.",
+              desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full-stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production-ready projects on AWS and Azure with full CI/CD pipelines.",
             },
             {
               number: "02",
               title: "Build Community!",
-              desc: "We Bring Together Individuals Who Look Like Us, From All Different Backgrounds, And Create A Space Where No One Has To Figure It Out Alone. Upperclassmen Pour Into Underclassmen, And Every Member Has Access To Mentorship, Accountability, And People Who Genuinely Want To See Them Win.",
+              desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
             },
             {
               number: "03",
               title: "Get Connected!",
-              desc: "Once Our Members Are Built, We Connect Them To The Opportunities They Deserve. Internships, New Grad Roles, And Industry Relationships. No Talented Student Goes Unseen.",
+              desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
             },
           ].map((pillar, i) => (
             <motion.div

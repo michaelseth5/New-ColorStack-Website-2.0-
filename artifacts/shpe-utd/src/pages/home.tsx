@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
@@ -12,8 +12,11 @@ const connectedImg = `${BASE}/connected.png`;
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   useEffect(() => {
+    if (!inView) return;
     let startTime: number | null = null;
     let animationFrame: number;
     const animate = (timestamp: number) => {
@@ -26,9 +29,9 @@ function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number
     };
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [end, duration]);
+  }, [inView, end, duration]);
 
-  return <span>{count}</span>;
+  return <span ref={ref}>{count}</span>;
 }
 
 const fadeUp = {

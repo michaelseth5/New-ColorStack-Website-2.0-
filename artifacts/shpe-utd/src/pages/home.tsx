@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from "react";
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
 const logo = `${BASE}/logo-bg.png`;
+const speedImg = `${BASE}/speed.jpg`;
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -177,6 +178,7 @@ export default function Home() {
               number: "01",
               title: "Get Cracked",
               desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
+              img: speedImg,
             },
             {
               number: "02",
@@ -196,13 +198,20 @@ export default function Home() {
               whileInView="show"
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="bg-white rounded-2xl p-8 border border-border/60 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group flex flex-col"
+              className="bg-white rounded-2xl p-8 border border-border/60 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden"
             >
               <span className="text-[3rem] font-black text-primary/15 leading-none mb-4 group-hover:text-primary/25 transition-colors">
                 {pillar.number}
               </span>
               <h3 className="text-xl font-black mb-4 text-foreground">{pillar.title}</h3>
               <p className="text-[0.92rem] text-foreground/60 leading-relaxed">{pillar.desc}</p>
+              {"img" in pillar && pillar.img && (
+                <img
+                  src={pillar.img}
+                  alt=""
+                  className="mt-6 w-full rounded-xl object-cover opacity-50"
+                />
+              )}
             </motion.div>
           ))}
         </div>

@@ -339,7 +339,7 @@ export default function Home() {
               style={{ fontFamily: "'Fira Code', monospace" }}
             >
               <span className="text-white/30">&lt;</span>
-              <span className="text-white"> Our Mission </span>
+              <span className="text-white"> Our Results </span>
               <span className="text-white/30">/&gt;</span>
             </motion.h2>
             <div className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">

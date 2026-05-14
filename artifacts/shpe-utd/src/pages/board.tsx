@@ -116,16 +116,16 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           <p className="text-[0.78rem] text-foreground/70 leading-relaxed mb-3 flex-1">{officer.bio}</p>
         )}
 
-        {/* LinkedIn button */}
+        {/* LinkedIn badge */}
         {officer.linkedinUrl && (
           <a
             href={officer.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-auto flex items-center gap-2 bg-[#114634] hover:bg-[#0d3528] text-white rounded-lg px-3 py-2 transition-colors duration-200 w-full justify-center"
+            className="mt-auto inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
+            aria-label={`${officer.name} on LinkedIn`}
           >
-            <Linkedin size={14} strokeWidth={1.8} />
-            <span className="text-[0.72rem] font-semibold">Connect On LinkedIn</span>
+            <Linkedin size={17} strokeWidth={2} />
           </a>
         )}
       </div>
@@ -259,10 +259,10 @@ export default function Board() {
                       href={amb.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-[#114634] hover:bg-[#0d3528] text-white rounded-lg px-3 py-2 transition-colors duration-200 w-full justify-center"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
+                      aria-label={`${amb.name} on LinkedIn`}
                     >
-                      <Linkedin size={13} strokeWidth={1.8} />
-                      <span className="text-[0.68rem] font-semibold">Connect On LinkedIn</span>
+                      <Linkedin size={15} strokeWidth={2} />
                     </a>
                   )}
                 </div>

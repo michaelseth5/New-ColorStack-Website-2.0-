@@ -2,76 +2,10 @@ uploads = []
 outputs = []
 
 [[generated]]
-id = "-0KzcX6BrlN2bUhMw9EiL"
-uri = "file://artifacts/colorstack-utd/src/assets/images/team-2.png"
-type = "image"
-title = "Headshot of a Latina female student"
-
-[[generated]]
-id = "hzxaBDm9cvGjEyMDBJqoK"
-uri = "file://artifacts/colorstack-utd/src/assets/images/team-3.png"
-type = "image"
-title = "Headshot of a Black female student"
-
-[[generated]]
-id = "J3UdIraRB_awKi3NRHhGI"
-uri = "file://artifacts/colorstack-utd/src/assets/images/team-4.png"
-type = "image"
-title = "Headshot of a Latino male student"
-
-[[generated]]
-id = "GChEIaKKKonLnSahpzucZ"
-uri = "file://artifacts/colorstack-utd/src/assets/images/team-5.png"
-type = "image"
-title = "Headshot of a Black male student"
-
-[[generated]]
-id = "1GsjHYh2hNI-Z0n5XmMJH"
-uri = "file://artifacts/colorstack-utd/src/assets/images/hero-bg.png"
-type = "image"
-title = "Abstract glowing floating orbs background"
-
-[[generated]]
 id = "LbgEVxND56JHYnNmWeMCZ"
 uri = "file://artifacts/shpe-utd/src/assets/images/hero.png"
 type = "image"
 title = "diverse engineering students campus"
-
-[[generated]]
-id = "4a5Gw3P_RHjGhvruF9ha2"
-uri = "file://artifacts/shpe-utd/src/assets/images/board-1.png"
-type = "image"
-title = "professional headshot orange background"
-
-[[generated]]
-id = "oHhqZ_BCK6s-Zu2mw3DUQ"
-uri = "file://artifacts/shpe-utd/src/assets/images/board-2.png"
-type = "image"
-title = "professional headshot green background"
-
-[[generated]]
-id = "Pq-9mzpBZ-00G5ipBiu-T"
-uri = "file://artifacts/shpe-utd/src/assets/images/board-3.png"
-type = "image"
-title = "professional headshot orange background"
-
-[[generated]]
-id = "xFkZeXpvPUbtKjxXgJMdF"
-uri = "file://artifacts/shpe-utd/src/assets/images/board-4.png"
-type = "image"
-title = "professional headshot green background"
-
-[[generated]]
-id = "zzBSnA0Wj7qMZBgZvK_8r"
-uri = "file://artifacts/shpe-utd/src/assets/images/board-5.png"
-type = "image"
-title = "professional headshot orange background"
-
-[[generated]]
-id = "5_LQzoaJBNkpnVNyJmfAq"
-uri = "file://artifacts/shpe-utd/src/assets/images/board-6.png"
-type = "image"
-title = "professional headshot green background"
 
 [[generated]]
 id = "6ory4i6gx9IdddWkXjTWP"

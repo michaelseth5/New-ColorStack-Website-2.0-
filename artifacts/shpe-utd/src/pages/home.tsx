@@ -373,6 +373,12 @@ function HeroWelcome() {
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowCursor(false), 2200);
+    return () => clearTimeout(t);
+  }, []);
 
   const testimonials = [
     {
@@ -412,66 +418,156 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full">
-      <HeroWelcome />
 
-      {/* ── Hero ────────────────────────────────────── */}
-      <section className="w-full flex flex-col md:flex-row min-h-[calc(100vh-64px)]">
-        {/* Left – photo */}
-        <div className="w-full md:w-[55%] h-[52vw] md:h-auto relative overflow-hidden">
-          <img
-            src={heroImg}
-            alt="Black and Latinx computing students at UTD"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
+      {/* ── Combined Hero ───────────────────────────── */}
+      <section className="relative w-full min-h-screen overflow-hidden flex items-center">
+        {/* Background photo */}
+        <img
+          src={heroImg}
+          alt="Black and Latinx computing students at UTD"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
 
-        {/* Right – text on light-tinted bg (mirrors OSU's blush panel) */}
-        <div className="w-full md:w-[45%] flex flex-col justify-center bg-[#fdf4ee] px-10 md:px-16 lg:px-20 py-16">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-          >
-            {/* Featured wordmark */}
-            <div className="flex items-center gap-5 mb-10">
-              {/* Logo mark with UTD badge */}
+        {/* Dark green gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(115deg, rgba(17,70,52,0.93) 0%, rgba(17,70,52,0.85) 45%, rgba(8,15,10,0.75) 100%)" }}
+        />
+
+        {/* Circuit board dot+line pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.06]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23fff'/%3E%3Ccircle cx='80' cy='0' r='1.5' fill='%23fff'/%3E%3Ccircle cx='0' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%23fff'/%3E%3Cline x1='0' y1='0' x2='40' y2='0' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='0' y1='0' x2='0' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='40' y2='80' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='80' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='80' y2='40' stroke='%23fff' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='40' y2='0' stroke='%23fff' stroke-width='0.4'/%3E%3C/svg%3E")`,
+            backgroundSize: "80px 80px",
+          }}
+        />
+
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, transparent, rgba(8,15,10,0.9))" }}
+        />
+
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+          {/* Left: Text */}
+          <div className="flex-1 max-w-xl">
+            {/* Compact wordmark */}
+            <motion.div
+              variants={fadeUp} initial="hidden" animate="show"
+              className="flex items-center gap-3 mb-7"
+            >
               <div className="relative flex-shrink-0">
-                <img
-                  src={logo}
-                  alt="ColorStack"
-                  className="h-28 w-28 rounded-3xl object-contain bg-secondary p-3 shadow-lg"
-                />
-                <div className="absolute -bottom-2.5 -right-2.5 h-11 w-11 rounded-xl bg-white shadow-md border border-white/80 flex items-center justify-center p-1">
+                <img src={logo} alt="ColorStack" className="h-12 w-12 rounded-xl object-contain bg-secondary p-1.5 shadow-md" />
+                <div className="absolute -bottom-1.5 -right-1.5 h-6 w-6 rounded-md bg-white shadow border border-white/80 flex items-center justify-center p-0.5">
                   <img src={utdIcon} alt="UT Dallas" className="h-full w-full object-contain" />
                 </div>
               </div>
-              {/* Wordmark text */}
               <div>
-                <p className="text-[2rem] font-black text-foreground leading-none tracking-tight">ColorStack</p>
-                <p className="text-[#EC7524] font-black text-sm tracking-[0.22em] uppercase mt-1.5">AT UTD</p>
+                <p className="text-white font-black text-sm leading-none tracking-tight">ColorStack</p>
+                <p className="text-[#EC7524] font-bold text-[10px] tracking-[0.2em] uppercase mt-0.5">AT UTD</p>
               </div>
-            </div>
-            <h1 className="text-[clamp(2.4rem,4vw,3.8rem)] font-bold tracking-tight text-foreground leading-[1.12] mb-6">
-              We get our members{" "}
-              <span className="text-primary">cracked.</span>
-              <br />
-              Then we make sure the world knows it.
-              <span className="cursor-blink text-primary ml-1 font-light">|</span>
-            </h1>
-            <p className="text-[1.05rem] text-foreground/70 mb-10 max-w-sm leading-relaxed">
-              ColorStack UTD is building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
-            </p>
+            </motion.div>
 
-            <Link href="/about">
-              <button
-                className="bg-[#114634] hover:bg-[#0d3528] text-white rounded-full px-8 py-3.5 text-[15px] font-bold shadow-sm transition-all hover:shadow-md hover:-translate-y-px active:translate-y-0"
-                data-testid="button-hero-join"
-              >
-                Join the Chapter
-              </button>
-            </Link>
-          </motion.div>
+            <motion.p
+              custom={0}
+              variants={{
+                hidden: { opacity: 0, y: 28 },
+                show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22,1,0.36,1] as [number,number,number,number], delay: i * 0.13 } }),
+              }}
+              initial="hidden" animate="show"
+              style={{ fontFamily: "'Fira Code', monospace" }}
+              className="text-[#EC7524]/75 text-sm mb-3 tracking-wider"
+            >
+              // Welcome To
+            </motion.p>
+
+            {(() => {
+              const v = {
+                hidden: { opacity: 0, y: 28 },
+                show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22,1,0.36,1] as [number,number,number,number], delay: i * 0.13 } }),
+              };
+              return (
+                <>
+                  <motion.div custom={1} variants={v} initial="hidden" animate="show" className="relative inline-block mb-2">
+                    <span className="text-[clamp(3rem,6vw,5rem)] font-black text-white leading-none tracking-tight">
+                      ColorStack
+                    </span>
+                    {showCursor && (
+                      <motion.span
+                        className="text-[clamp(3rem,6vw,5rem)] font-thin text-[#EC7524] leading-none ml-1 align-baseline"
+                        animate={{ opacity: [1, 0, 1] }}
+                        transition={{ duration: 0.7, repeat: Infinity }}
+                      >
+                        |
+                      </motion.span>
+                    )}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.7, delay: 0.55, ease: "easeOut" as const }}
+                      className="absolute -bottom-1 left-0 h-[3px] w-full bg-[#EC7524] origin-left rounded-full"
+                    />
+                  </motion.div>
+
+                  <motion.p custom={2} variants={v} initial="hidden" animate="show"
+                    className="text-white/80 text-lg md:text-xl font-medium mt-3 mb-5 leading-snug"
+                  >
+                    At The University Of Texas At Dallas
+                  </motion.p>
+
+                  <motion.h1 custom={3} variants={v} initial="hidden" animate="show"
+                    className="text-[clamp(1.4rem,2.5vw,2rem)] font-bold text-white/90 leading-snug mb-4 max-w-lg"
+                  >
+                    We get our members{" "}
+                    <span className="text-[#EC7524]">cracked.</span>
+                    <br />
+                    Then we make sure the world knows it.
+                  </motion.h1>
+
+                  <motion.p custom={4} variants={v} initial="hidden" animate="show"
+                    className="text-white/55 text-[0.95rem] leading-relaxed mb-9 max-w-md"
+                  >
+                    Building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
+                  </motion.p>
+
+                  <motion.div custom={5} variants={v} initial="hidden" animate="show" className="flex flex-wrap gap-4">
+                    <Link href="/join">
+                      <button
+                        data-testid="button-hero-join"
+                        className="bg-[#EC7524] hover:bg-[#d46620] text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-[#EC7524]/25 text-[15px]"
+                      >
+                        Join The Chapter
+                      </button>
+                    </Link>
+                    <Link href="/about">
+                      <button className="bg-transparent border-2 border-white/50 hover:border-white text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px text-[15px]">
+                        Learn More
+                      </button>
+                    </Link>
+                  </motion.div>
+                </>
+              );
+            })()}
+          </div>
+
+          {/* Right: Network graph */}
+          <div className="flex-1 hidden lg:flex items-center justify-center w-full max-w-[520px]">
+            <NetworkGraph />
+          </div>
         </div>
+
+        {/* Scroll cue */}
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.6 }}
+          className="absolute bottom-7 left-1/2 -translate-x-1/2"
+        >
+          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}>
+            <ChevronDown size={22} className="text-white/30" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ── What We Do ──────────────────────────────── */}

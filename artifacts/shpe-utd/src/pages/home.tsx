@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Target, Users, Briefcase } from "lucide-react";
+import { ChevronLeft, ChevronRight, Terminal, GitMerge, Globe } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState, useCallback, useRef } from "react";
 
@@ -270,16 +270,19 @@ export default function Home() {
                 title: "Get Cracked",
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
                 img: `${BASE}/speed.jpg`,
+                icon: <Terminal size={18} strokeWidth={1.8} />,
               },
               {
                 title: "Build Community",
                 desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
                 img: `${BASE}/community.jpg`,
+                icon: <GitMerge size={18} strokeWidth={1.8} />,
               },
               {
                 title: "Get Connected",
                 desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
                 img: `${BASE}/connected.png`,
+                icon: <Globe size={18} strokeWidth={1.8} />,
               },
             ].map((pillar, i) => (
               <motion.div
@@ -291,8 +294,8 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-white rounded-2xl p-7 flex flex-col shadow-sm border border-black/5"
               >
-                <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center mb-5 flex-shrink-0">
-                  <span className="text-white text-sm font-black">{i + 1}</span>
+                <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-5 flex-shrink-0">
+                  {pillar.icon}
                 </div>
                 <h3 className="text-xl font-black text-foreground mb-3">{pillar.title}</h3>
                 <p className="text-[0.93rem] text-foreground/65 leading-relaxed mb-6 flex-1">{pillar.desc}</p>

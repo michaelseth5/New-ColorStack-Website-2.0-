@@ -13,6 +13,7 @@ const gbm3 = `${BASE}/gbm-3.jpg`;
 const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
 const at = Array.from({ length: 8 }, (_, i) => `${BASE}/at-${i + 1}.jpg`);
 const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
+const tp = Array.from({ length: 5 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -284,6 +285,25 @@ export default function Events() {
           "Workshops, career prep sessions, and company partnerships",
         ],
         recap: "Want to stay connected and never miss an update? Join our Slack and follow along for everything we have coming this semester!",
+        instagram: "@colorstackutd",
+      },
+      {
+        title: "Debugging Your Path Into Tech",
+        date: "FEB 27",
+        time: "February 27, 2026",
+        location: "UT Dallas",
+        desc: "ColorStack UTD hosted an incredible evening with four amazing professionals who shared first-hand stories, practical advice, and real talk about navigating early careers in tech while adapting to an AI-driven world. Hosted by VP Michael Katongole.",
+        image: tp[0],
+        photos: tp,
+        highlights: [
+          "Tech unemployment is at 3.75% — the jobs aren't disappearing, they're changing",
+          "Use CodePath's TIP for structured DSA practice that simulates real interview environments",
+          "Learn Prompt Engineering — CodePath's 10-week Applied AI Engineering course teaches AI-assisted workflows and rapid prototyping",
+          "Have 6 behavioral stories ready using the CARL method (Context, Action, Result, Learning)",
+          "Join ColorStack, NSBE Professionals, and SHPE — and don't just join, lead!",
+          "Reviewed 12 industry-level projects using AWS, Azure, Kubernetes, Docker, and BigQuery",
+        ],
+        recap: "Thank you to panelists Sofia Gutierrez, Loryn Higginbotham, Christian Reynolds, and Dami Oyadiran for giving your time, wisdom, and energy to the next generation of tech professionals.",
         instagram: "@colorstackutd",
       },
       {

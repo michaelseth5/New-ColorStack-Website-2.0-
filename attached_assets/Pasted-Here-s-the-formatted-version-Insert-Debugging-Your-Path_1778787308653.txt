@@ -1,0 +1,18 @@
+Here's the formatted version:
+
+📸 [Insert Debugging Your Path Into Tech Photo Here]
+"Debugging Your Path Into Tech" Recap
+📅 February 27, 2026
+Last night, ColorStack UTD hosted "Debugging Your Path Into Tech" and it was an incredible evening! 🙌🏾
+We were joined by four amazing professionals who shared first-hand stories, practical advice, and real talk about navigating early careers in tech while adapting to an AI-driven world. From choosing a path, to learning fast, to pivoting when things don't go as planned, our panelists kept it real and brought so much value to our community.
+Thank you to everyone who came out and made the room feel electric and to our host for the night, our Vice President Michael Katongole. Our audience's curiosity and engagement made the night special.
+The biggest thank you to our panelists Sofia Gutierrez, Loryn Higginbotham, Christian Reynolds, and Dami Oyadiran for giving your time, wisdom, and energy to the next generation of tech professionals. We are so grateful! 💚
+Here's What We Covered:
+Tech unemployment is at 3.75%, the cloud market is headed to $1.2 trillion by 2028, and 3.5 million cybersecurity roles are still unfilled. The jobs are not disappearing, they are changing.
+Use programs like CodePath's Technical Interview Prep (TIP) for structured DSA practice that simulates real interview environments.
+Learn Prompt Engineering and get certified through programs like IBM or CodePath. CodePath's Applied AI Engineering course is 10 weeks, 4 hours per week, and teaches you how to build in AI-assisted workflows, write precise prompts, and rapid prototype. You even get complimentary access to Claude Code. This is becoming a must-have skill no matter what role you are in.
+Have your six behavioral stories ready and use the CARL method (Context, Action, Result, Learning) instead of STAR. That "Learning" piece is what shows growth and self-awareness to recruiters.
+Join organizations like ColorStack, NSBE Professionals, and SHPE not just for networking, but for mentorship, accountability, and community. And don't just join. Lead! That's what makes you stand out.
+We reviewed 12 industry-level projects using full AWS and Azure capabilities including CI/CD Pipelines with Azure DevOps, Scalable Apps with Kubernetes and Docker, building a simple web server from scratch, Reddit Data Pipeline ETL Engineering, End-to-End Uber ETL with BigQuery, and Malware Cyber Analysis Sandbox.
+This is what ColorStack is all about. Building community, opening doors, and supporting each other on the journey. Stay connected and look out for our next event! 👀
+#ColorStack #ColorStackUTD #DebuggingYourPathIntoTech #BlackInTech #HispanicsInTech #TechCommunity #UTDallas #CareerDevelopment #WomenInTech #DiversityInTech

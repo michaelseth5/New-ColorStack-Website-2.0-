@@ -328,52 +328,48 @@ export default function Home() {
             ))}
           </div>
 
-        </div>
-      </section>
-
-      <EventCarousel />
-
-      {/* ── Mission banner ──────────────────────────── */}
-      <section className="bg-[#1a1a1a] py-20 md:py-28 text-center px-4">
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-[clamp(2.6rem,6vw,5.5rem)] font-bold text-white tracking-tight"
-          style={{ fontFamily: "'Fira Code', monospace" }}
-        >
-          <span className="text-white/30">&lt;</span>
-          <span className="text-white"> Our Mission </span>
-          <span className="text-white/30">/&gt;</span>
-        </motion.h2>
-      </section>
-
-      {/* ── Stats ───────────────────────────────────── */}
-      <section className="bg-[#1a1a1a] py-24 px-6">
-        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {[
-            { num: 60, label: "Active Members", suffix: "+" },
-            { num: 10, label: "Events This Year", suffix: "+" },
-            { num: 20, label: "Internship Offers", suffix: "+" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
+          {/* ── Mission + Stats ───────────────────────── */}
+          <div className="mt-16 -mx-6 bg-[#1a1a1a] rounded-3xl px-8 py-16 text-center">
+            <motion.h2
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              className="text-[clamp(2rem,5vw,4rem)] font-bold text-white tracking-tight mb-12"
+              style={{ fontFamily: "'Fira Code', monospace" }}
             >
-              <div className="text-[3rem] md:text-[3.5rem] font-black text-white leading-none mb-2">
-                <AnimatedCounter end={stat.num} />
-                {stat.suffix}
-              </div>
-              <p className="text-primary text-[12px] font-bold uppercase tracking-widest">{stat.label}</p>
-            </motion.div>
-          ))}
+              <span className="text-white/30">&lt;</span>
+              <span className="text-white"> Our Mission </span>
+              <span className="text-white/30">/&gt;</span>
+            </motion.h2>
+            <div className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { num: 60, label: "Active Members", suffix: "+" },
+                { num: 10, label: "Events This Year", suffix: "+" },
+                { num: 20, label: "Internship Offers", suffix: "+" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <div className="text-[3rem] md:text-[3.5rem] font-black text-white leading-none mb-2">
+                    <AnimatedCounter end={stat.num} />
+                    {stat.suffix}
+                  </div>
+                  <p className="text-primary text-[12px] font-bold uppercase tracking-widest">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
+
+      <EventCarousel />
 
       {/* ── Testimonials ────────────────────────────── */}
       <section className="bg-white py-24 px-6">

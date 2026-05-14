@@ -2,6 +2,8 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
+import logoMark from "@assets/Untitled_design_1778794831663.png";
+
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const utdIcon = `${BASE}/utd-icon.png`;
 const logo = `${BASE}/logo-bg.png`;
@@ -52,8 +54,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center" data-testid="link-home">
-            <img src={logo} alt="ColorStack at UTD" className="h-10 w-auto rounded-lg object-contain" />
+          <Link href="/" className="flex-shrink-0 block" data-testid="link-home">
+            <div
+              aria-label="ColorStack at UTD"
+              style={{
+                width: 44,
+                height: 44,
+                backgroundImage: `url(${logoMark})`,
+                backgroundSize: "500%",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
           </Link>
 
           {/* Desktop Nav */}

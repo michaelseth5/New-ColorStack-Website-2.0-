@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import heroImg from "@/assets/images/hero.png";
 import { useEffect, useState, useCallback } from "react";
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const heroImg = `${BASE}/hero.jpg`;
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);

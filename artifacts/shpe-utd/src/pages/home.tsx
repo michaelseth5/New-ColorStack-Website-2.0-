@@ -93,7 +93,7 @@ export default function Home() {
             initial="hidden"
             animate="show"
           >
-            <img src={logo} alt="ColorStack at UTD" className="h-14 w-auto rounded-xl mb-8 object-contain" />
+            <img src={logo} alt="ColorStack at UTD" className="h-24 w-auto rounded-2xl mb-8 object-contain bg-secondary p-3" />
             <h1 className="text-[clamp(2.4rem,4vw,3.8rem)] font-bold tracking-tight text-foreground leading-[1.12] mb-6">
               We get our members{" "}
               <span className="text-primary">cracked.</span>

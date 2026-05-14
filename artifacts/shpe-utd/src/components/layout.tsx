@@ -2,6 +2,9 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const utdIcon = `${BASE}/utd-icon.png`;
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,7 +45,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5" data-testid="link-home">
+          <Link href="/" className="flex items-center gap-3" data-testid="link-home">
+            <img src={utdIcon} alt="UTD" className="h-8 w-8 object-contain" />
             <div className="flex flex-col leading-none">
               <span className="text-foreground font-extrabold text-[22px] tracking-tight">ColorStack</span>
               <span className="text-primary font-bold text-[11px] tracking-[0.12em] uppercase">at UTD</span>
@@ -146,9 +150,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <footer className="bg-[#1a1a1a] text-white py-14 mt-auto">
         <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex flex-col leading-none mb-5">
-              <span className="text-white font-extrabold text-[22px] tracking-tight">ColorStack</span>
-              <span className="text-primary font-bold text-[11px] tracking-[0.12em] uppercase">at UTD</span>
+            <div className="flex items-center gap-3 mb-5">
+              <img src={utdIcon} alt="UTD" className="h-8 w-8 object-contain opacity-90" />
+              <div className="flex flex-col leading-none">
+                <span className="text-white font-extrabold text-[22px] tracking-tight">ColorStack</span>
+                <span className="text-primary font-bold text-[11px] tracking-[0.12em] uppercase">at UTD</span>
+              </div>
             </div>
             <p className="text-white/60 max-w-sm text-sm leading-relaxed">
               Increasing the number of Black and Latinx students who graduate with computing degrees and go on to thrive in tech careers.

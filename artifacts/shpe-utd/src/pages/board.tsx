@@ -172,14 +172,7 @@ export default function Board() {
               <span className="text-white/30">/&gt;</span>
             </h1>
             <p className="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">
-              We equip every member with the technical foundation to build
-              full-scale applications, from cloud infrastructure on AWS and
-              Azure to production-ready code and Data Structures &amp; Algorithms.
-              We also connect members with internships, new grad roles, and
-              industry relationships so no talented student goes unseen.{" "}
-              <span className="text-white font-semibold">
-                We build builders. We open doors.
-              </span>
+              Built By Students. Driven By Community. Here To Make Sure You Land.
             </p>
           </motion.div>
         </div>

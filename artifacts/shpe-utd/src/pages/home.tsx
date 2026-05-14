@@ -7,6 +7,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
 const logo = `${BASE}/logo-bg.png`;
 const speedImg = `${BASE}/speed.jpg`;
+const communityImg = `${BASE}/community.jpg`;
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -184,6 +185,7 @@ export default function Home() {
               number: "02",
               title: "Build Community",
               desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
+              img: communityImg,
             },
             {
               number: "03",

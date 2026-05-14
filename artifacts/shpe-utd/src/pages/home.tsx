@@ -259,7 +259,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl font-black text-foreground text-center mb-14"
           >
-            We Get Our Members Cracked Through:
+            Our Three Pillars
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -311,6 +311,19 @@ export default function Home() {
             ))}
           </div>
 
+          <div className="max-w-3xl mx-auto text-center pt-6 pb-2">
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-5 tracking-wide">// what we do</p>
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              className="text-[1.2rem] md:text-[1.45rem] font-medium text-foreground/80 leading-relaxed"
+            >
+              ColorStack's core mission is to increase the number of Black, Latinx, and Indigenous students who graduate with Computer Science degrees and launch rewarding technical careers. We achieve this by building community, providing academic support, and fostering career development opportunities for underrepresented students in computing.
+            </motion.p>
+          </div>
+
         </div>
       </section>
 
@@ -330,22 +343,6 @@ export default function Home() {
           <span className="text-white"> Our Mission </span>
           <span className="text-white/30">/&gt;</span>
         </motion.h2>
-      </section>
-
-      {/* ── Mission text ────────────────────────────── */}
-      <section className="bg-white py-20 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-5 tracking-wide">// what we do</p>
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="text-[1.35rem] md:text-[1.65rem] font-medium text-foreground/85 leading-relaxed"
-          >
-            ColorStack's core mission is to increase the number of Black, Latinx, and Indigenous students who graduate with Computer Science degrees and launch rewarding technical careers. We achieve this by building community, providing academic support, and fostering career development opportunities for underrepresented students in computing.
-          </motion.p>
-        </div>
       </section>
 
       {/* ── Stats ───────────────────────────────────── */}

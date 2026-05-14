@@ -93,13 +93,15 @@ export default function Home() {
             animate="show"
           >
             <h1 className="text-[clamp(2.4rem,4vw,3.8rem)] font-bold tracking-tight text-foreground leading-[1.12] mb-6">
-              Welcome to{" "}
-              <span className="text-primary">ColorStack</span>
+              We get our members{" "}
+              <span className="text-primary">cracked.</span>
               <br />
-              at UT Dallas
+              Then we make sure
+              <br />
+              the world knows it.
             </h1>
             <p className="text-[1.05rem] text-foreground/70 mb-10 max-w-sm leading-relaxed">
-              Increasing the number of Black and Latinx students who graduate with computing degrees and go on to thrive in tech careers.
+              From DSA to cloud infrastructure to internship offers — we build technically strong students and connect them to real opportunities.
             </p>
 
             <Link href="/about">
@@ -160,8 +162,8 @@ export default function Home() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-[1.35rem] md:text-[1.65rem] font-medium text-foreground/85 leading-relaxed"
           >
-            We exist to increase the number of Black and Latinx students who graduate with computing degrees and go on to have successful careers in tech.{" "}
-            <span className="text-primary font-semibold">Representation changes everything.</span>
+            We build technically strong students and connect them to real opportunities. From cloud infrastructure to DSA to internships,{" "}
+            <span className="text-primary font-semibold">we make sure every member has what they need to break into tech and thrive.</span>
           </motion.p>
         </div>
       </section>
@@ -171,16 +173,16 @@ export default function Home() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              title: "Workshops",
-              desc: "Resume reviews, interview prep, and technical deep-dives to get you ready for the world's best tech companies.",
+              title: "Technical Training",
+              desc: "DSA practice, system design, cloud infrastructure, and mock interviews. We prepare you to pass the hardest screens in the industry.",
             },
             {
-              title: "Professional Development",
-              desc: "Coffee chats with engineers, recruiting events, and career fair prep to land top-tier internships and new grad roles.",
+              title: "Real Opportunities",
+              desc: "Coffee chats with engineers, exclusive recruiting pipelines, and direct connections to internships and new grad roles at top tech companies.",
             },
             {
-              title: "Community",
-              desc: "A network of Black and Latinx peers who support, challenge, and celebrate each other through every step of the journey.",
+              title: "A Community That Wins",
+              desc: "Surround yourself with Black and Latinx engineers who are cracked, ambitious, and invested in each other's success.",
             },
           ].map((feature, i) => (
             <motion.div
@@ -238,7 +240,7 @@ export default function Home() {
             className="text-center mb-14"
           >
             <h2 className="text-[2rem] md:text-[2.6rem] font-bold text-foreground mb-2">
-              Voices of ColorStack UTD
+              Don't take our word for it.
             </h2>
             <p className="text-foreground/50 text-[0.95rem]">Hear directly from our members.</p>
           </motion.div>
@@ -296,21 +298,21 @@ export default function Home() {
           {[
             {
               title: "Sponsorship",
-              desc: "Connect your company with the next generation of Black and Latinx tech talent at UTD.",
+              desc: "Hire the most technically prepared Black and Latinx engineers coming out of UTD. Access resume books, host events, build your pipeline.",
               cta: "Partner with us",
               href: "/sponsors",
               accent: false,
             },
             {
-              title: "Join the Community",
-              desc: "Become a member of ColorStack UTD and take your computing career to the next level.",
+              title: "Get Cracked with Us",
+              desc: "Join ColorStack UTD. We'll make sure you have the technical skills, the network, and the opportunities to land wherever you want.",
               cta: "Become a Member",
               href: "/about",
               accent: true,
             },
             {
-              title: "Contact Us",
-              desc: "Questions? Want to collaborate? We'd love to hear from you.",
+              title: "Say Wassup",
+              desc: "Questions? Want to collab? Think you can help our members? We want to hear from you.",
               cta: "Get in Touch",
               href: "/about",
               accent: false,

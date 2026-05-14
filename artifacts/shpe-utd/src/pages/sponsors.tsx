@@ -24,7 +24,7 @@ export default function Sponsors() {
             Our Sponsors
           </h1>
           <p className="text-white/90 text-xl md:text-2xl font-medium max-w-3xl mx-auto">
-            We are grateful for the support of these incredible companies who make our mission possible.
+            The companies that invest in our members — and get some of the most technically prepared Black and Latinx engineers in return.
           </p>
         </motion.div>
       </section>
@@ -115,7 +115,7 @@ export default function Sponsors() {
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-black mb-6">Become a Sponsor</h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              Partner with ColorStack UTD to connect with exceptional Black and Latinx computing talent. Access resume books, host events, and build your employer brand on campus.
+              Our members are cracked. They're also looking for their next opportunity. Partner with us to access resume books, host recruiting events, and build your pipeline directly with the best Black and Latinx tech talent at UTD.
             </p>
             <a href="mailto:colorstackutd@utdallas.edu">
               <Button className="bg-primary hover:bg-primary/90 text-white rounded-full py-8 px-12 text-xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all" data-testid="button-sponsor-mailto">

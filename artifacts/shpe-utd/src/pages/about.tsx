@@ -19,10 +19,10 @@ export default function About() {
   };
 
   const values = [
-    { icon: <Shield size={32} />, title: "Leadership", desc: "Developing the next generation of visionary Black and Latinx tech leaders." },
-    { icon: <HeartHandshake size={32} />, title: "Community", desc: "Building a supportive network where everyone belongs and grows together." },
-    { icon: <Trophy size={32} />, title: "Excellence", desc: "Pushing each other to reach the highest academic and professional achievements." },
-    { icon: <Zap size={32} />, title: "Access", desc: "Removing barriers and opening doors to careers in computing for everyone." },
+    { icon: <Shield size={32} />, title: "Technical Rigor", desc: "We don't settle for surface-level. Our members train hard — DSA, system design, cloud, and everything in between." },
+    { icon: <HeartHandshake size={32} />, title: "Real Community", desc: "A network of Black and Latinx engineers who actually show up for each other. No cap." },
+    { icon: <Trophy size={32} />, title: "Winning", desc: "We measure success in internship offers, return offers, and members thriving at the companies they dreamed of." },
+    { icon: <Zap size={32} />, title: "Access", desc: "The right people, the right rooms, the right opportunities — we make sure our members get there." },
   ];
 
   return (
@@ -40,7 +40,7 @@ export default function About() {
             About Us
           </h1>
           <p className="text-white/90 text-xl md:text-2xl font-medium max-w-3xl mx-auto">
-            Get to know the ColorStack UTD community.
+            We get our members cracked. Then we make sure the world knows it.
           </p>
         </motion.div>
       </section>
@@ -58,13 +58,13 @@ export default function About() {
             <h2 className="text-4xl font-black text-secondary mb-8">Our Story</h2>
             <div className="space-y-6 text-lg text-foreground/80 leading-relaxed font-medium">
               <p>
-                ColorStack at UT Dallas was founded with a clear purpose: to increase the number of Black and Latinx students who graduate with computing degrees and go on to have successful careers in tech.
+                ColorStack at UT Dallas was built with one goal: get more Black and Latinx students into top tech roles. Not just through the door — to the top.
               </p>
               <p>
-                We know that representation matters. When you walk into a room and see people who look like you thriving, it changes what you believe is possible for yourself. ColorStack UTD creates that room — every week, every event, every coffee chat.
+                We build technically strong students and connect them to real opportunities. From cloud infrastructure to DSA to internships, we make sure every member has what they need to break into tech and thrive. No gatekeeping. No fluff. Just the work.
               </p>
               <p>
-                From technical interview prep and resume workshops to networking events with engineers at top companies, we equip our members with everything they need to compete and win. Join us and be part of a community that invests in your future.
+                Our members don't just graduate — they land. Microsoft, Google, Goldman Sachs, and everywhere in between. We're building a generation of cracked engineers who are also connected, supported, and ready.
               </p>
             </div>
           </motion.div>
@@ -79,7 +79,7 @@ export default function About() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
               <img src={aboutImg} alt="ColorStack UTD Members" className="w-full h-auto object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-8">
-                <span className="text-white font-bold text-2xl">Building Community. Building Careers.</span>
+                <span className="text-white font-bold text-2xl">We get our members cracked.</span>
               </div>
             </div>
           </motion.div>

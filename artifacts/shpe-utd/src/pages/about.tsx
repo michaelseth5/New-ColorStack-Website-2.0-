@@ -72,7 +72,7 @@ export default function About() {
                 Our members are landing internships and roles at companies like JPMorgan Chase, IBM, Cloudflare, and Microsoft while still in school. We are building a generation of cracked engineers who are connected, supported, and ready for whatever comes next.
               </p>
               <p>
-                ColorStack UTD is home to over 45 members and growing. Every workshop, every event, and every connection we make is one more step toward closing the gap in tech for good.
+                ColorStack UTD is home to over 45 members and growing. Every workshop, every event, and every connection we make is one more step toward closing the gap in tech.
               </p>
             </div>
           </motion.div>

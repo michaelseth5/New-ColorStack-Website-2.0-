@@ -518,10 +518,8 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="text-[clamp(1.15rem,2vw,1.5rem)] font-bold text-[#1a1a1a]/90 leading-snug mb-4 max-w-sm"
             >
-              We get our members{" "}
+              We support our members, then help them get{" "}
               <span className="text-[#EC7524]">cracked.</span>
-              <br />
-              Then we make sure the world knows it.
             </motion.p>
 
             {/* Body copy */}

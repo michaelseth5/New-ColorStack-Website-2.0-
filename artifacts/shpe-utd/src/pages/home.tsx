@@ -250,7 +250,7 @@ export default function Home() {
       </section>
 
       {/* ── How We Deliver ──────────────────────────── */}
-      <section className="bg-[#fdf4ee] py-20 md:py-28 px-6">
+      <section className="bg-white py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.p
             variants={fadeUp}

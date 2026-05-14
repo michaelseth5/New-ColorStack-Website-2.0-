@@ -685,8 +685,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="text-[2rem] md:text-[2.6rem] font-bold text-foreground mb-2">
-              Don't take our word for it.
+            <h2 className="text-[2rem] md:text-[2.6rem] font-bold text-foreground mb-2" style={{ fontFamily: "'Fira Code', monospace" }}>
+              <span className="text-foreground/25">&lt;</span>
+              <span> Member Testimonials </span>
+              <span className="text-foreground/25">/&gt;</span>
             </h2>
             <p className="text-foreground/50 text-[0.95rem]">Hear directly from our members.</p>
           </motion.div>

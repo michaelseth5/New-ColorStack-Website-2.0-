@@ -94,7 +94,11 @@ export default function Resources() {
               </div>
               <div>
                 <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs tracking-wide">{section.label}</p>
-                <h2 className="text-2xl font-black text-foreground">{section.title}</h2>
+                <h2 className="text-2xl font-black text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
+                  <span className="text-foreground/25">&lt;</span>
+                  <span> {section.title} </span>
+                  <span className="text-foreground/25">/&gt;</span>
+                </h2>
               </div>
             </div>
 
@@ -132,7 +136,11 @@ export default function Resources() {
       {/* Bottom CTA */}
       <section className="bg-[#EC7524] py-16 px-6 text-center">
         <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-white/60 text-xs mb-4 tracking-wide">// more resources in the community</p>
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-4">More Resources In Our Slack.</h2>
+        <h2 className="text-3xl md:text-4xl font-black text-white mb-4" style={{ fontFamily: "'Fira Code', monospace" }}>
+          <span className="text-white/30">&lt;</span>
+          <span> More Resources In Our Slack </span>
+          <span className="text-white/30">/&gt;</span>
+        </h2>
         <p className="text-white/80 text-base mb-8 max-w-lg mx-auto">
           Members get access to a private Slack workspace with curated channels for internship openings, study sessions, and peer support.
         </p>

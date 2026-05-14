@@ -43,7 +43,7 @@ export default function Join() {
           email: form.email,
           major: form.major,
           year: form.year,
-          _subject: `New ColorStack UTD Interest Form — ${form.name}`,
+          _subject: `New ColorStack UTD Interest Form - ${form.name}`,
         }),
       });
       if (res.ok) {

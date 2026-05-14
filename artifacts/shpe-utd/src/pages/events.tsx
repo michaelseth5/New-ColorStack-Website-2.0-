@@ -12,6 +12,7 @@ const gbm2 = `${BASE}/gbm-2.jpg`;
 const gbm3 = `${BASE}/gbm-3.jpg`;
 const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
 const at = Array.from({ length: 8 }, (_, i) => `${BASE}/at-${i + 1}.jpg`);
+const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -266,6 +267,23 @@ export default function Events() {
           "ColorStack Loyola",
         ],
         recap: "This is what community looks like.",
+        instagram: "@colorstackutd",
+      },
+      {
+        title: "Spring Kick-Off GBM",
+        date: "FEB 14",
+        time: "February 14, 2026",
+        location: "UT Dallas",
+        desc: "Thank you to everyone who came out to our Spring 2026 General Body Meeting! We kicked off the new semester with energy, community, and a full look at everything ColorStack UTD has in store.",
+        image: sk[0],
+        photos: sk,
+        highlights: [
+          "Who we are and what ColorStack UTD is about",
+          "Upcoming events and opportunities for Spring 2026",
+          "Networking and community building",
+          "Workshops, career prep sessions, and company partnerships",
+        ],
+        recap: "Want to stay connected and never miss an update? Join our Slack and follow along for everything we have coming this semester!",
         instagram: "@colorstackutd",
       },
       {

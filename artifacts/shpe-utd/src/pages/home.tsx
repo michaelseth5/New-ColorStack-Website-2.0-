@@ -230,45 +230,20 @@ export default function Home() {
               We get our members{" "}
               <span className="text-primary">cracked.</span>
               <br />
-              Then we make sure
-              <br />
-              the world knows it.
+              Then we make sure the world knows it.
             </h1>
             <p className="text-[1.05rem] text-foreground/70 mb-10 max-w-sm leading-relaxed">
-              From DSA to cloud infrastructure to internship offers, we build technically strong students and connect them to real opportunities.
+              ColorStack UTD is building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
             </p>
 
             <Link href="/about">
               <button
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-3.5 text-[15px] font-semibold shadow-sm transition-all hover:shadow-md hover:-translate-y-px active:translate-y-0"
+                className="bg-[#114634] hover:bg-[#0d3528] text-white rounded-full px-8 py-3.5 text-[15px] font-bold shadow-sm transition-all hover:shadow-md hover:-translate-y-px active:translate-y-0"
                 data-testid="button-hero-join"
               >
-                Become a Member
+                Join the Chapter
               </button>
             </Link>
-
-            {/* Supporters marquee */}
-            <div className="mt-14 overflow-hidden w-full">
-              <p className="text-[11px] font-bold text-foreground/40 uppercase tracking-[0.15em] mb-4">
-                Our Supporters
-              </p>
-              <div className="flex w-[200%] gap-10 animate-marquee items-center opacity-50">
-                {["Google", "Microsoft", "Goldman Sachs", "Capital One", "Salesforce", "Stripe", "Dropbox"].map(
-                  (s) => (
-                    <span key={s} className="text-xl font-bold whitespace-nowrap text-foreground">
-                      {s}
-                    </span>
-                  )
-                )}
-                {["Google", "Microsoft", "Goldman Sachs", "Capital One", "Salesforce", "Stripe", "Dropbox"].map(
-                  (s) => (
-                    <span key={`${s}-2`} className="text-xl font-bold whitespace-nowrap text-foreground">
-                      {s}
-                    </span>
-                  )
-                )}
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>

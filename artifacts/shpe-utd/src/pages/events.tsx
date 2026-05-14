@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, ArrowRight, Instagram, CalendarClock } from "lucide-react";
+import { MapPin, Clock, ArrowRight, Instagram, FileText, Code2, Award, Network, Users, Briefcase, Mic2, MessageSquare, Sparkles, Star, Handshake } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const gbm1 = `${BASE}/gbm-1.jpg`;
@@ -15,6 +15,13 @@ const api101 = `${BASE}/api101.jpg`;
 
 type EventTab = "Upcoming" | "Past";
 
+interface SymbolConfig {
+  main: React.ReactNode;
+  supporting: React.ReactNode[];
+  bg: string;
+  dotColor: string;
+}
+
 interface BaseEvent {
   title: string;
   date: string;
@@ -23,7 +30,7 @@ interface BaseEvent {
   desc: string;
   image?: string;
   photos?: string[];
-  collage?: string[];
+  symbol?: SymbolConfig;
   recap?: string;
   highlights?: string[];
   instagram?: string;
@@ -151,11 +158,30 @@ function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
       className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group"
     >
       {/* Symbol header */}
-      <div className="relative h-44 bg-secondary flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+      <div
+        className="relative h-44 flex items-center justify-center overflow-hidden"
+        style={{ backgroundColor: event.symbol?.bg ?? "#114634" }}
+      >
+        {/* Dot grid */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, ${event.symbol?.dotColor ?? "rgba(255,255,255,0.12)"} 1px, transparent 1px)`,
+            backgroundSize: "22px 22px",
+          }}
         />
-        <CalendarClock size={64} className="text-white/30" strokeWidth={1} />
+        {/* Supporting icons */}
+        {event.symbol?.supporting[0] && (
+          <div className="absolute left-7 bottom-7 opacity-25">{event.symbol.supporting[0]}</div>
+        )}
+        {event.symbol?.supporting[1] && (
+          <div className="absolute right-8 top-7 opacity-20">{event.symbol.supporting[1]}</div>
+        )}
+        {/* Main icon */}
+        <div className="relative z-10 w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm shadow-xl">
+          {event.symbol?.main}
+        </div>
+        {/* Month badge */}
         <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
           {event.date}
         </div>
@@ -205,7 +231,15 @@ export default function Events() {
         time: "5:30 PM - 7:00 PM",
         location: "ECSW",
         desc: "Get Your Resume And Portfolio Polished Before Career Fair Season. Peer Reviews And Tips From Engineers At Top Tech Companies.",
-        collage: [gbm1, rn[0], sk[0], tp[0]],
+        symbol: {
+          bg: "#114634",
+          dotColor: "rgba(255,255,255,0.10)",
+          main: <FileText size={36} className="text-white" strokeWidth={1.4} />,
+          supporting: [
+            <Code2 size={48} className="text-white" strokeWidth={1} />,
+            <Award size={40} className="text-white" strokeWidth={1} />,
+          ],
+        },
       },
       {
         title: "Industry Networking Mixer",
@@ -213,14 +247,30 @@ export default function Events() {
         time: "6:00 PM - 8:30 PM",
         location: "Davidson-Gundy Alumni Center",
         desc: "Connect With Engineers And Recruiters From Our Top Sponsors. Business Casual. Food And Refreshments Provided.",
-        collage: [gbm2, rn[2], at[0], sk[1]],
+        symbol: {
+          bg: "#1a1a1a",
+          dotColor: "rgba(236,117,36,0.18)",
+          main: <Handshake size={36} className="text-white" strokeWidth={1.4} />,
+          supporting: [
+            <Network size={50} className="text-white" strokeWidth={1} />,
+            <Briefcase size={38} className="text-white" strokeWidth={1} />,
+          ],
+        },
       },
       {
         title: "Black And Latinx In Tech Panel",
         date: "NOV",
         time: "4:00 PM - 5:30 PM",
         desc: "Hear From Black And Latinx Software Engineers Sharing Their Journeys, Navigating Tech, And Advice For Landing Your First Role.",
-        collage: [gbm3, rn[4], at[2], tp[2]],
+        symbol: {
+          bg: "#EC7524",
+          dotColor: "rgba(255,255,255,0.12)",
+          main: <Mic2 size={36} className="text-white" strokeWidth={1.4} />,
+          supporting: [
+            <MessageSquare size={46} className="text-white" strokeWidth={1} />,
+            <Users size={38} className="text-white" strokeWidth={1} />,
+          ],
+        },
       },
       {
         title: "ColorStack Community Social",
@@ -228,7 +278,15 @@ export default function Events() {
         time: "7:00 PM - 10:00 PM",
         location: "Northside",
         desc: "End-Of-Semester Celebration With The ColorStack Community. Games, Food, And Good Company Before Finals.",
-        collage: [rn[6], at[4], sk[3], tp[4]],
+        symbol: {
+          bg: "#114634",
+          dotColor: "rgba(236,117,36,0.20)",
+          main: <Sparkles size={36} className="text-white" strokeWidth={1.4} />,
+          supporting: [
+            <Star size={44} className="text-white" strokeWidth={1} />,
+            <Users size={36} className="text-white" strokeWidth={1} />,
+          ],
+        },
       },
     ],
     Past: [

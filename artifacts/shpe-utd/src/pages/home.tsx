@@ -164,8 +164,7 @@ export default function Home() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-[1.35rem] md:text-[1.65rem] font-medium text-foreground/85 leading-relaxed"
           >
-            Get Cracked. Build Community. Get Connected.{" "}
-            <span className="text-primary font-semibold">Everything a Black or Latinx student in tech needs, in one place.</span>
+            ColorStack's core mission is to increase the number of Black, Latinx, and Indigenous students who graduate with Computer Science degrees and launch rewarding technical careers. We achieve this by building community, providing academic support, and fostering career development opportunities for underrepresented students in computing.
           </motion.p>
         </div>
       </section>
@@ -176,17 +175,17 @@ export default function Home() {
           {[
             {
               number: "01",
-              title: "Get Cracked!",
-              desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full-stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production-ready projects on AWS and Azure with full CI/CD pipelines.",
+              title: "Get Cracked",
+              desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
             },
             {
               number: "02",
-              title: "Build Community!",
+              title: "Build Community",
               desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
             },
             {
               number: "03",
-              title: "Get Connected!",
+              title: "Get Connected",
               desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
             },
           ].map((pillar, i) => (

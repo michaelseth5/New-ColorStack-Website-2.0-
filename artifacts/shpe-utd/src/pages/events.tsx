@@ -10,6 +10,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const gbm1 = `${BASE}/gbm-1.jpg`;
 const gbm2 = `${BASE}/gbm-2.jpg`;
 const gbm3 = `${BASE}/gbm-3.jpg`;
+const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -23,6 +24,7 @@ interface BaseEvent {
   photos?: string[];
   recap?: string;
   upNext?: string;
+  highlights?: string[];
   instagram?: string;
 }
 
@@ -98,15 +100,19 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
 
             <p className="text-foreground leading-relaxed mb-5">{event.desc}</p>
 
-            {event.upNext && (
-              <div className="bg-[#FFF8F0] border border-primary/20 rounded-2xl p-5 mb-5">
-                <p className="font-bold text-secondary mb-1">Up next: {event.upNext.split(":")[0]}</p>
-                <p className="text-muted-foreground text-sm leading-relaxed">{event.upNext.split(":").slice(1).join(":").trim()}</p>
-              </div>
+            {event.highlights && (
+              <ul className="space-y-2 mb-5">
+                {event.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                    <span className="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
             )}
 
             {event.recap && (
-              <p className="text-muted-foreground text-sm italic leading-relaxed mb-6">{event.recap}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">{event.recap}</p>
             )}
           </div>
 
@@ -222,8 +228,23 @@ export default function Events() {
         desc: "We kicked off the semester with an incredible first General Body Meeting. Thank you to everyone who joined us — including our very own faculty advisor Ravi Prakash — we had such a meaningful time connecting, sharing our mission, and building community together.",
         image: gbm1,
         photos: [gbm1, gbm2, gbm3],
-        upNext: "Resume Night: Bring your resumes, questions, and curiosity — we'll be diving into strategies to strengthen your applications and level up your career journey.",
         recap: "We're excited to continue creating spaces where students of color in tech can thrive.",
+        instagram: "@colorstackutd",
+      },
+      {
+        title: "Resume Night Recap",
+        date: "SEP 21",
+        time: "September 21, 2025",
+        location: "UT Dallas",
+        desc: "We hosted an engaging Resume Night where members gained practical resume tips for breaking into tech careers, LinkedIn 101 strategies to strengthen their online presence, and networking and development resources to stay involved and grow professionally.",
+        image: rn[0],
+        photos: rn,
+        highlights: [
+          "Practical resume tips for breaking into tech careers",
+          "LinkedIn 101 strategies to strengthen their online presence",
+          "Networking and development resources to stay connected",
+        ],
+        recap: "A huge thank you to our UT Dallas University Career Center reps Brett Webb and Juna Jones-Moore, along with board members Michael, Oluwadamilare, and Akram for leading the panel and offering 1:1 resume reviews! If you're interested in accessing our Resume Night resources, be sure to join our Slack.",
         instagram: "@colorstackutd",
       },
       {

@@ -2,6 +2,11 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Terminal, GitMerge, Globe } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState, useCallback, useRef } from "react";
+import eboardHajar from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
+import eboardOluwadamilare from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
+import eboardMichael from "@assets/Michael_Katongole_1778782883428.png";
+import eboardRamzi from "@assets/Ramzi_Burhan_1778782883429.jpg";
+import eboardMarwan from "@assets/Marwan_Hegazy_1778782883427.jpg";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
@@ -162,7 +167,7 @@ function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 };
 
 export default function Home() {
@@ -431,6 +436,70 @@ export default function Home() {
               </button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Eboard Preview ──────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <motion.p
+            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+            style={{ fontFamily: "'Fira Code', monospace" }}
+            className="text-primary/70 text-xs mb-4 tracking-wide"
+          >
+            // the people behind the mission
+          </motion.p>
+          <motion.h2
+            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-black text-foreground mb-4"
+            style={{ fontFamily: "'Fira Code', monospace" }}
+          >
+            <span className="text-foreground/25">&lt;</span>
+            <span> Meet The Eboard </span>
+            <span className="text-foreground/25">/&gt;</span>
+          </motion.h2>
+          <motion.p
+            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="text-foreground/55 text-[0.95rem] mb-14 max-w-md mx-auto"
+          >
+            The people building this chapter from the ground up.
+          </motion.p>
+
+          <div className="flex flex-wrap justify-center gap-10 mb-12">
+            {[
+              { name: "Hajar Abdulkadir", title: "Co-President", img: eboardHajar },
+              { name: "Oluwadamilare Sunmola", title: "Co-President", img: eboardOluwadamilare },
+              { name: "Michael Katongole", title: "Vice President", img: eboardMichael },
+              { name: "Ramzi Burhan", title: "Treasurer", img: eboardRamzi },
+              { name: "Marwan Hegazy", title: "Secretary", img: eboardMarwan },
+            ].map((member, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                className="flex flex-col items-center w-[120px]"
+              >
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
+                  <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                </div>
+                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-primary/65 mb-1 leading-tight">
+                  role = "{member.title}"
+                </p>
+                <p className="text-sm font-bold text-foreground leading-snug text-center">{member.name}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+            <Link href="/board">
+              <button className="bg-[#114634] text-white rounded-full px-8 py-3.5 text-[14px] font-semibold hover:bg-[#114634]/90 transition-all hover:-translate-y-px">
+                Meet The Full Board
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 

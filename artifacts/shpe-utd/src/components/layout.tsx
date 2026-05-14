@@ -61,6 +61,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/board" className={linkClass("/board")} data-testid="link-meet-the-board">
               Meet Us
             </Link>
+            <Link href="/resources" className={linkClass("/resources")} data-testid="link-resources">
+              Resources
+            </Link>
 
             {/* About Us dropdown */}
             <div className="relative" ref={dropdownRef}>
@@ -99,6 +102,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </div>
               )}
             </div>
+
+            <Link href="/join" data-testid="link-join">
+              <button className="bg-primary text-white text-[14px] font-semibold px-5 py-2 rounded-full hover:bg-primary/90 transition-all hover:-translate-y-px">
+                Join
+              </button>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -119,7 +128,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Events", path: "/events" },
                 { name: "Sponsors", path: "/sponsors" },
                 { name: "Meet Us", path: "/board" },
+                { name: "Resources", path: "/resources" },
                 { name: "About", path: "/about" },
+                { name: "Join", path: "/join" },
               ].map((link) => (
                 <Link
                   key={link.path}
@@ -163,7 +174,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Events", path: "/events" },
                 { name: "Sponsors", path: "/sponsors" },
                 { name: "Meet the Board", path: "/board" },
+                { name: "Resources", path: "/resources" },
                 { name: "About Us", path: "/about" },
+                { name: "Join", path: "/join" },
               ].map((l) => (
                 <li key={l.path}>
                   <Link href={l.path} className="text-white/60 hover:text-white text-sm transition-colors" data-testid={`footer-link-${l.name.toLowerCase().replace(/\s+/g, '-')}`}>

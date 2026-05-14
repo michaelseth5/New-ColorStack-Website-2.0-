@@ -1,0 +1,24 @@
+Full Website Structure Prompt:
+Build A Complete Multi-Page Website For ColorStack UTD Modeled After The Layout And Structure Of ColorStack OSU With The Following Pages And Integrations.
+Pages To Build:
+Home Page
+Display The Hero Section With The Split Layout Photo And Headline. Below That Show The Three Pillars Section. Below That Show The Event Carousel Pulling From Past Event Photos. Below That Show A Preview Of The Eboard With A Link To The Full Board Page. End With A Call To Action Section That Says "Ready To Get Cracked?" With A Join Button.
+About Page
+Display The Full Mission Statement. Below That Show The Three Part Mission Pillars. Get Cracked, Build Community, And Get Connected. Include A Brief History Of The Chapter And How It Was Founded At UT Dallas.
+Meet The Board Page
+Display All Eboard Members In A Clean Card Grid Layout. Each Card Shows The Member Photo, Name, Role, And Year. Use The Developer Aesthetic With Role Displayed As "Role = Vice President" In Monospace Font. Section Header Should Read "< Meet The Board />"
+Events Page
+Model The Layout And Structure After The ColorStack OSU Events Page At https://colorstackosu.org/events.html. Display All Past Event Recaps In Chronological Order. Each Event Card Shows The Event Photo, Title, Date, And A Short Description With A Read More Button That Expands The Full Recap. Include An Upcoming Events Section At The Top That Pulls Directly From The Connected Google Calendar So Events Are Always Up To Date Automatically. Section Header Should Read "< Our Events />"
+Resources Page
+Display Links And Resources For Members Including DSA Study Guides, Career Roadmaps, Internship Prep Materials, And Program Links Like CodePath And Break Through Tech.
+Join Page
+Display A Simple Join Form With Fields For Name, Email, Major, And Year. Include A Link To The Slack Channel And A Brief Statement About What Members Can Expect When They Join.
+Integrations:
+Google Calendar Integration
+Connect The Website To The ColorStack UTD Google Calendar. All Upcoming Events On The Events Page And Homepage Should Pull Automatically From The Calendar So Nothing Has To Be Updated Manually. When A New Event Is Added To The Calendar It Should Appear On The Website Automatically.
+Instagram Carousel Integration
+On The Home Page And Events Page Embed A Live Instagram Feed Carousel That Pulls The Most Recent Posts From @colorstackutd Automatically. The Carousel Should Display Three To Four Posts At A Time On Desktop And One To Two On Mobile. Use A Third Party Integration Tool Such As Behold.so Or Elfsight To Connect The Instagram Feed Without Requiring Manual Updates.
+LinkedIn Carousel Integration
+On The Home Page Embed A LinkedIn Activity Carousel That Showcases The Most Recent Posts From The ColorStack UTD LinkedIn Page. This Should Update Automatically When New Posts Are Published. Use A Third Party Tool Such As Elfsight Or Curator.io To Pull And Display The LinkedIn Feed In A Clean Carousel Format Matching The Site Color Theme.
+Formatting Rules:
+Never Use Em Dashes Anywhere On The Entire Website. Replace With A Period, Comma, Or Semicolon Where Needed. Capitalize The First Letter Of Every Word Across All Text Including Body Text, Captions, Bullet Points, Headlines, And Descriptions. Use UTD Orange #EC7524 And UTD Green #114634 As The Primary Brand Colors Throughout. Apply The Developer Aesthetic With Code Style Headers And Monospace Font For Role Labels And Section Tags Only.

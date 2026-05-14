@@ -9,6 +9,8 @@ import Board from "@/pages/board";
 import Events from "@/pages/events";
 import Sponsors from "@/pages/sponsors";
 import About from "@/pages/about";
+import Resources from "@/pages/resources";
+import Join from "@/pages/join";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,8 @@ function Router() {
         <Route path="/events" component={Events} />
         <Route path="/sponsors" component={Sponsors} />
         <Route path="/about" component={About} />
+        <Route path="/resources" component={Resources} />
+        <Route path="/join" component={Join} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, HeartHandshake, Zap, Trophy, Shield } from "lucide-react";
+import { CheckCircle2, HeartHandshake, Zap, Trophy, Shield, Terminal, GitMerge, Globe } from "lucide-react";
 import aboutImg from "@/assets/images/about.png";
 
 export default function About() {
@@ -88,6 +88,59 @@ export default function About() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Mission Pillars */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-14">
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// how we operate</p>
+            <h2 className="text-4xl font-black text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
+              <span className="text-foreground/25">&lt;</span>
+              <span> Our Mission </span>
+              <span className="text-foreground/25">/&gt;</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Terminal size={20} strokeWidth={1.8} />,
+                title: "Get Cracked",
+                desc: "We build technically elite members. DSA in Java and Python, full stack with JavaScript and React, and production deployments on AWS and Azure with full CI/CD pipelines.",
+                bg: "#EC7524",
+              },
+              {
+                icon: <GitMerge size={20} strokeWidth={1.8} />,
+                title: "Build Community",
+                desc: "We bring together students of color from all different backgrounds and create a space where no one has to figure it out alone. Mentorship, accountability, and people who genuinely want to see you win.",
+                bg: "#114634",
+              },
+              {
+                icon: <Globe size={20} strokeWidth={1.8} />,
+                title: "Get Connected",
+                desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
+                bg: "#1a1a1a",
+              },
+            ].map((pillar, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="rounded-2xl p-8 flex flex-col"
+                style={{ backgroundColor: pillar.bg }}
+              >
+                <div className="w-10 h-10 rounded-full bg-white/15 text-white flex items-center justify-center mb-5">
+                  {pillar.icon}
+                </div>
+                <h3 className="text-xl font-black text-white mb-3">{pillar.title}</h3>
+                <p className="text-white/70 text-[0.93rem] leading-relaxed">{pillar.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

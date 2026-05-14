@@ -269,21 +269,21 @@ export default function Home() {
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
                 img: `${BASE}/speed.jpg`,
                 icon: <Terminal size={18} strokeWidth={1.8} />,
-                bg: "#fff4ec",
+                bg: "#EC7524",
               },
               {
                 title: "Build Community",
                 desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
                 img: `${BASE}/community.jpg`,
                 icon: <GitMerge size={18} strokeWidth={1.8} />,
-                bg: "#e8f5ef",
+                bg: "#114634",
               },
               {
                 title: "Get Connected",
                 desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
                 img: `${BASE}/connected.png`,
                 icon: <Globe size={18} strokeWidth={1.8} />,
-                bg: "#eef0fb",
+                bg: "#1a1a1a",
               },
             ].map((pillar, i) => (
               <motion.div
@@ -293,14 +293,14 @@ export default function Home() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-2xl p-7 flex flex-col shadow-sm border border-black/5"
+                className="rounded-2xl p-7 flex flex-col shadow-sm"
                 style={{ backgroundColor: pillar.bg }}
               >
-                <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-5 flex-shrink-0">
+                <div className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center mb-5 flex-shrink-0">
                   {pillar.icon}
                 </div>
-                <h3 className="text-xl font-black text-foreground mb-3">{pillar.title}</h3>
-                <p className="text-[0.93rem] text-foreground/65 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
+                <h3 className="text-xl font-black text-white mb-3">{pillar.title}</h3>
+                <p className="text-[0.93rem] text-white/70 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
                 <img
                   src={pillar.img}
                   alt={pillar.title}

@@ -10,6 +10,132 @@ const speedImg = `${BASE}/speed.jpg`;
 const communityImg = `${BASE}/community.jpg`;
 const connectedImg = `${BASE}/connected.png`;
 
+const carouselSlides = [
+  { src: `${BASE}/gbm-1.jpg`, event: "First GBM", date: "Sep 15, 2025" },
+  { src: `${BASE}/gbm-2.jpg`, event: "First GBM", date: "Sep 15, 2025" },
+  { src: `${BASE}/gbm-3.jpg`, event: "First GBM", date: "Sep 15, 2025" },
+  { src: `${BASE}/rn-1.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-2.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-3.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-4.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-5.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/at-1.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-2.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-3.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-4.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-5.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/sk-1.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
+  { src: `${BASE}/sk-2.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
+  { src: `${BASE}/sk-3.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
+  { src: `${BASE}/sk-4.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
+  { src: `${BASE}/tp-1.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-2.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-3.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-4.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/api101.jpg`, event: "API 101: Wall St. Decoded", date: "Mar 27, 2026" },
+];
+
+function EventCarousel() {
+  const [index, setIndex] = useState(0);
+  const [perView, setPerView] = useState(3);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const total = carouselSlides.length;
+
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth >= 1024) setPerView(3);
+      else if (window.innerWidth >= 640) setPerView(2);
+      else setPerView(1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const maxIndex = Math.max(0, total - perView);
+
+  const next = useCallback(() => setIndex(i => (i >= maxIndex ? 0 : i + 1)), [maxIndex]);
+  const prev = useCallback(() => setIndex(i => (i <= 0 ? maxIndex : i - 1)), [maxIndex]);
+
+  useEffect(() => {
+    timerRef.current = setInterval(next, 3500);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [next]);
+
+  useEffect(() => {
+    setIndex(i => Math.min(i, maxIndex));
+  }, [maxIndex]);
+
+  return (
+    <section className="bg-[#114634] py-16 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-10 text-center tracking-tight">
+          Our Events
+        </h2>
+
+        <div className="relative">
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
+            >
+              {carouselSlides.map((slide, i) => (
+                <div
+                  key={i}
+                  className="relative flex-shrink-0 px-1.5"
+                  style={{ width: `${100 / perView}%` }}
+                >
+                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+                    <img
+                      src={slide.src}
+                      alt={slide.event}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="text-white font-bold text-sm leading-tight">{slide.event}</p>
+                      <p className="text-white/70 text-xs mt-0.5">{slide.date}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={prev}
+            className="absolute left-[-14px] top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#EC7524] text-white rounded-full p-2.5 transition-all duration-200 backdrop-blur-sm z-10"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <button
+            onClick={next}
+            className="absolute right-[-14px] top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#EC7524] text-white rounded-full p-2.5 transition-all duration-200 backdrop-blur-sm z-10"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        <div className="flex justify-center gap-2 mt-8 flex-wrap">
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === index ? "bg-[#EC7524] w-6" : "bg-white/30 w-2 hover:bg-white/60"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -146,6 +272,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <EventCarousel />
 
       {/* ── Mission banner ──────────────────────────── */}
       <section className="bg-[#1a1a1a] py-20 md:py-28 text-center px-4">

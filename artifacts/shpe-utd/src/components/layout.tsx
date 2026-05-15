@@ -3,7 +3,7 @@ import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-reac
 import { useState, useEffect, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const navLogo = `${BASE}/favicon.png`;
+const navLogo = `${BASE}/colorstack-logo.png`;
 const logo = `${BASE}/logo-bg.png`;
 
 const SOCIAL_LINKS = [
@@ -52,21 +52,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-3" data-testid="link-home">
-            <img
-              src={navLogo}
-              alt=""
-              className="h-10 w-auto object-contain flex-shrink-0"
-              aria-hidden
-            />
-            <div className="flex flex-col leading-none">
-              <span className="text-[1.25rem] font-black text-foreground tracking-tight">
-                Color<span className="text-primary">Stack</span>
-              </span>
-              <span className="text-[0.7rem] font-bold text-foreground/50 tracking-widest uppercase mt-0.5">
-                UT Dallas
-              </span>
-            </div>
+          <Link href="/" className="flex-shrink-0 flex items-center" data-testid="link-home">
+            <img src={navLogo} alt="ColorStack UTD" style={{ height: "40px", width: "auto" }} />
           </Link>
 
           {/* Desktop Nav */}

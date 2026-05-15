@@ -367,7 +367,7 @@ export default function Events() {
           "Use CodePath's TIP For Structured DSA Practice That Simulates Real Interview Environments",
           "Learn Prompt Engineering; CodePath's 10-Week Applied AI Engineering Course Teaches AI-Assisted Workflows And Rapid Prototyping",
           "Have 6 Behavioral Stories Ready Using The CARL Method (Context, Action, Result, Learning)",
-          "Join ColorStack, NSBE Professionals, And SHPE, And Don't Just Join, Lead!",
+          "Join ColorStack, NSBE Professionals, And More. And Don't Just Join, Lead!",
           "Reviewed 12 Industry-Level Projects Using AWS, Azure, Kubernetes, Docker, And BigQuery",
         ],
         recap: "Thank You To Panelists Sofia Gutierrez, Loryn Higginbotham, Christian Reynolds, And Dami Oyadiran For Giving Your Time, Wisdom, And Energy To The Next Generation Of Tech Professionals.",

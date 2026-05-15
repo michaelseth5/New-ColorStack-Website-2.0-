@@ -238,6 +238,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-6xl mx-auto px-6 md:px-10 mt-12 pt-8 border-t border-white/10 text-center text-white/30 text-xs">
           &copy; {new Date().getFullYear()} ColorStack at UT Dallas. All rights reserved.
         </div>
+        <div className="max-w-6xl mx-auto px-6 md:px-10 mt-6 pt-4 border-t border-white/5 text-center">
+          <p style={{ fontSize: '12px', color: '#888888', fontStyle: 'italic' }}>
+            Designed &amp; Built By Michael Katongole aka &quot;The General&quot; aka Nick Saban
+          </p>
+        </div>
       </footer>
     </div>
   );

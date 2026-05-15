@@ -1,6 +1,6 @@
 {
-  "outputDirectory": "artifacts/shpe-utd/dist",
   "buildCommand": "pnpm --filter @workspace/shpe-utd run build",
+  "outputDirectory": "artifacts/shpe-utd/dist",
   "rewrites": [
     {
       "source": "/(.*)",

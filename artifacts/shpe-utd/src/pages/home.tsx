@@ -516,10 +516,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.6, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[clamp(1.15rem,2vw,1.5rem)] font-bold text-[#1a1a1a]/90 leading-snug mb-4 max-w-sm"
+              className="text-[clamp(1rem,2vw,1.35rem)] font-bold text-[#114634] leading-snug mb-4 max-w-md"
             >
-              We Support Our Members, Then Help Them Get{" "}
-              <span className="text-[#EC7524]">Cracked.</span>
+              We Pour Into Our Members First. Build Their Confidence, Sharpen Their Skills, And Get Them Technically Sound. Then We Make Sure The World Knows It.
             </motion.p>
 
             {/* Body copy */}

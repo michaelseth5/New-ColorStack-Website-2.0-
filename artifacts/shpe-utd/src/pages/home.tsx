@@ -512,14 +512,26 @@ export default function Home() {
             </motion.p>
 
             {/* Tagline */}
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.6, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[clamp(1rem,2vw,1.35rem)] font-bold text-[#114634] leading-snug mb-4 max-w-md"
+              className="mb-4"
             >
-              We Pour Into Our Members First. Build Their Confidence, Sharpen Their Skills, And Get Them Technically Sound. Then We Make Sure The World Knows It.
-            </motion.p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[
+                  { n: '01', text: 'We Pour Into Our Members First.' },
+                  { n: '02', text: 'Build Their Confidence, Sharpen Their Skills.' },
+                  { n: '03', text: 'Get Them Technically Sound.' },
+                  { n: '04', text: 'Then We Make Sure The World Knows It.' },
+                ].map(({ n, text }) => (
+                  <div key={n} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ color: '#EC7524', fontWeight: 'bold', fontSize: '20px', flexShrink: 0 }}>{n}</span>
+                    <span style={{ color: '#1a1a1a', fontWeight: 600, fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)', lineHeight: 1.35 }}>{text}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
             {/* Body copy */}
             <motion.p

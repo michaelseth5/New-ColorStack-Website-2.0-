@@ -201,7 +201,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Join", path: "/join" },
               ].map((l) => (
                 <li key={l.path}>
-                  <Link href={l.path} className="text-white/60 hover:text-white text-sm transition-colors" data-testid={`footer-link-${l.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <Link href={l.path} onClick={() => window.scrollTo(0, 0)} className="text-white/60 hover:text-white text-sm transition-colors" data-testid={`footer-link-${l.name.toLowerCase().replace(/\s+/g, '-')}`}>
                     {l.name}
                   </Link>
                 </li>

@@ -2,10 +2,8 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-import logoMark from "@assets/Untitled_design_1778794831663.png";
-
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const utdIcon = `${BASE}/utd-icon.png`;
+const navLogo = `${BASE}/favicon.png`;
 const logo = `${BASE}/logo-bg.png`;
 
 const SOCIAL_LINKS = [
@@ -55,17 +53,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-3" data-testid="link-home">
-            <div
-              aria-hidden="true"
-              style={{
-                width: 52,
-                height: 52,
-                backgroundImage: `url(${logoMark})`,
-                backgroundSize: "500%",
-                backgroundPosition: "center center",
-                backgroundRepeat: "no-repeat",
-                flexShrink: 0,
-              }}
+            <img
+              src={navLogo}
+              alt=""
+              className="h-10 w-auto object-contain flex-shrink-0"
+              aria-hidden
             />
             <div className="flex flex-col leading-none">
               <span className="text-[1.25rem] font-black text-foreground tracking-tight">

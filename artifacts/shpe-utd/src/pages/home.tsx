@@ -540,7 +540,7 @@ export default function Home() {
               transition={{ duration: 0.55, delay: 0.68, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="text-[0.95rem] text-[#1a1a1a]/55 mb-9 max-w-sm leading-relaxed"
             >
-              Building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected.
+              Building The Next Generation Of Black, Latinx, And Indigenous Engineers At UT Dallas. Come Get Technical. Come Get Connected.
             </motion.p>
 
             {/* Buttons */}
@@ -581,7 +581,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-black text-foreground mb-5"
             >
-              Three pillars. One mission.
+              Three Pillars. One Mission.
             </motion.h2>
             <motion.p
               variants={fadeUp}
@@ -590,7 +590,7 @@ export default function Home() {
               viewport={{ once: true, margin: "-80px" }}
               className="text-[1.1rem] md:text-[1.25rem] font-medium text-foreground/70 leading-relaxed"
             >
-              ColorStack's core mission is to increase the number of Black, Latinx, and Indigenous students who graduate with Computer Science degrees and launch rewarding technical careers. We do that through three pillars.
+              ColorStack's Core Mission Is To Increase The Number Of Black, Latinx, And Indigenous Students Who Graduate With Computer Science Degrees And Launch Rewarding Technical Careers. We Do That Through Three Pillars.
             </motion.p>
           </div>
 

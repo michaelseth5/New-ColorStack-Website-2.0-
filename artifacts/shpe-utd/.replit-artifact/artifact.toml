@@ -19,7 +19,7 @@ run = "pnpm --filter @workspace/shpe-utd run dev"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/shpe-utd", "run", "build" ]
-publicDir = "artifacts/shpe-utd/dist/public"
+publicDir = "artifacts/shpe-utd/dist"
 serve = "static"
 
 [[services.production.rewrites]]

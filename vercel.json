@@ -2,7 +2,7 @@
   "version": 2,
   "buildCommand": "pnpm --filter @workspace/shpe-utd run build",
   "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": "artifacts/shpe-utd/dist",
+  "outputDirectory": "artifacts/shpe-utd/dist/public",
   "framework": null,
   "rewrites": [
     {

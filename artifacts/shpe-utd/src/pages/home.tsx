@@ -523,7 +523,7 @@ export default function Home() {
                   { n: '01', text: 'We Pour Into Our Members First.' },
                   { n: '02', text: 'Build Their Confidence, Sharpen Their Skills.' },
                   { n: '03', text: 'Get Them Technically Sound.' },
-                  { n: '04', text: 'Then We Make Sure The World Knows It.' },
+                  { n: '04', text: 'Then We Make Sure The World Knows It!!' },
                 ].map(({ n, text }) => (
                   <div key={n} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <span style={{ color: '#EC7524', fontWeight: 'bold', fontSize: '20px', flexShrink: 0 }}>{n}</span>

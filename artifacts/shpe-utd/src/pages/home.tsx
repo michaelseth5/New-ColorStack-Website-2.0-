@@ -24,27 +24,77 @@ const carouselSlides = [
   { src: `${BASE}/rn-3.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
   { src: `${BASE}/rn-4.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
   { src: `${BASE}/rn-5.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-6.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-7.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-8.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-9.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-10.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
+  { src: `${BASE}/rn-11.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
   { src: `${BASE}/at-1.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-2.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-3.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-4.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-5.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-6.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-7.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
+  { src: `${BASE}/at-8.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/sk-1.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
   { src: `${BASE}/sk-2.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
   { src: `${BASE}/sk-3.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
   { src: `${BASE}/sk-4.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
+  { src: `${BASE}/sk-5.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
+  { src: `${BASE}/sk-6.jpg`, event: "Spring Kick-Off GBM", date: "Feb 14, 2026" },
   { src: `${BASE}/tp-1.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-2.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-3.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-4.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-5.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-6.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/api101.jpg`, event: "API 101: Wall St. Decoded", date: "Mar 27, 2026" },
 ];
 
+type Slide = typeof carouselSlides[number];
+
+function fisherYates<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildShuffledSlides(slides: Slide[]): Slide[] {
+  const seen = new Set<string>();
+  const unique = slides.filter(s => { if (seen.has(s.src)) return false; seen.add(s.src); return true; });
+
+  const groupMap = new Map<string, Slide[]>();
+  for (const slide of unique) {
+    const g = groupMap.get(slide.event) ?? [];
+    g.push(slide);
+    groupMap.set(slide.event, g);
+  }
+
+  // Shuffle within each event group, then shuffle the event order
+  const groups = fisherYates([...groupMap.values()].map(fisherYates));
+
+  // Round-robin interleave so adjacent slides are never from the same event
+  const result: Slide[] = [];
+  const maxLen = Math.max(...groups.map(g => g.length));
+  for (let i = 0; i < maxLen; i++) {
+    for (const group of groups) {
+      if (i < group.length) result.push(group[i]);
+    }
+  }
+  return result;
+}
+
 function EventCarousel() {
+  const [slides] = useState<Slide[]>(() => buildShuffledSlides(carouselSlides));
   const [index, setIndex] = useState(0);
   const [perView, setPerView] = useState(3);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const total = carouselSlides.length;
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const total = slides.length;
 
   useEffect(() => {
     const update = () => {
@@ -63,8 +113,12 @@ function EventCarousel() {
   const prev = useCallback(() => setIndex(i => (i <= 0 ? maxIndex : i - 1)), [maxIndex]);
 
   useEffect(() => {
-    timerRef.current = setInterval(next, 3500);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+    const schedule = () => {
+      const delay = 2500 + Math.random() * 2500;
+      timerRef.current = setTimeout(() => { next(); schedule(); }, delay);
+    };
+    schedule();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [next]);
 
   useEffect(() => {
@@ -86,7 +140,7 @@ function EventCarousel() {
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
             >
-              {carouselSlides.map((slide, i) => (
+              {slides.map((slide, i) => (
                 <div
                   key={i}
                   className="relative flex-shrink-0 px-1.5"

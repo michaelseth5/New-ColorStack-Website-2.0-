@@ -653,7 +653,7 @@ export default function Home() {
               {
                 title: "Get Technically Sharp",
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
-                img: `${BASE}/speed.jpg`,
+                img: `${BASE}/speed.avif`,
                 icon: <Terminal size={18} strokeWidth={1.8} />,
                 bg: "#EC7524",
               },

@@ -650,7 +650,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                title: "Get Cracked",
+                title: "Get Technically Sharp",
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
                 img: `${BASE}/speed.jpg`,
                 icon: <Terminal size={18} strokeWidth={1.8} />,

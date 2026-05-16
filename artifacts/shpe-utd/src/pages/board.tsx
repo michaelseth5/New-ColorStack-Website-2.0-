@@ -18,6 +18,7 @@ import timageImg from "@assets/Timage_Abubaker_1778782883430.jpg";
 import hassetImg from "@assets/Hasset_Getachew_1778782883426.jpg";
 import henosImg from "@assets/Henos_1778797249996.webp";
 import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
+import rodolfoImg from "@assets/Rodolfo_Gonzalez.jpg";
 
 interface Officer {
   name: string;
@@ -52,6 +53,7 @@ interface Ambassador {
 const ambassadors: Ambassador[] = [
   { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/" },
   { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
+  { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/" },
   { name: "Hasset Getachew", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
   { name: "Henos Tekie", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },

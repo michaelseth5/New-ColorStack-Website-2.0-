@@ -15,7 +15,7 @@ const SOCIAL_LINKS = [
 const QUOTES = [
   { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
   { text: "The harder I work, the luckier I get.", author: "Samuel Goldwyn" },
-  { text: "The process is the process. Don't think about winning a championship — think about what you need to do right now.", author: "Nick Saban" },
+  { text: "The process is the process. Don't think about winning a championship - think about what you need to do right now.", author: "Nick Saban" },
 ];
 
 function RotatingQuote() {
@@ -40,7 +40,7 @@ function RotatingQuote() {
       style={{ opacity: visible ? 1 : 0 }}
     >
       <p className="text-white/60 italic">"{quote.text}"</p>
-      <p className="text-white/40 mt-1.5">— {quote.author}</p>
+      <p className="text-white/40 mt-1.5">- {quote.author}</p>
     </div>
   );
 }

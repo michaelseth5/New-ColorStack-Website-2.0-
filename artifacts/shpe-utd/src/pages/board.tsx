@@ -153,11 +153,11 @@ function SectionHeading({ label, title }: { label: string; title: string }) {
   );
 }
 
-const YEARS = ["2025 – 2026"] as const;
+const YEARS = ["2025 - 2026"] as const;
 type Year = typeof YEARS[number];
 
 export default function Board() {
-  const [activeYear, setActiveYear] = useState<Year>("2025 – 2026");
+  const [activeYear, setActiveYear] = useState<Year>("2025 - 2026");
 
   return (
     <div className="min-h-screen bg-background w-full">

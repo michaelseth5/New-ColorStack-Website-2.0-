@@ -12,6 +12,39 @@ const SOCIAL_LINKS = [
   { Icon: TreePine, href: "https://linktr.ee/ColorStackUTD", label: "Linktree", handle: "All Links" },
 ];
 
+const QUOTES = [
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "The harder I work, the luckier I get.", author: "Samuel Goldwyn" },
+  { text: "The process is the process. Don't think about winning a championship — think about what you need to do right now.", author: "Nick Saban" },
+];
+
+function RotatingQuote() {
+  const [idx, setIdx] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIdx(i => (i + 1) % QUOTES.length);
+        setVisible(true);
+      }, 400);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const quote = QUOTES[idx];
+  return (
+    <div
+      className="max-w-sm text-sm leading-relaxed transition-opacity duration-400"
+      style={{ opacity: visible ? 1 : 0 }}
+    >
+      <p className="text-white/60 italic">"{quote.text}"</p>
+      <p className="text-white/40 mt-1.5">— {quote.author}</p>
+    </div>
+  );
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -183,9 +216,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="mb-5">
               <img src={logo} alt="ColorStack at UTD" className="h-10 w-auto rounded-lg object-contain" />
             </div>
-            <p className="text-white/60 max-w-sm text-sm leading-relaxed">
-              We Get Our Members Cracked. Then We Make Sure The World Knows It.
-            </p>
+            <RotatingQuote />
           </div>
 
           <div>

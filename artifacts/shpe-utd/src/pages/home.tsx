@@ -32,7 +32,6 @@ const carouselSlides = [
   { src: `${BASE}/rn-11.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
   { src: `${BASE}/at-1.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-2.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
-  { src: `${BASE}/at-3.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-4.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-5.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },
   { src: `${BASE}/at-6.jpg`, event: "AfroTech Meetup", date: "Nov 13, 2025" },

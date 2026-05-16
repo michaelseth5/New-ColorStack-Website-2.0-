@@ -772,8 +772,6 @@ export default function Home() {
                   <p className="text-[1.2rem] md:text-[1.45rem] font-medium italic text-foreground/80 leading-relaxed mb-8">
                     "{testimonials[currentTestimonial].quote}"
                   </p>
-                  <p className="font-bold text-foreground">{testimonials[currentTestimonial].name}</p>
-                  <p className="text-primary text-sm font-medium mt-1">{testimonials[currentTestimonial].year}</p>
                 </div>
               </motion.div>
             </AnimatePresence>

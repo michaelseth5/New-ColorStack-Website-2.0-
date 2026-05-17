@@ -10,7 +10,6 @@ import marwanImg from "@assets/Marwan_Hegazy_1778782883427.jpg";
 import nohaImg from "@assets/Noha_Markose_1778782883428.jpg";
 import akramImg from "@assets/Akram_Hassen_1778782883426.jpg";
 import musaImg from "@assets/Musa_Mudesir_1778782883428.jpg";
-import placeholderImg from "@assets/og_1778782883429.png";
 import nadirImg from "@assets/Nadir_Muktar_1778782883428.jpg";
 import joseImg from "@assets/Jose_Rogel_1778782883427.png";
 import sabrinaImg from "@assets/Sabrina_Abubaker_1778782883430.jpg";
@@ -21,6 +20,11 @@ import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
 import rodolfoImg from "@assets/Rodolfo_Gonzalez.jpg";
 import damianImg from "@assets/Damian_Aguilar.jpg";
 import mamoudouImg from "@assets/Mamoudou_Balde.jpg";
+import maarebImg from "@assets/Maareb_Fadlalah.jpg";
+import anthonioImg from "@assets/Anthonio_Odonkor.jpg";
+import elizabethImg from "@assets/Elizabeth_Gonzalez.jpg";
+import mayowaImg from "@assets/Mayowa_Akinyede.png";
+import ugonnaImg from "@assets/Ugonna_Anyalemechi.png";
 
 interface Officer {
   name: string;
@@ -51,7 +55,7 @@ const operations2025: Officer[] = [
   { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
   { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/" },
-  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
+  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
 ];
 
 const ambassadors2025: Ambassador[] = [
@@ -71,7 +75,7 @@ const ambassadors2025: Ambassador[] = [
 const leadership2026: Officer[] = [
   { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/" },
-  { name: "Maareb Fadlalah", title: "Vice President", image: placeholderImg },
+  { name: "Maareb Fadlalah", title: "Vice President", image: maarebImg },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
   { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
 ];
@@ -79,16 +83,16 @@ const leadership2026: Officer[] = [
 const operations2026: Officer[] = [
   { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
   { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
-  { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/" },
-  { name: "Mayowa Akinyede", title: "Tech Coordinator", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/" },
+  { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/" },
+  { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/" },
   { name: "Noha Markose", title: "Historian", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Mamoudou Balde", title: "Academic Chair", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/" },
   { name: "Ramzi Burhan", title: "Treasurer Deputy", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },
 ];
 
 const ambassadors2026: Ambassador[] = [
-  { name: "Ugonna Anyalemechi", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/" },
-  { name: "Elizabeth Gonzalez", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/" },
+  { name: "Ugonna Anyalemechi", image: ugonnaImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/" },
+  { name: "Elizabeth Gonzalez", image: elizabethImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/" },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/" },
   { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/" },

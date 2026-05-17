@@ -25,6 +25,7 @@ import anthonioImg from "@assets/Anthonio_Odonkor.jpg";
 import elizabethImg from "@assets/Elizabeth_Gonzalez.jpg";
 import mayowaImg from "@assets/Mayowa_Akinyede.png";
 import ugonnaImg from "@assets/Ugonna_Anyalemechi.png";
+import alejandroImg from "@assets/Alejandro_Gomez_De_Mendieta.jpg";
 
 interface Officer {
   name: string;
@@ -85,6 +86,7 @@ const operations2026: Officer[] = [
   { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/" },
   { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/" },
+  { name: "Alejandro Gomez De Mendieta", title: "Tech Coordinator", image: alejandroImg, linkedinUrl: "https://www.linkedin.com/in/alejandro-gomez-de-mendieta/" },
   { name: "Noha Markose", title: "Historian", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Mamoudou Balde", title: "Academic Chair", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/" },
   { name: "Ramzi Burhan", title: "Treasurer Deputy", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },

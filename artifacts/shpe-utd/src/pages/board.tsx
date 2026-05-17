@@ -31,7 +31,15 @@ interface Officer {
   linkedinUrl?: string;
 }
 
-const leadership: Officer[] = [
+interface Ambassador {
+  name: string;
+  image: string;
+  linkedinUrl?: string;
+}
+
+// ── 2025 – 2026 ─────────────────────────────────────────────────────────────
+
+const leadership2025: Officer[] = [
   { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
   { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
   { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
@@ -39,20 +47,14 @@ const leadership: Officer[] = [
   { name: "Marwan Hegazy", title: "Secretary", image: marwanImg, linkedinUrl: "https://www.linkedin.com/in/marwan-hegazy/" },
 ];
 
-const operations: Officer[] = [
+const operations2025: Officer[] = [
   { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
   { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/" },
   { name: "Maareb Fadlalah", title: "Fundraising Chair", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
 ];
 
-interface Ambassador {
-  name: string;
-  image: string;
-  linkedinUrl?: string;
-}
-
-const ambassadors: Ambassador[] = [
+const ambassadors2025: Ambassador[] = [
   { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/" },
   { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/" },
@@ -63,6 +65,37 @@ const ambassadors: Ambassador[] = [
   { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
 ];
+
+// ── 2026 – 2027 ─────────────────────────────────────────────────────────────
+
+const leadership2026: Officer[] = [
+  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
+  { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/" },
+  { name: "Maareb Fadlalah", title: "Vice President", image: placeholderImg },
+  { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
+  { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
+];
+
+const operations2026: Officer[] = [
+  { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
+  { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
+  { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/" },
+  { name: "Mayowa Akinyede", title: "Tech Coordinator", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/" },
+  { name: "Noha Markose", title: "Historian", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
+  { name: "Mamoudou Balde", title: "Academic Chair", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/" },
+  { name: "Ramzi Burhan", title: "Treasurer Deputy", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },
+];
+
+const ambassadors2026: Ambassador[] = [
+  { name: "Ugonna Anyalemechi", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/" },
+  { name: "Elizabeth Gonzalez", image: placeholderImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/" },
+  { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/" },
+  { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
+  { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/" },
+  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
+];
+
+// ── Shared ───────────────────────────────────────────────────────────────────
 
 const advisor: Officer = {
   name: "Dr. Ravi Prakash",
@@ -155,11 +188,15 @@ function SectionHeading({ label, title }: { label: string; title: string }) {
   );
 }
 
-const YEARS = ["2025 - 2026"] as const;
+const YEARS = ["2025 - 2026", "2026 - 2027"] as const;
 type Year = typeof YEARS[number];
 
 export default function Board() {
-  const [activeYear, setActiveYear] = useState<Year>("2025 - 2026");
+  const [activeYear, setActiveYear] = useState<Year>("2026 - 2027");
+
+  const leadership = activeYear === "2025 - 2026" ? leadership2025 : leadership2026;
+  const operations = activeYear === "2025 - 2026" ? operations2025 : operations2026;
+  const ambassadors = activeYear === "2025 - 2026" ? ambassadors2025 : ambassadors2026;
 
   return (
     <div className="min-h-screen bg-background w-full">

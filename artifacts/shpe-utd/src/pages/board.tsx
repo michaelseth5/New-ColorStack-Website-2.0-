@@ -319,17 +319,24 @@ export default function Board() {
                   <p className="font-semibold text-foreground text-sm leading-snug mb-2">
                     {amb.name}
                   </p>
-                  {amb.linkedinUrl && (
-                    <a
-                      href={amb.linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
-                      aria-label={`${amb.name} on LinkedIn`}
-                    >
-                      <Linkedin size={15} strokeWidth={2} />
-                    </a>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {amb.linkedinUrl && (
+                      <a
+                        href={amb.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
+                        aria-label={`${amb.name} on LinkedIn`}
+                      >
+                        <Linkedin size={15} strokeWidth={2} />
+                      </a>
+                    )}
+                    {amb.internLogo && (
+                      <div className="w-8 h-8 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={amb.internCompany}>
+                        <img src={amb.internLogo} alt={amb.internCompany} className={`object-contain ${amb.internLogoZoom ? "w-7 h-7" : "w-5 h-5"}`} />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}

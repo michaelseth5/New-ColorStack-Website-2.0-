@@ -13,10 +13,8 @@ function resolvePort(): number {
 }
 
 const port = resolvePort();
-const basePath = process.env.BASE_PATH?.trim() || "/";
-
 export default defineConfig({
-  base: basePath,
+  base: "/",
   plugins: [
     react(),
     tailwindcss(),

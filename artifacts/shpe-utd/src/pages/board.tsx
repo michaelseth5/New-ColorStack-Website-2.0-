@@ -151,11 +151,6 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
-        {officer.internLogo && (
-          <div className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden border border-white/30" title={officer.internCompany}>
-            <img src={officer.internLogo} alt={officer.internCompany} className="w-6 h-6 object-contain" />
-          </div>
-        )}
       </div>
 
       {/* Info */}
@@ -180,18 +175,25 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           <p className="text-[0.78rem] text-foreground/70 leading-relaxed mb-3 flex-1">{officer.bio}</p>
         )}
 
-        {/* LinkedIn badge */}
-        {officer.linkedinUrl && (
-          <a
-            href={officer.linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-auto inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
-            aria-label={`${officer.name} on LinkedIn`}
-          >
-            <Linkedin size={17} strokeWidth={2} />
-          </a>
-        )}
+        {/* LinkedIn + intern logo row */}
+        <div className="mt-auto flex items-center gap-2">
+          {officer.linkedinUrl && (
+            <a
+              href={officer.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
+              aria-label={`${officer.name} on LinkedIn`}
+            >
+              <Linkedin size={17} strokeWidth={2} />
+            </a>
+          )}
+          {officer.internLogo && (
+            <div className="w-9 h-9 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={officer.internCompany}>
+              <img src={officer.internLogo} alt={officer.internCompany} className="w-6 h-6 object-contain" />
+            </div>
+          )}
+        </div>
       </div>
     </motion.div>
   );

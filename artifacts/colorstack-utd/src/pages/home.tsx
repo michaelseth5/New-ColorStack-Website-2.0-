@@ -13,6 +13,15 @@ import team4 from "@/assets/images/team-4.png";
 import team5 from "@/assets/images/team-5.png";
 import heroBg from "@/assets/images/hero-bg.png";
 
+import logoCiti from "@/assets/images/companies/citi.png";
+import logoJPMC from "@/assets/images/companies/jpmc.jpg";
+import logoJnJ from "@/assets/images/companies/jnj.png";
+import logoPurdue from "@/assets/images/companies/purdue.jpg";
+import logoEA from "@/assets/images/companies/ea-sports.svg";
+import logoStellantis from "@/assets/images/companies/stellantis.png";
+import logoMicrosoft from "@/assets/images/companies/microsoft.png";
+import logoCapitalOne from "@/assets/images/companies/capital-one.png";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
@@ -64,6 +73,17 @@ const team = [
   { name: "Sarah Williams", role: "Treasurer", image: team3 },
   { name: "David Martinez", role: "Events Lead", image: team4 },
   { name: "James Carter", role: "Technical Director", image: team5 },
+  { name: "Michael Katongole", role: "Tech Coordinator", image: team1, internLogo: logoCiti, internCompany: "Citi" },
+  { name: "Hajar Abdulkadir", role: "Member", image: team2, internLogo: logoJPMC, internCompany: "JPMC" },
+  { name: "Ugonna", role: "Member", image: team3, internLogo: logoJPMC, internCompany: "JPMC" },
+  { name: "Elizabeth Gonzalez", role: "Member", image: team4, internLogo: logoJPMC, internCompany: "JPMC" },
+  { name: "Rodolfo", role: "Member", image: team5, internLogo: logoJPMC, internCompany: "JPMC" },
+  { name: "Musa Mudesir", role: "Member", image: team1, internLogo: logoJnJ, internCompany: "Johnson & Johnson" },
+  { name: "Alejandro Gomez De Mendieta", role: "Tech Coordinator", image: team2, internLogo: logoPurdue, internCompany: "Purdue" },
+  { name: "Mayowa Akinyede", role: "Member", image: team3, internLogo: logoEA, internCompany: "EA Sports" },
+  { name: "Mamoudou Balde", role: "Member", image: team4, internLogo: logoStellantis, internCompany: "Stellantis" },
+  { name: "Ramzi Burhan", role: "Member", image: team5, internLogo: logoMicrosoft, internCompany: "Microsoft" },
+  { name: "Oluwadamilare Sunmola", role: "Member", image: team1, internLogo: logoCapitalOne, internCompany: "Capital One" },
 ];
 
 const sponsors = {
@@ -413,6 +433,11 @@ export default function Home() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                    {member.internLogo && (
+                      <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border border-white/20" title={member.internCompany}>
+                        <img src={member.internLogo} alt={member.internCompany} className="w-6 h-6 object-contain" />
+                      </div>
+                    )}
                   </div>
                   <h3 className="font-semibold text-sm leading-tight">{member.name}</h3>
                   <p className="text-xs text-primary mt-0.5">{member.role}</p>

@@ -51,6 +51,7 @@ interface Officer {
   internCompany?: string;
   internLogoZoom?: boolean;
   internLogoClass?: string;
+  internBadgeClass?: string;
 }
 
 interface Ambassador {
@@ -61,6 +62,7 @@ interface Ambassador {
   internCompany?: string;
   internLogoZoom?: boolean;
   internLogoClass?: string;
+  internBadgeClass?: string;
 }
 
 // ── 2025 – 2026 ─────────────────────────────────────────────────────────────
@@ -82,7 +84,7 @@ const operations2025: Officer[] = [
 
 const ambassadors2025: Ambassador[] = [
   { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
-  { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internLogoClass: "w-full h-full object-cover scale-[2]" },
+  { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internBadgeClass: "w-16 h-9", internLogoClass: "w-full h-full object-contain" },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Hasset Getachew", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
   { name: "Damian Aguilar", image: damianImg, linkedinUrl: "https://www.linkedin.com/in/damianaguilar2004/" },
@@ -105,7 +107,7 @@ const leadership2026: Officer[] = [
 const operations2026: Officer[] = [
   { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
-  { name: "Timage Abubaker", title: "Public Communications", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internLogoClass: "w-full h-full object-cover scale-[2]" },
+  { name: "Timage Abubaker", title: "Public Communications", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internBadgeClass: "w-16 h-9", internLogoClass: "w-full h-full object-contain" },
   { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/", internLogo: logoEA, internCompany: "EA Sports", internLogoZoom: true },
   { name: "Alejandro Gomez De Mendieta", title: "Tech Coordinator", image: alejandroImg, linkedinUrl: "https://www.linkedin.com/in/alejandro-gomez-de-mendieta/", internLogo: logoPurdue, internCompany: "Purdue", internLogoZoom: true },
@@ -196,7 +198,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
             </a>
           )}
           {officer.internLogo && (
-            <div className="w-9 h-9 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={officer.internCompany}>
+            <div className={`${officer.internBadgeClass ?? "w-9 h-9"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={officer.internCompany}>
               <img src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
             </div>
           )}
@@ -337,7 +339,7 @@ export default function Board() {
                       </a>
                     )}
                     {amb.internLogo && (
-                      <div className="w-8 h-8 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={amb.internCompany}>
+                      <div className={`${amb.internBadgeClass ?? "w-8 h-8"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={amb.internCompany}>
                         <img src={amb.internLogo} alt={amb.internCompany} className={amb.internLogoClass ?? `object-contain ${amb.internLogoZoom ? "w-7 h-7" : "w-5 h-5"}`} />
                       </div>
                     )}

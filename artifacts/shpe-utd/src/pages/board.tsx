@@ -4,6 +4,7 @@ import { Linkedin } from "lucide-react";
 
 import logoAccenture from "@assets/company_accenture.png";
 import logoBoA from "@assets/company_boa.svg";
+import logoCodePath from "@assets/company_codepath.webp";
 import logoCiti from "@assets/company_citi.png";
 import logoJPMC from "@assets/company_jpmc.jpg";
 import logoJnJ from "@assets/company_jnj.png";
@@ -73,7 +74,7 @@ const leadership2025: Officer[] = [
 ];
 
 const operations2025: Officer[] = [
-  { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
+  { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
   { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Maareb Fadlalah", title: "Fundraising Chair", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/", internLogo: logoAccenture, internCompany: "Accenture", internLogoZoom: true },
@@ -87,7 +88,7 @@ const ambassadors2025: Ambassador[] = [
   { name: "Damian Aguilar", image: damianImg, linkedinUrl: "https://www.linkedin.com/in/damianaguilar2004/" },
   { name: "Henos Tekie", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Mamoudou Balde", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/", internLogo: logoStellantis, internCompany: "Stellantis", internLogoZoom: true },
-  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
+  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
 ];
 
@@ -102,13 +103,13 @@ const leadership2026: Officer[] = [
 ];
 
 const operations2026: Officer[] = [
-  { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
-  { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
+  { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
+  { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Timage Abubaker", title: "Public Communications", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internLogoZoom: true },
-  { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/" },
+  { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/", internLogo: logoEA, internCompany: "EA Sports", internLogoZoom: true },
   { name: "Alejandro Gomez De Mendieta", title: "Tech Coordinator", image: alejandroImg, linkedinUrl: "https://www.linkedin.com/in/alejandro-gomez-de-mendieta/", internLogo: logoPurdue, internCompany: "Purdue", internLogoZoom: true },
-  { name: "Noha Markose", title: "Historian", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
+  { name: "Noha Markose", title: "Historian", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Mamoudou Balde", title: "Academic Chair", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/", internLogo: logoStellantis, internCompany: "Stellantis", internLogoZoom: true },
   { name: "Ramzi Burhan", title: "Treasurer Deputy", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/", internLogo: logoMicrosoft, internCompany: "Microsoft", internLogoZoom: true },
 ];
@@ -118,7 +119,7 @@ const ambassadors2026: Ambassador[] = [
   { name: "Elizabeth Gonzalez", image: elizabethImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
-  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
+  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
 ];
 
 // ── Shared ───────────────────────────────────────────────────────────────────

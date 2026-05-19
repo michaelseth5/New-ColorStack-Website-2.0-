@@ -46,6 +46,7 @@ interface Officer {
   linkedinUrl?: string;
   internLogo?: string;
   internCompany?: string;
+  internLogoZoom?: boolean;
 }
 
 interface Ambassador {
@@ -54,33 +55,34 @@ interface Ambassador {
   linkedinUrl?: string;
   internLogo?: string;
   internCompany?: string;
+  internLogoZoom?: boolean;
 }
 
 // ── 2025 – 2026 ─────────────────────────────────────────────────────────────
 
 const leadership2025: Officer[] = [
-  { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC" },
-  { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One" },
+  { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
+  { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
   { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
-  { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/", internLogo: logoMicrosoft, internCompany: "Microsoft" },
+  { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/", internLogo: logoMicrosoft, internCompany: "Microsoft", internLogoZoom: true },
   { name: "Marwan Hegazy", title: "Secretary", image: marwanImg, linkedinUrl: "https://www.linkedin.com/in/marwan-hegazy/" },
 ];
 
 const operations2025: Officer[] = [
   { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
-  { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson" },
+  { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Maareb Fadlalah", title: "Fundraising Chair", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
 ];
 
 const ambassadors2025: Ambassador[] = [
-  { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare" },
+  { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
   { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
-  { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC" },
+  { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Hasset Getachew", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
   { name: "Damian Aguilar", image: damianImg, linkedinUrl: "https://www.linkedin.com/in/damianaguilar2004/" },
   { name: "Henos Tekie", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
-  { name: "Mamoudou Balde", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/", internLogo: logoStellantis, internCompany: "Stellantis" },
+  { name: "Mamoudou Balde", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/", internLogo: logoStellantis, internCompany: "Stellantis", internLogoZoom: true },
   { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
 ];
@@ -89,10 +91,10 @@ const ambassadors2025: Ambassador[] = [
 
 const leadership2026: Officer[] = [
   { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
-  { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare" },
+  { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
   { name: "Maareb Fadlalah", title: "Vice President", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
-  { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC" },
-  { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One" },
+  { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
+  { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
 ];
 
 const operations2026: Officer[] = [
@@ -100,18 +102,18 @@ const operations2026: Officer[] = [
   { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Timage Abubaker", title: "Public Communications", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
   { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/" },
-  { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/", internLogo: logoEA, internCompany: "EA Sports" },
-  { name: "Alejandro Gomez De Mendieta", title: "Tech Coordinator", image: alejandroImg, linkedinUrl: "https://www.linkedin.com/in/alejandro-gomez-de-mendieta/", internLogo: logoPurdue, internCompany: "Purdue" },
+  { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/", internLogo: logoEA, internCompany: "EA Sports", internLogoZoom: true },
+  { name: "Alejandro Gomez De Mendieta", title: "Tech Coordinator", image: alejandroImg, linkedinUrl: "https://www.linkedin.com/in/alejandro-gomez-de-mendieta/", internLogo: logoPurdue, internCompany: "Purdue", internLogoZoom: true },
   { name: "Noha Markose", title: "Historian", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
-  { name: "Mamoudou Balde", title: "Academic Chair", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/", internLogo: logoStellantis, internCompany: "Stellantis" },
-  { name: "Ramzi Burhan", title: "Treasurer Deputy", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/", internLogo: logoMicrosoft, internCompany: "Microsoft" },
+  { name: "Mamoudou Balde", title: "Academic Chair", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/", internLogo: logoStellantis, internCompany: "Stellantis", internLogoZoom: true },
+  { name: "Ramzi Burhan", title: "Treasurer Deputy", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/", internLogo: logoMicrosoft, internCompany: "Microsoft", internLogoZoom: true },
 ];
 
 const ambassadors2026: Ambassador[] = [
-  { name: "Ugonna Anyalemechi", image: ugonnaImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/", internLogo: logoJPMC, internCompany: "JPMC" },
-  { name: "Elizabeth Gonzalez", image: elizabethImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/", internLogo: logoJPMC, internCompany: "JPMC" },
-  { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson" },
-  { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC" },
+  { name: "Ugonna Anyalemechi", image: ugonnaImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
+  { name: "Elizabeth Gonzalez", image: elizabethImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
+  { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
+  { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
 ];
 
@@ -190,7 +192,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           )}
           {officer.internLogo && (
             <div className="w-9 h-9 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={officer.internCompany}>
-              <img src={officer.internLogo} alt={officer.internCompany} className="w-6 h-6 object-contain" />
+              <img src={officer.internLogo} alt={officer.internCompany} className={`object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
             </div>
           )}
         </div>

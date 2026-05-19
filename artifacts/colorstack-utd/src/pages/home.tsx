@@ -21,6 +21,7 @@ import logoEA from "@/assets/images/companies/ea-sports.svg";
 import logoStellantis from "@/assets/images/companies/stellantis.png";
 import logoMicrosoft from "@/assets/images/companies/microsoft.png";
 import logoCapitalOne from "@/assets/images/companies/capital-one.png";
+import logoCloudflare from "@/assets/images/companies/cloudflare.webp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -84,6 +85,7 @@ const team = [
   { name: "Mamoudou Balde", role: "Member", image: team4, internLogo: logoStellantis, internCompany: "Stellantis" },
   { name: "Ramzi Burhan", role: "Member", image: team5, internLogo: logoMicrosoft, internCompany: "Microsoft" },
   { name: "Oluwadamilare Sunmola", role: "Member", image: team1, internLogo: logoCapitalOne, internCompany: "Capital One" },
+  { name: "Jose Rogel", role: "Member", image: team2, internLogo: logoCloudflare, internCompany: "Cloudflare" },
 ];
 
 const sponsors = {

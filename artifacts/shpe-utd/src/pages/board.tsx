@@ -47,6 +47,7 @@ interface Officer {
   internLogo?: string;
   internCompany?: string;
   internLogoZoom?: boolean;
+  internLogoClass?: string;
 }
 
 interface Ambassador {
@@ -56,6 +57,7 @@ interface Ambassador {
   internLogo?: string;
   internCompany?: string;
   internLogoZoom?: boolean;
+  internLogoClass?: string;
 }
 
 // ── 2025 – 2026 ─────────────────────────────────────────────────────────────
@@ -76,7 +78,7 @@ const operations2025: Officer[] = [
 ];
 
 const ambassadors2025: Ambassador[] = [
-  { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare" },
+  { name: "Jose Rogel", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoClass: "w-full h-full object-cover scale-150" },
   { name: "Timage Abubaker", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/" },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Hasset Getachew", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
@@ -91,7 +93,7 @@ const ambassadors2025: Ambassador[] = [
 
 const leadership2026: Officer[] = [
   { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
-  { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare" },
+  { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoClass: "w-full h-full object-cover scale-150" },
   { name: "Maareb Fadlalah", title: "Vice President", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
@@ -192,7 +194,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           )}
           {officer.internLogo && (
             <div className="w-9 h-9 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={officer.internCompany}>
-              <img src={officer.internLogo} alt={officer.internCompany} className={`object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
+              <img src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
             </div>
           )}
         </div>
@@ -333,7 +335,7 @@ export default function Board() {
                     )}
                     {amb.internLogo && (
                       <div className="w-8 h-8 rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden" title={amb.internCompany}>
-                        <img src={amb.internLogo} alt={amb.internCompany} className={`object-contain ${amb.internLogoZoom ? "w-7 h-7" : "w-5 h-5"}`} />
+                        <img src={amb.internLogo} alt={amb.internCompany} className={amb.internLogoClass ?? `object-contain ${amb.internLogoZoom ? "w-7 h-7" : "w-5 h-5"}`} />
                       </div>
                     )}
                   </div>

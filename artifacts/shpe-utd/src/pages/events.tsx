@@ -33,6 +33,7 @@ interface BaseEvent {
   symbol?: SymbolConfig;
   recap?: string;
   highlights?: string[];
+  sections?: { heading: string; body: string }[];
   instagram?: string;
 }
 
@@ -112,6 +113,17 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
 
             <p className="text-foreground leading-relaxed mb-5">{event.desc}</p>
 
+            {event.sections && (
+              <div className="space-y-5 mb-5">
+                {event.sections.map((section, i) => (
+                  <div key={i}>
+                    <p className="text-sm font-bold text-secondary mb-1.5">{section.heading}</p>
+                    <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">{section.body}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {event.highlights && (
               <ul className="space-y-2 mb-5">
                 {event.highlights.map((h, i) => (
@@ -124,7 +136,7 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
             )}
 
             {event.recap && (
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">{event.recap}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6 whitespace-pre-line">{event.recap}</p>
             )}
           </div>
 
@@ -306,15 +318,40 @@ export default function Events() {
         date: "SEP 21",
         time: "September 21, 2025",
         location: "UT Dallas",
-        desc: "We Hosted An Engaging Resume Night Where Members Gained Practical Resume Tips For Breaking Into Tech Careers, LinkedIn 101 Strategies To Strengthen Their Online Presence, And Networking And Development Resources To Stay Involved And Grow Professionally.",
+        desc: "Last night, ColorStack UTD hosted our Resume Night — and the room was locked in. 🙌🏾 We broke down exactly what separates candidates who get callbacks from candidates who don't. Here's what we covered:",
         image: rn[0],
         photos: rn,
-        highlights: [
-          "Practical Resume Tips For Breaking Into Tech Careers",
-          "LinkedIn 101 Strategies To Strengthen Their Online Presence",
-          "Networking And Development Resources To Stay Connected",
+        sections: [
+          {
+            heading: "📄 Use Jake's Resume Template — It's the Standard for a Reason",
+            body: "If you're not using Jake's Resume Template, start today. It's clean, ATS-friendly, and already structured the way recruiters expect. ATS systems parse linearly — no headers, footers, tables, or graphic elements getting in the way. The goal isn't a pretty resume — it's a readable one that a machine AND a human can process in under 8 seconds. Jake's template gets you there without the guesswork.",
+          },
+          {
+            heading: "🎯 The Question Model for Bullet Points",
+            body: 'Every bullet answers: What did you do → How did you do it → Why did it matter. "Developed a data pipeline in Python that reduced reporting time by 30%" hits different than "worked on a pipeline." Context + Skills + Impact, every time.',
+          },
+          {
+            heading: "🏆 Show Your Wins on LinkedIn AND GitHub — Consistently",
+            body: "Your LinkedIn and GitHub are your two most important career assets outside your resume. They need to work together. On LinkedIn, post monthly — drop screenshots of what you're building, share milestones, document your journey in real time. On GitHub, keep your repos active, write clean READMEs, and make sure your pinned projects actually represent your best work. And most importantly — record a short video walking through your codebase. Show yourself explaining the architecture, demoing the functionality, narrating your thought process. Post it on LinkedIn. Pin it on GitHub. That video does more for your personal brand than any bullet point ever will. Recruiters want to see you in action, not just read about it.",
+          },
+          {
+            heading: "🤝 Show Them You're a Team Player",
+            body: "Solo projects are fine. But the candidates who stand out show social proof that they collaborate. Tag teammates in project posts on LinkedIn. Document hackathons — win or lose, it doesn't matter. Share club activities, leadership roles, events you helped organize. Contribute to open source on GitHub and show your commit history. Your profile across both platforms should tell the story of someone who builds with others, not just alone.",
+          },
+          {
+            heading: "👁️ Make Your Projects Visible on Both Platforms",
+            body: "Your projects need to be findable everywhere. Include your GitHub profile link directly on your resume and in your LinkedIn featured section. Pin your strongest repos on GitHub with live demo links where possible. A project buried in your experience section with no clickable link is a missed opportunity. If you built something, show it — with a demo, a video walkthrough, a deployed link, or all three. LinkedIn + GitHub working together is your unfair advantage.",
+          },
+          {
+            heading: "📚 Resources We Highlighted",
+            body: "→ Jake's Resume Template — the go-to ATS friendly format\n→ ColorStack National Resume Book — open twice a year, zero reasons not to submit\n→ Handshake for UTD targeted opportunities employers pay to post\n→ SEO, MLT, CodePath, NSBE, SHPE — don't just join, lead",
+          },
+          {
+            heading: "🗣️ Elevator Pitch Live Rounds",
+            body: "We closed with speed pitch rounds — 3 minutes per pair, 1 min pitch each, 1 min feedback. The members who practiced out loud left with a completely different level of confidence than when they walked in.",
+          },
         ],
-        recap: "A Huge Thank You To Our UT Dallas University Career Center Reps Brett Webb And Juna Jones-Moore, Along With Board Members Michael, Oluwadamilare, And Akram For Leading The Panel And Offering 1:1 Resume Reviews! If You're Interested In Accessing Our Resume Night Resources, Be Sure To Join Our Slack.",
+        recap: "This is what ColorStack is about. Not just information — transformation. 💚\n\nShoutout to every member who came out and to the exec board for executing. Look out for what's next. 👀\n\n#ColorStackUTD #UTD #ResumeNight #TechCareers #ColorStack #CareerDevelopment #JSOM",
         instagram: "@colorstackutd",
       },
       {

@@ -34,6 +34,7 @@ interface BaseEvent {
   recap?: string;
   highlights?: string[];
   sections?: { heading: string; body: string }[];
+  lead?: string;
   instagram?: string;
 }
 
@@ -112,6 +113,10 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
             </div>
 
             <p className="text-foreground leading-relaxed mb-5">{event.desc}</p>
+
+            {event.lead && (
+              <p className="text-foreground leading-relaxed mb-5">{event.lead}</p>
+            )}
 
             {event.sections && (
               <div className="space-y-5 mb-5">
@@ -318,13 +323,14 @@ export default function Events() {
         date: "SEP 21",
         time: "September 21, 2025",
         location: "UT Dallas",
-        desc: "Last night, ColorStack UTD hosted our Resume Night — and the room was locked in. 🙌🏾 We broke down exactly what separates candidates who get callbacks from candidates who don't. Here's what we covered:",
+        desc: "Last night, ColorStack UTD hosted our Resume Night — and the room was locked in. 🙌🏾",
+        lead: "We broke down exactly what separates candidates who get callbacks from candidates who don't. Here's what we covered:",
         image: rn[0],
         photos: rn,
         sections: [
           {
             heading: "📄 Use Jake's Resume Template — It's the Standard for a Reason",
-            body: "If you're not using Jake's Resume Template, start today. It's clean, ATS-friendly, and already structured the way recruiters expect. ATS systems parse linearly — no headers, footers, tables, or graphic elements getting in the way. The goal isn't a pretty resume — it's a readable one that a machine AND a human can process in under 8 seconds. Jake's template gets you there without the guesswork.",
+            body: "If you're not using Jake's Resume Template, start today. It's clean, ATS friendly, and already structured the way recruiters expect. ATS systems parse linearly — no headers, footers, tables, or graphic elements getting in the way. The goal isn't a pretty resume — it's a readable one that a machine AND a human can process in under 8 seconds. Jake's template gets you there without the guesswork.",
           },
           {
             heading: "🎯 The Question Model for Bullet Points",
@@ -351,7 +357,7 @@ export default function Events() {
             body: "We closed with speed pitch rounds — 3 minutes per pair, 1 min pitch each, 1 min feedback. The members who practiced out loud left with a completely different level of confidence than when they walked in.",
           },
         ],
-        recap: "This is what ColorStack is about. Not just information — transformation. 💚\n\nShoutout to every member who came out and to the exec board for executing. Look out for what's next. 👀\n\n#ColorStackUTD #UTD #ResumeNight #TechCareers #ColorStack #CareerDevelopment #JSOM",
+        recap: "This is what ColorStack is about. Not just information — transformation. 💚\n\nLook out for what's next. 👀\n\n#ColorStackUTD #UTD #ResumeNight #TechCareers #ColorStack #CareerDevelopment #JSOM",
         instagram: "@colorstackutd",
       },
       {

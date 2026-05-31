@@ -10,7 +10,7 @@ const gbm3 = `${BASE}/gbm-3.jpg`;
 const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
 const at = [1, 2, 4, 5, 6, 7, 8, 9].map(i => `${BASE}/at-${i}.jpg`);
 const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
-const tp = Array.from({ length: 6 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
+const tp = Array.from({ length: 11 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
 const api101 = `${BASE}/api101.jpg`;
 
 type EventTab = "Upcoming" | "Past";

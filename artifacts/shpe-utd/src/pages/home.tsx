@@ -50,6 +50,11 @@ const carouselSlides = [
   { src: `${BASE}/tp-4.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-5.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-6.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-7.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-8.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-9.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-10.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-11.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/api101.jpg`, event: "API 101: Wall St. Decoded", date: "Mar 27, 2026" },
 ];
 

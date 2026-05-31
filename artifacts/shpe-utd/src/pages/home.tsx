@@ -15,10 +15,22 @@ const logo = `${BASE}/logo-bg.png`;
 const utdIcon = `${BASE}/utd-icon.png`;
 
 
-const carouselSlides = [
+const techPanelEvent = "Debugging Your Path Into Tech";
+const techPanelDate = "Feb 27, 2026";
+
+type Slide = { src: string; event: string; date: string };
+
+/** Pinned opening slides: positions 3–4 show the 3rd and 4th new tech panel photos. */
+const featuredCarouselSlides: Slide[] = [
   { src: `${BASE}/gbm-1.jpg`, event: "First GBM", date: "Sep 15, 2025" },
   { src: `${BASE}/gbm-2.jpg`, event: "First GBM", date: "Sep 15, 2025" },
+  { src: `${BASE}/tp-9.jpg`, event: techPanelEvent, date: techPanelDate },
+  { src: `${BASE}/tp-10.jpg`, event: techPanelEvent, date: techPanelDate },
   { src: `${BASE}/gbm-3.jpg`, event: "First GBM", date: "Sep 15, 2025" },
+];
+
+const carouselSlides = [
+  ...featuredCarouselSlides,
   { src: `${BASE}/rn-1.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
   { src: `${BASE}/rn-2.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
   { src: `${BASE}/rn-3.jpg`, event: "Resume Night", date: "Sep 21, 2025" },
@@ -49,16 +61,16 @@ const carouselSlides = [
   { src: `${BASE}/tp-3.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-4.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
   { src: `${BASE}/tp-5.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
-  { src: `${BASE}/tp-6.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
-  { src: `${BASE}/tp-7.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
-  { src: `${BASE}/tp-8.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
-  { src: `${BASE}/tp-9.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
-  { src: `${BASE}/tp-10.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
-  { src: `${BASE}/tp-11.jpg`, event: "Debugging Your Path Into Tech", date: "Feb 27, 2026" },
+  { src: `${BASE}/tp-6.jpg`, event: techPanelEvent, date: techPanelDate },
+  { src: `${BASE}/tp-7.jpg`, event: techPanelEvent, date: techPanelDate },
+  { src: `${BASE}/tp-8.jpg`, event: techPanelEvent, date: techPanelDate },
+  { src: `${BASE}/tp-9.jpg`, event: techPanelEvent, date: techPanelDate },
+  { src: `${BASE}/tp-10.jpg`, event: techPanelEvent, date: techPanelDate },
+  { src: `${BASE}/tp-11.jpg`, event: techPanelEvent, date: techPanelDate },
   { src: `${BASE}/api101.jpg`, event: "API 101: Wall St. Decoded", date: "Mar 27, 2026" },
 ];
 
-type Slide = typeof carouselSlides[number];
+const featuredSrcs = new Set(featuredCarouselSlides.map((s) => s.src));
 
 function fisherYates<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -95,7 +107,10 @@ function buildShuffledSlides(slides: Slide[]): Slide[] {
 }
 
 function EventCarousel() {
-  const [slides] = useState<Slide[]>(() => buildShuffledSlides(carouselSlides));
+  const [slides] = useState<Slide[]>(() => [
+    ...featuredCarouselSlides,
+    ...buildShuffledSlides(carouselSlides.filter((s) => !featuredSrcs.has(s.src))),
+  ]);
   const [index, setIndex] = useState(0);
   const [perView, setPerView] = useState(3);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);

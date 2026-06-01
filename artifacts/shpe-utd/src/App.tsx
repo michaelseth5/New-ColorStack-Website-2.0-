@@ -12,6 +12,8 @@ import Sponsors from "@/pages/sponsors";
 import About from "@/pages/about";
 import Resources from "@/pages/resources";
 import Join from "@/pages/join";
+import ZeroToLaunch from "@/pages/zero-to-launch";
+import CodePathTip from "@/pages/codepath-tip";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ function Router() {
         <Route path="/sponsors" component={Sponsors} />
         <Route path="/about" component={About} />
         <Route path="/resources" component={Resources} />
+        <Route path="/zero-to-launch" component={ZeroToLaunch} />
+        <Route path="/codepath-tip" component={CodePathTip} />
         <Route path="/join" component={Join} />
         <Route component={NotFound} />
       </Switch>

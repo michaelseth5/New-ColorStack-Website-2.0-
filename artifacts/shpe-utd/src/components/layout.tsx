@@ -49,8 +49,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [programsOpen, setProgramsOpen] = useState(false);
   const [location] = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const programsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -62,6 +64,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
     const handleClick = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setAboutOpen(false);
+      }
+      if (programsDropdownRef.current && !programsDropdownRef.current.contains(e.target as Node)) {
+        setProgramsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClick);
@@ -103,6 +108,46 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/resources" className={linkClass("/resources")} data-testid="link-resources">
               Resources
             </Link>
+
+            {/* Programs dropdown */}
+            <div className="relative" ref={programsDropdownRef}>
+              <button
+                onClick={() => setProgramsOpen(!programsOpen)}
+                className={`flex items-center gap-1 text-[15px] font-medium transition-colors duration-150 ${
+                  isActive("/zero-to-launch") || isActive("/codepath-tip")
+                    ? "text-primary"
+                    : "text-foreground/80 hover:text-primary"
+                }`}
+                data-testid="dropdown-programs"
+              >
+                Programs
+                <ChevronDown
+                  size={15}
+                  className={`transition-transform duration-200 ${programsOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {programsOpen && (
+                <div className="absolute top-full right-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-border/60 py-1.5 overflow-hidden">
+                  <Link
+                    href="/zero-to-launch"
+                    onClick={() => setProgramsOpen(false)}
+                    className="block px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/60 transition-colors"
+                    data-testid="dropdown-link-summer-swe-academy"
+                  >
+                    Summer SWE Academy
+                  </Link>
+                  <Link
+                    href="/codepath-tip"
+                    onClick={() => setProgramsOpen(false)}
+                    className="block px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/60 transition-colors"
+                    data-testid="dropdown-link-codepath-tip"
+                  >
+                    CodePath TIP
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* About Us dropdown */}
             <div className="relative" ref={dropdownRef}>
@@ -184,6 +229,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Sponsors", path: "/sponsors" },
                 { name: "Meet Us", path: "/board" },
                 { name: "Resources", path: "/resources" },
+                { name: "Summer SWE Academy", path: "/zero-to-launch" },
+                { name: "CodePath TIP", path: "/codepath-tip" },
                 { name: "About", path: "/about" },
                 { name: "Join", path: "/join" },
               ].map((link) => (
@@ -228,6 +275,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Sponsors", path: "/sponsors" },
                 { name: "Meet the Board", path: "/board" },
                 { name: "Resources", path: "/resources" },
+                { name: "Summer SWE Academy", path: "/zero-to-launch" },
+                { name: "CodePath TIP", path: "/codepath-tip" },
                 { name: "About Us", path: "/about" },
                 { name: "Join", path: "/join" },
               ].map((l) => (

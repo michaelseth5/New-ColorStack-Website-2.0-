@@ -18,10 +18,12 @@ export default function CodePathTip() {
             summer bootcamp, and it&apos;s completely free.
           </p>
           <a
-            href="#"
+            href="https://www.codepath.org/courses/technical-interview-prep"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center rounded-lg bg-[#EC7524] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#d9681d]"
           >
-            Apply via ColorStack UTD
+            Apply on CodePath
           </a>
         </div>
       </section>

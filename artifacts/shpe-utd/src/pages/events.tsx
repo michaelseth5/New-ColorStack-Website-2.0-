@@ -59,9 +59,9 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
       transition={{ duration: 0.4, delay: idx * 0.1 }}
       className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border flex flex-col group col-span-1 md:col-span-2 lg:col-span-3"
     >
-      <div className="flex flex-col lg:flex-row">
-        {/* Photo gallery */}
-        <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden flex-shrink-0">
+      <div className="flex flex-col lg:flex-row lg:items-start">
+        {/* Photo gallery — fixed height so portrait photos don't stretch the card */}
+        <div className="relative h-72 w-full flex-shrink-0 overflow-hidden sm:h-80 lg:h-[28rem] lg:max-h-[32rem] lg:w-[min(100%,26rem)] lg:max-w-[42%]">
           <AnimatePresence mode="wait">
             <motion.img
               key={current}
@@ -71,7 +71,7 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="w-full h-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </AnimatePresence>
           <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
@@ -91,7 +91,7 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
         </div>
 
         {/* Content */}
-        <div className="p-8 lg:p-10 flex flex-col flex-1 justify-between">
+        <div className="flex min-w-0 flex-1 flex-col justify-between p-8 lg:p-10">
           <div>
             <h3 className="text-3xl font-bold text-secondary mb-4 group-hover:text-primary transition-colors">
               {event.title}

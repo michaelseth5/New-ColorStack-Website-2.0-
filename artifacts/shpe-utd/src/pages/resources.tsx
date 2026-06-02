@@ -24,6 +24,7 @@ const sections: { icon: React.ReactNode; label: string; title: string; bg: strin
       { name: "LeetCode", desc: "The most widely used platform for coding interview practice. Filter by company, topic, and difficulty.", url: "https://leetcode.com", tag: "Free + Premium" },
       { name: "Blind 75", desc: "75 essential LeetCode questions covering every major topic. A focused starting point before expanding.", url: "https://www.techinterviewhandbook.org/blind-75/", tag: "Free" },
       { name: "Tech Interview Handbook", desc: "Structured guides for every phase of the technical interview from resume to offer negotiation.", url: "https://www.techinterviewhandbook.org", tag: "Free" },
+      { name: "AlgoMonster", desc: "Structured DSA curriculum that teaches patterns, not just problems. Great for learning graph algorithms, trees, and dynamic programming systematically.", url: "https://algo.monster/problems/graph_intro", tag: "Free + Premium" },
     ],
   },
   {

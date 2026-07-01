@@ -99,7 +99,6 @@ const ambassadors2025: Ambassador[] = [
 const leadership2026: Officer[] = [
   { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
-  { name: "Maareb Fadlalah", title: "Vice President", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/", internLogo: logoAccenture, internCompany: "Accenture", internLogoZoom: true },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
 ];
@@ -122,6 +121,7 @@ const ambassadors2026: Ambassador[] = [
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
+  { name: "Maareb Fadlalah", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/", internLogo: logoAccenture, internCompany: "Accenture", internLogoZoom: true },
 ];
 
 // ── Shared ───────────────────────────────────────────────────────────────────

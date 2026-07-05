@@ -257,6 +257,32 @@ export default function Board() {
         </div>
       </section>
 
+      {activeYear === "2026 - 2027" && (
+        <div className="container mx-auto max-w-6xl px-6 pt-8">
+          <p
+            role="note"
+            className="rounded-2xl border border-[#114634]/20 bg-[#f7f7f7] px-5 py-4 text-sm leading-relaxed text-foreground/85"
+          >
+            <span className="font-bold text-foreground">Official 2026–2027 Executive Board</span>
+            {" — Last updated July 1, 2026. This is the official board roster for the 2026–2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. Report any inconsistencies to "}
+            <a
+              href="mailto:michael.katongole@utdallas.edu"
+              className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+            >
+              michael.katongole@utdallas.edu
+            </a>
+            {" or "}
+            <a
+              href="mailto:ravip@utdallas.edu"
+              className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+            >
+              ravip@utdallas.edu
+            </a>
+            .
+          </p>
+        </div>
+      )}
+
       {/* Year selector */}
       <div className="flex justify-center py-10 px-6">
         <div className="inline-flex bg-[#f0f0f0] rounded-full p-1.5 gap-1">

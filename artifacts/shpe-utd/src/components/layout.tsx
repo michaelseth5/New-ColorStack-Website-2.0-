@@ -263,6 +263,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {link.name}
                 </Link>
               ))}
+              <div className="mt-3 flex items-center gap-1.5 border-t border-border/40 px-3 pt-4">
+                {HEADER_ICONS.map(({ Icon, href, label, external = true }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    {...(external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    aria-label={label}
+                    className={HEADER_ICON_LINK_CLASS}
+                  >
+                    <Icon size={18} strokeWidth={1.8} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         )}

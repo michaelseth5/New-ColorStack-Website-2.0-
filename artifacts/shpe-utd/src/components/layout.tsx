@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-react";
+import { Menu, X, ChevronDown, Instagram, Linkedin, Mail, TreePine } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -10,6 +10,20 @@ const SOCIAL_LINKS = [
   { Icon: Instagram, href: "https://www.instagram.com/colorstackutd/", label: "Instagram", handle: "@colorstackutd" },
   { Icon: Linkedin, href: "https://www.linkedin.com/company/colorstack-utd/", label: "LinkedIn", handle: "ColorStack UTD" },
   { Icon: TreePine, href: "https://linktr.ee/ColorStackUTD", label: "Linktree", handle: "All Links" },
+];
+
+const HEADER_ICON_LINK_CLASS =
+  "p-1.5 text-[#114634] hover:text-[#EC7524] transition-colors duration-150";
+
+const HEADER_ICONS = [
+  ...SOCIAL_LINKS.slice(0, 2),
+  {
+    Icon: Mail,
+    href: "mailto:michael.katongole@utdallas.edu",
+    label: "Email Michael Katongole",
+    external: false,
+  },
+  ...SOCIAL_LINKS.slice(2),
 ];
 
 const QUOTES = [
@@ -189,14 +203,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Social icons */}
             <div className="flex items-center gap-1.5">
-              {SOCIAL_LINKS.map(({ Icon, href, label }) => (
+              {HEADER_ICONS.map(({ Icon, href, label, external = true }) => (
                 <a
                   key={label}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   aria-label={label}
-                  className="p-1.5 text-[#114634] hover:text-[#EC7524] transition-colors duration-150"
+                  className={HEADER_ICON_LINK_CLASS}
                 >
                   <Icon size={18} strokeWidth={1.8} />
                 </a>

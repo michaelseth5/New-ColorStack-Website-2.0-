@@ -258,7 +258,7 @@ export default function Board() {
       </section>
 
       {activeYear === "2026 - 2027" && (
-        <div className="container mx-auto max-w-6xl px-6 -mt-4 pt-2 md:-mt-6">
+        <div className="container mx-auto max-w-6xl px-6 mt-8 mb-4 md:mt-10 md:mb-5">
           <div
             role="note"
             className="flex gap-3 rounded-2xl border border-[#114634]/15 border-l-4 border-l-[#114634] bg-[#f7f7f7] px-6 py-5 sm:px-8 sm:py-6"
@@ -290,7 +290,11 @@ export default function Board() {
       )}
 
       {/* Year selector */}
-      <div className="flex justify-center py-10 px-6">
+      <div
+        className={`flex justify-center px-6 ${
+          activeYear === "2026 - 2027" ? "pt-4 pb-10" : "py-10"
+        }`}
+      >
         <div className="inline-flex bg-[#f0f0f0] rounded-full p-1.5 gap-1">
           {YEARS.map((year) => (
             <button

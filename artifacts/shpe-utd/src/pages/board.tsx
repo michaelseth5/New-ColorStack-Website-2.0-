@@ -290,21 +290,7 @@ export default function Board() {
             />
             <p className="min-w-0 text-sm leading-7 text-foreground/85">
               <span className="font-bold text-foreground">Official 2026–2027 Executive Board</span>
-              {" — Last updated July 1, 2026. This is the official board roster for the 2026–2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. Report any inconsistencies to "}
-              <a
-                href="mailto:michael.katongole@utdallas.edu"
-                className="font-medium text-[#114634] break-all hover:underline hover:underline-offset-2 sm:break-normal"
-              >
-                michael.katongole@utdallas.edu
-              </a>
-              {" or "}
-              <a
-                href="mailto:ravip@utdallas.edu"
-                className="font-medium text-[#114634] break-all hover:underline hover:underline-offset-2 sm:break-normal"
-              >
-                ravip@utdallas.edu
-              </a>
-              .
+              {" — Last updated July 1, 2026. This is the official board roster for the 2026–2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. Report any inconsistencies to our president Michael Katongole or Dr. Ravi Prakash, our Faculty Advisor."}
             </p>
           </div>
         </div>

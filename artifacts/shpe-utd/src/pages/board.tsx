@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Linkedin } from "lucide-react";
+import { Linkedin, ShieldCheck } from "lucide-react";
 
 import logoAccenture from "@assets/company_accenture.png";
 import logoBoA from "@assets/company_boa.svg";
@@ -258,28 +258,34 @@ export default function Board() {
       </section>
 
       {activeYear === "2026 - 2027" && (
-        <div className="container mx-auto max-w-6xl px-6 pt-8">
-          <p
+        <div className="container mx-auto max-w-6xl px-6 -mt-4 pt-2 md:-mt-6">
+          <div
             role="note"
-            className="rounded-2xl border border-[#114634]/20 bg-[#f7f7f7] px-5 py-4 text-sm leading-relaxed text-foreground/85"
+            className="flex gap-3 rounded-2xl border border-[#114634]/15 border-l-4 border-l-[#114634] bg-[#f7f7f7] px-6 py-5 sm:px-8 sm:py-6"
           >
-            <span className="font-bold text-foreground">Official 2026–2027 Executive Board</span>
-            {" — Last updated July 1, 2026. This is the official board roster for the 2026–2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. Report any inconsistencies to "}
-            <a
-              href="mailto:michael.katongole@utdallas.edu"
-              className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
-            >
-              michael.katongole@utdallas.edu
-            </a>
-            {" or "}
-            <a
-              href="mailto:ravip@utdallas.edu"
-              className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
-            >
-              ravip@utdallas.edu
-            </a>
-            .
-          </p>
+            <ShieldCheck
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#114634]"
+              aria-hidden="true"
+            />
+            <p className="min-w-0 text-sm leading-7 text-foreground/85">
+              <span className="font-bold text-foreground">Official 2026–2027 Executive Board</span>
+              {" — Last updated July 1, 2026. This is the official board roster for the 2026–2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. Report any inconsistencies to "}
+              <a
+                href="mailto:michael.katongole@utdallas.edu"
+                className="font-medium text-[#114634] break-all hover:underline hover:underline-offset-2 sm:break-normal"
+              >
+                michael.katongole@utdallas.edu
+              </a>
+              {" or "}
+              <a
+                href="mailto:ravip@utdallas.edu"
+                className="font-medium text-[#114634] break-all hover:underline hover:underline-offset-2 sm:break-normal"
+              >
+                ravip@utdallas.edu
+              </a>
+              .
+            </p>
+          </div>
         </div>
       )}
 

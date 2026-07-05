@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Instagram, Linkedin, Mail, TreePine } from "lucide-react";
+import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -15,28 +15,16 @@ const SOCIAL_LINKS = [
 const HEADER_ICON_LINK_CLASS =
   "p-1.5 text-[#114634] hover:text-[#EC7524] transition-colors duration-150";
 
-const HEADER_ICONS = [
-  ...SOCIAL_LINKS.slice(0, 2),
-  {
-    Icon: Mail,
-    href: "mailto:michael.katongole@utdallas.edu",
-    label: "Email Michael Katongole",
-    external: false,
-  },
-  ...SOCIAL_LINKS.slice(2),
-];
-
 function HeaderIconLinks({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <>
-      {HEADER_ICONS.map(({ Icon, href, label, external = true }) => (
+      {SOCIAL_LINKS.map(({ Icon, href, label }) => (
         <a
           key={label}
           href={href}
           onClick={onNavigate}
-          {...(external
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label={label}
           className={HEADER_ICON_LINK_CLASS}
         >

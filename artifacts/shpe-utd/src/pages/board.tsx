@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Linkedin, ShieldCheck } from "lucide-react";
+import { Linkedin, Mail, ShieldCheck } from "lucide-react";
 
 import logoAccenture from "@assets/company_accenture.png";
 import logoBoA from "@assets/company_boa.svg";
@@ -47,6 +47,7 @@ interface Officer {
   classYear?: string;
   bio?: string;
   linkedinUrl?: string;
+  emailUrl?: string;
   internLogo?: string;
   internCompany?: string;
   internLogoZoom?: boolean;
@@ -70,7 +71,7 @@ interface Ambassador {
 const leadership2025: Officer[] = [
   { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
   { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
-  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
+  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu" },
   { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },
   { name: "Marwan Hegazy", title: "Secretary", image: marwanImg, linkedinUrl: "https://www.linkedin.com/in/marwan-hegazy/" },
 ];
@@ -97,7 +98,7 @@ const ambassadors2025: Ambassador[] = [
 // ── 2026 – 2027 ─────────────────────────────────────────────────────────────
 
 const leadership2026: Officer[] = [
-  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
+  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
@@ -131,6 +132,7 @@ const advisor: Officer = {
   title: "Faculty Advisor",
   image: raviImg,
   linkedinUrl: "https://www.linkedin.com/in/ravi-prakash-8521b8/",
+  emailUrl: "mailto:ravip@utdallas.edu",
 };
 
 const fadeUp = {
@@ -184,23 +186,42 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           <p className="text-[0.78rem] text-foreground/70 leading-relaxed mb-3 flex-1">{officer.bio}</p>
         )}
 
-        {/* LinkedIn + intern logo row */}
-        <div className="mt-auto flex items-center gap-2">
-          {officer.linkedinUrl && (
+        {/* LinkedIn + email + intern logo row */}
+        <div className="mt-auto flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            {officer.linkedinUrl && (
+              <a
+                href={officer.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
+                aria-label={`${officer.name} on LinkedIn`}
+              >
+                <Linkedin size={17} strokeWidth={2} />
+              </a>
+            )}
+            {officer.emailUrl && (
+              <a
+                href={officer.emailUrl}
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
+                aria-label={`Email ${officer.name}`}
+              >
+                <Mail size={17} strokeWidth={2} />
+              </a>
+            )}
+            {officer.internLogo && (
+              <div className={`${officer.internBadgeClass ?? "w-9 h-9"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={officer.internCompany}>
+                <img src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
+              </div>
+            )}
+          </div>
+          {officer.emailUrl && (
             <a
-              href={officer.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
-              aria-label={`${officer.name} on LinkedIn`}
+              href={officer.emailUrl}
+              className="text-[0.72rem] font-medium text-[#114634] break-all hover:underline hover:underline-offset-2"
             >
-              <Linkedin size={17} strokeWidth={2} />
+              {officer.emailUrl.replace("mailto:", "")}
             </a>
-          )}
-          {officer.internLogo && (
-            <div className={`${officer.internBadgeClass ?? "w-9 h-9"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={officer.internCompany}>
-              <img src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
-            </div>
           )}
         </div>
       </div>

@@ -186,8 +186,8 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           <p className="text-[0.78rem] text-foreground/70 leading-relaxed mb-3 flex-1">{officer.bio}</p>
         )}
 
-        {/* LinkedIn + email + intern logo row */}
-        <div className="mt-auto flex flex-col gap-2">
+        {/* LinkedIn + intern logo row, email chip */}
+        <div className="mt-auto flex flex-col gap-2.5">
           <div className="flex items-center gap-2">
             {officer.linkedinUrl && (
               <a
@@ -200,15 +200,6 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
                 <Linkedin size={17} strokeWidth={2} />
               </a>
             )}
-            {officer.emailUrl && (
-              <a
-                href={officer.emailUrl}
-                className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#114634] hover:bg-[#0d3528] text-white transition-colors duration-200 shadow-sm"
-                aria-label={`Email ${officer.name}`}
-              >
-                <Mail size={17} strokeWidth={2} />
-              </a>
-            )}
             {officer.internLogo && (
               <div className={`${officer.internBadgeClass ?? "w-9 h-9"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={officer.internCompany}>
                 <img src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
@@ -218,9 +209,15 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           {officer.emailUrl && (
             <a
               href={officer.emailUrl}
-              className="text-[0.72rem] font-medium text-[#114634] break-all hover:underline hover:underline-offset-2"
+              className="group/email inline-flex w-full items-center gap-2 rounded-xl border border-[#114634]/12 bg-[#f7f7f7] px-2.5 py-2 text-[0.68rem] font-medium leading-snug text-[#114634] transition-colors hover:border-[#114634]/25 hover:bg-[#114634]/5"
+              aria-label={`Email ${officer.name}`}
             >
-              {officer.emailUrl.replace("mailto:", "")}
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[#114634]/10 text-[#114634] transition-colors group-hover/email:bg-[#114634]/15">
+                <Mail size={13} strokeWidth={2.2} />
+              </span>
+              <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+                {officer.emailUrl.replace("mailto:", "")}
+              </span>
             </a>
           )}
         </div>

@@ -26,6 +26,27 @@ const HEADER_ICONS = [
   ...SOCIAL_LINKS.slice(2),
 ];
 
+function HeaderIconLinks({ onNavigate }: { onNavigate?: () => void }) {
+  return (
+    <>
+      {HEADER_ICONS.map(({ Icon, href, label, external = true }) => (
+        <a
+          key={label}
+          href={href}
+          onClick={onNavigate}
+          {...(external
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+          aria-label={label}
+          className={HEADER_ICON_LINK_CLASS}
+        >
+          <Icon size={18} strokeWidth={1.8} />
+        </a>
+      ))}
+    </>
+  );
+}
+
 const QUOTES = [
   { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
   { text: "The harder I work, the luckier I get.", author: "Samuel Goldwyn" },
@@ -203,19 +224,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Social icons */}
             <div className="flex items-center gap-1.5">
-              {HEADER_ICONS.map(({ Icon, href, label, external = true }) => (
-                <a
-                  key={label}
-                  href={href}
-                  {...(external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  aria-label={label}
-                  className={HEADER_ICON_LINK_CLASS}
-                >
-                  <Icon size={18} strokeWidth={1.8} />
-                </a>
-              ))}
+              <HeaderIconLinks />
             </div>
 
             <Link href="/join" data-testid="link-join">
@@ -225,14 +234,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden text-foreground/70 hover:text-foreground p-2 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-testid="button-mobile-menu"
-          >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="flex items-center gap-0.5 md:hidden">
+            <HeaderIconLinks />
+            <button
+              className="text-foreground/70 hover:text-foreground p-2 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              data-testid="button-mobile-menu"
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -263,22 +274,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {link.name}
                 </Link>
               ))}
-              <div className="mt-3 flex items-center gap-1.5 border-t border-border/40 px-3 pt-4">
-                {HEADER_ICONS.map(({ Icon, href, label, external = true }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    {...(external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    aria-label={label}
-                    className={HEADER_ICON_LINK_CLASS}
-                  >
-                    <Icon size={18} strokeWidth={1.8} />
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
         )}

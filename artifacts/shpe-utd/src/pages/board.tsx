@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Linkedin, Mail, ShieldCheck } from "lucide-react";
 
-import logoAccenture from "@assets/company_accenture.png";
 import logoBoA from "@assets/company_boa.svg";
 import logoCodePath from "@assets/company_codepath.webp";
 import logoCiti from "@assets/company_citi.png";
@@ -33,7 +32,6 @@ import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
 import rodolfoImg from "@assets/Rodolfo_Gonzalez.jpg";
 import damianImg from "@assets/Damian_Aguilar.jpg";
 import mamoudouImg from "@assets/Mamoudou_Balde.jpg";
-import maarebImg from "@assets/Maareb_Fadlalah.jpg";
 import anthonioImg from "@assets/Anthonio_Odonkor.jpg";
 import elizabethImg from "@assets/Elizabeth_Gonzalez.jpg";
 import mayowaImg from "@assets/Mayowa_Akinyede.png";
@@ -80,7 +78,6 @@ const operations2025: Officer[] = [
   { name: "Noha Markose", title: "Public Communications", image: nohaImg, linkedinUrl: "https://www.linkedin.com/in/nohamarkose/" },
   { name: "Akram Hassen", title: "Academic & Career Chair", image: akramImg, linkedinUrl: "https://www.linkedin.com/in/akram-hassen/" },
   { name: "Musa Mudesir", title: "Corporate & Outreach", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/" },
-  { name: "Maareb Fadlalah", title: "Fundraising Chair", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/" },
 ];
 
 const ambassadors2025: Ambassador[] = [
@@ -119,7 +116,6 @@ const operations2026: Officer[] = [
 const ambassadors2026: Ambassador[] = [
   { name: "Ugonna Anyalemechi", image: ugonnaImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Elizabeth Gonzalez", image: elizabethImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
-  { name: "Maareb Fadlalah", image: maarebImg, linkedinUrl: "https://www.linkedin.com/in/maareb-fadlalah23/", internLogo: logoAccenture, internCompany: "Accenture", internLogoZoom: true },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },

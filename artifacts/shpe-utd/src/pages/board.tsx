@@ -281,10 +281,20 @@ export default function Board() {
               className="mt-0.5 h-5 w-5 shrink-0 text-[#114634]"
               aria-hidden="true"
             />
-            <p className="min-w-0 text-sm leading-7 text-foreground/85">
-              <span className="font-bold text-foreground">Official 2026–2027 Executive Board</span>
-              {" — Last updated July 1, 2026. This is the official board roster for the 2026–2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. Report any inconsistencies to our president Michael Katongole or Dr. Ravi Prakash, our Faculty Advisor."}
-            </p>
+            <div className="min-w-0 text-sm leading-7 text-foreground/85">
+              <p className="font-bold text-foreground">Official 2026-2027 Executive Board</p>
+              <p className="mt-2">This board has been in effect since:</p>
+              <p>May 1, 2026</p>
+              <p>June 1, 2026</p>
+              <p>July 1, 2026</p>
+              <p>August 1, 2026</p>
+              <p className="mt-2">
+                This is the official board roster for the 2026-2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. If anyone is claiming to be VP, that claim is false and not authorized.
+              </p>
+              <p className="mt-2">
+                Report any inconsistencies to our president Michael Katongole or Dr. Ravi Prakash, our Faculty Advisor.
+              </p>
+            </div>
           </div>
         </div>
       )}

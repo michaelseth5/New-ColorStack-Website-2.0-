@@ -289,7 +289,7 @@ export default function Board() {
               <p>July 1, 2026</p>
               <p>August 1, 2026</p>
               <p className="mt-2">
-                This is the official board roster for the 2026-2027 academic year. Positions and titles not listed on this page are not recognized by the organization and are not accurate. If anyone is claiming to be VP, that claim is false and not authorized.
+                This is the official board roster for the 2026-2027 academic year. No other positions or titles are recognized by the organization outside of what's listed here.
               </p>
               <p className="mt-2">
                 Report any inconsistencies to our president Michael Katongole or Dr. Ravi Prakash, our Faculty Advisor.

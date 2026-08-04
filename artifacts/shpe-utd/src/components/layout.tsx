@@ -137,7 +137,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <button
                 onClick={() => setProgramsOpen(!programsOpen)}
                 className={`flex items-center gap-1 text-[15px] font-medium transition-colors duration-150 ${
-                  isActive("/zero-to-launch") || isActive("/codepath-tip")
+                  isActive("/zero-to-launch") || isActive("/codepath-tip") || isActive("/mini-colorstack")
                     ? "text-primary"
                     : "text-foreground/80 hover:text-primary"
                 }`}
@@ -167,6 +167,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     data-testid="dropdown-link-codepath-tip"
                   >
                     CodePath TIP
+                  </Link>
+                  <Link
+                    href="/mini-colorstack"
+                    onClick={() => setProgramsOpen(false)}
+                    className="block px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/60 transition-colors"
+                    data-testid="dropdown-link-mini-colorstack"
+                  >
+                    Mini ColorStack
                   </Link>
                 </div>
               )}
@@ -245,6 +253,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Resources", path: "/resources" },
                 { name: "Summer SWE Academy", path: "/zero-to-launch" },
                 { name: "CodePath TIP", path: "/codepath-tip" },
+                { name: "Mini ColorStack", path: "/mini-colorstack" },
                 { name: "About", path: "/about" },
                 { name: "Join", path: "/join" },
               ].map((link) => (
@@ -291,6 +300,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { name: "Resources", path: "/resources" },
                 { name: "Summer SWE Academy", path: "/zero-to-launch" },
                 { name: "CodePath TIP", path: "/codepath-tip" },
+                { name: "Mini ColorStack", path: "/mini-colorstack" },
                 { name: "About Us", path: "/about" },
                 { name: "Join", path: "/join" },
               ].map((l) => (

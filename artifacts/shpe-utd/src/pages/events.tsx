@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin, Clock, ArrowRight, Instagram, FileText, Code2, Award, Network, Users, Briefcase, Mic2, MessageSquare, Sparkles, Star, Handshake } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -12,6 +13,7 @@ const at = [1, 2, 4, 5, 6, 7, 8, 9].map(i => `${BASE}/at-${i}.jpg`);
 const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
 const tp = Array.from({ length: 11 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
 const api101 = `${BASE}/api101.jpg`;
+const cf = Array.from({ length: 4 }, (_, i) => `${BASE}/cf-${i + 1}.jpg`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -35,13 +37,148 @@ interface BaseEvent {
   highlights?: string[];
   sections?: { heading: string; body: string }[];
   lead?: string;
+  hashtags?: string;
   instagram?: string;
+}
+
+/* ── Shared body-copy truncation, used by every card so new events auto-follow the same rules ── */
+const BODY_CHAR_LIMIT = 480;
+
+interface BodyContent {
+  desc?: string;
+  lead?: string;
+  sections?: { heading: string; body: string }[];
+  highlights?: string[];
+  recap?: string;
+}
+
+/** Consumes a multi-line string one whole line at a time (never mid-line, so bullet/emoji list
+ * items are never split) until it runs out of budget. Falls back to a word-boundary trim only
+ * when even the first line can't fit. */
+function consumeLines(text: string, budget: number): { included: string; usedFully: boolean; remaining: number } {
+  const lines = text.split("\n");
+  const kept: string[] = [];
+  let left = budget;
+  for (const line of lines) {
+    const cost = line.length + (kept.length > 0 ? 1 : 0);
+    if (cost <= left) {
+      kept.push(line);
+      left -= cost;
+    } else {
+      if (kept.length === 0) {
+        const avail = Math.max(0, left);
+        const slice = line.slice(0, avail);
+        const cut = slice.lastIndexOf(" ");
+        kept.push(cut > 20 ? slice.slice(0, cut) : slice);
+      }
+      return { included: kept.join("\n"), usedFully: false, remaining: 0 };
+    }
+  }
+  return { included: kept.join("\n"), usedFully: true, remaining: left };
+}
+
+/** Builds a preview of an event's body copy capped at `limit` characters, so every card's
+ * text block stays proportional to its image regardless of how long the source caption is.
+ * Free-form fields (desc/recap) truncate line-by-line; structured fields (sections/highlights)
+ * are only ever included whole — never partially — so nothing is ever cut mid-item. */
+function buildPreview(event: BodyContent, limit: number): BodyContent & { truncated: boolean } {
+  let budget = limit;
+
+  const { included: desc, usedFully: descFull } = consumeLines(event.desc ?? "", budget);
+  budget -= desc.length;
+  if (!descFull) {
+    return { desc, truncated: true };
+  }
+
+  if (event.lead) {
+    if (event.lead.length <= budget) {
+      budget -= event.lead.length;
+    } else {
+      return { desc, truncated: true };
+    }
+  }
+
+  const keptSections: { heading: string; body: string }[] = [];
+  if (event.sections) {
+    for (const s of event.sections) {
+      const cost = s.heading.length + s.body.length;
+      if (cost <= budget) {
+        keptSections.push(s);
+        budget -= cost;
+      } else {
+        return { desc, lead: event.lead, sections: keptSections, truncated: true };
+      }
+    }
+  }
+
+  const keptHighlights: string[] = [];
+  if (event.highlights) {
+    for (const h of event.highlights) {
+      if (h.length <= budget) {
+        keptHighlights.push(h);
+        budget -= h.length;
+      } else {
+        return { desc, lead: event.lead, sections: keptSections, highlights: keptHighlights, truncated: true };
+      }
+    }
+  }
+
+  if (event.recap) {
+    const { included: recap, usedFully: recapFull } = consumeLines(event.recap, budget);
+    return {
+      desc,
+      lead: event.lead,
+      sections: keptSections,
+      highlights: keptHighlights,
+      recap: recap || undefined,
+      truncated: !recapFull,
+    };
+  }
+
+  return { desc, lead: event.lead, sections: keptSections, highlights: keptHighlights, truncated: false };
+}
+
+/** Renders the structured body of an event — shared between the card preview and the
+ * "Read more" modal so both stay visually identical. */
+function EventBody({ desc, lead, sections, highlights, recap }: BodyContent) {
+  return (
+    <>
+      {desc && <p className="text-foreground leading-relaxed mb-5 whitespace-pre-line">{desc}</p>}
+
+      {lead && <p className="text-foreground leading-relaxed mb-5">{lead}</p>}
+
+      {sections && sections.length > 0 && (
+        <div className="space-y-5 mb-5">
+          {sections.map((section, i) => (
+            <div key={i}>
+              <p className="text-sm font-bold text-secondary mb-1.5">{section.heading}</p>
+              <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">{section.body}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {highlights && highlights.length > 0 && (
+        <ul className="space-y-2 mb-5">
+          {highlights.map((h, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+              <span className="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+              {h}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {recap && <p className="text-muted-foreground text-sm leading-relaxed mb-6 whitespace-pre-line">{recap}</p>}
+    </>
+  );
 }
 
 /* ── Past event: full-width card with rotating photo gallery ── */
 function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
   const photos = event.photos ?? [event.image!];
   const [current, setCurrent] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (photos.length <= 1) return;
@@ -50,6 +187,8 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
     }, 3000);
     return () => clearInterval(id);
   }, [photos.length]);
+
+  const preview = buildPreview(event, BODY_CHAR_LIMIT);
 
   return (
     <motion.div
@@ -112,39 +251,81 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
               )}
             </div>
 
-            <p className="text-foreground leading-relaxed mb-5">{event.desc}</p>
+            <EventBody
+              desc={preview.desc}
+              lead={preview.lead}
+              sections={preview.sections}
+              highlights={preview.highlights}
+              recap={preview.recap}
+            />
 
-            {event.lead && (
-              <p className="text-foreground leading-relaxed mb-5">{event.lead}</p>
-            )}
-
-            {event.sections && (
-              <div className="space-y-5 mb-5">
-                {event.sections.map((section, i) => (
-                  <div key={i}>
-                    <p className="text-sm font-bold text-secondary mb-1.5">{section.heading}</p>
-                    <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">{section.body}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {event.highlights && (
-              <ul className="space-y-2 mb-5">
-                {event.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                    <span className="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {event.recap && (
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6 whitespace-pre-line">{event.recap}</p>
+            {preview.truncated && (
+              <p className="mb-5">
+                <span className="text-muted-foreground">… </span>
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(true)}
+                  className="font-bold text-primary hover:text-secondary transition-colors"
+                >
+                  Read more
+                </button>
+              </p>
             )}
           </div>
 
+          <div className="flex flex-col gap-3">
+            {event.hashtags && (
+              <p className="text-muted-foreground text-sm leading-relaxed">{event.hashtags}</p>
+            )}
+            {event.instagram && (
+              <a
+                href={`https://instagram.com/${event.instagram.replace("@", "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-bold text-primary hover:text-secondary transition-colors"
+              >
+                <Instagram size={18} />
+                {event.instagram}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 lg:p-10">
+          <DialogHeader>
+            <DialogTitle className="text-2xl md:text-3xl font-bold text-secondary pr-6">
+              {event.title}
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-2 text-muted-foreground font-medium text-sm">
+            {event.time && (
+              <div className="flex items-center">
+                <Clock size={16} className="mr-2 text-primary" />
+                {event.time}
+              </div>
+            )}
+            {event.location && (
+              <div className="flex items-center">
+                <MapPin size={16} className="mr-2 text-primary" />
+                {event.location}
+              </div>
+            )}
+          </div>
+
+          <EventBody
+            desc={event.desc}
+            lead={event.lead}
+            sections={event.sections}
+            highlights={event.highlights}
+            recap={event.recap}
+          />
+
+          {event.hashtags && (
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{event.hashtags}</p>
+          )}
           {event.instagram && (
             <a
               href={`https://instagram.com/${event.instagram.replace("@", "")}`}
@@ -156,8 +337,8 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
               {event.instagram}
             </a>
           )}
-        </div>
-      </div>
+        </DialogContent>
+      </Dialog>
     </motion.div>
   );
 }
@@ -165,6 +346,8 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
 /* ── Upcoming event: mood-board collage card ── */
 function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
   const photos = event.collage ?? [];
+  const [modalOpen, setModalOpen] = useState(false);
+  const preview = buildPreview(event, BODY_CHAR_LIMIT);
 
   return (
     <motion.div
@@ -224,7 +407,21 @@ function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
           )}
         </div>
 
-        <p className="text-foreground leading-relaxed mb-6 flex-1">{event.desc}</p>
+        <div className="flex-1">
+          <p className="text-foreground leading-relaxed mb-2 whitespace-pre-line">{preview.desc}</p>
+          {preview.truncated && (
+            <p className="mb-4">
+              <span className="text-muted-foreground">… </span>
+              <button
+                type="button"
+                onClick={() => setModalOpen(true)}
+                className="font-bold text-primary hover:text-secondary transition-colors"
+              >
+                Read more
+              </button>
+            </p>
+          )}
+        </div>
 
         <Button
           variant="outline"
@@ -233,8 +430,88 @@ function UpcomingCard({ event, idx }: { event: BaseEvent; idx: number }) {
           Learn More <ArrowRight size={18} className="ml-2" />
         </Button>
       </div>
+
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 lg:p-10">
+          <DialogHeader>
+            <DialogTitle className="text-2xl md:text-3xl font-bold text-secondary pr-6">
+              {event.title}
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-2 text-muted-foreground font-medium text-sm">
+            {event.time && (
+              <div className="flex items-center">
+                <Clock size={16} className="mr-2 text-primary" />
+                {event.time}
+              </div>
+            )}
+            {event.location && (
+              <div className="flex items-center">
+                <MapPin size={16} className="mr-2 text-primary" />
+                {event.location}
+              </div>
+            )}
+          </div>
+
+          <EventBody
+            desc={event.desc}
+            lead={event.lead}
+            sections={event.sections}
+            highlights={event.highlights}
+            recap={event.recap}
+          />
+
+          {event.hashtags && (
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{event.hashtags}</p>
+          )}
+        </DialogContent>
+      </Dialog>
     </motion.div>
   );
+}
+
+const MONTH_NAMES = [
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
+];
+
+/** A sortable timestamp for an event, parsed from its `time` string. Falls back to
+ * Jan 1 of the year found in the string if the full date can't be parsed. */
+function eventDateValue(event: BaseEvent): number {
+  const time = event.time ?? "";
+  const parsed = Date.parse(time);
+  if (!Number.isNaN(parsed)) return parsed;
+  const yearMatch = time.match(/(\d{4})/);
+  return yearMatch ? Date.UTC(parseInt(yearMatch[1], 10), 0, 1) : 0;
+}
+
+/** School year runs Fall (Aug–Dec) through the following Summer (Jan–Jul), so e.g.
+ * September 2025 through July 2026 are all "2025–2026". */
+function eventSchoolYear(event: BaseEvent): { startYear: number; label: string } {
+  const time = event.time ?? "";
+  const yearMatch = time.match(/(\d{4})/);
+  const year = yearMatch ? parseInt(yearMatch[1], 10) : 0;
+  const monthMatch = time.match(/^[A-Za-z]+/);
+  const monthIndex = monthMatch ? MONTH_NAMES.indexOf(monthMatch[0].toLowerCase()) : -1;
+  const startYear = monthIndex >= 7 ? year : year - 1; // August (index 7) or later starts the Fall term
+  return { startYear, label: `${startYear}–${startYear + 1}` };
+}
+
+function groupBySchoolYear(pastEvents: BaseEvent[]): [string, BaseEvent[]][] {
+  const grouped = new Map<string, { startYear: number; events: BaseEvent[] }>();
+  for (const event of pastEvents) {
+    const { startYear, label } = eventSchoolYear(event);
+    const bucket = grouped.get(label) ?? { startYear, events: [] };
+    bucket.events.push(event);
+    grouped.set(label, bucket);
+  }
+  return [...grouped.entries()]
+    .sort(([, a], [, b]) => b.startYear - a.startYear)
+    .map(([label, { events }]) => [
+      label,
+      [...events].sort((a, b) => eventDateValue(b) - eventDateValue(a)),
+    ]);
 }
 
 export default function Events() {
@@ -308,6 +585,17 @@ export default function Events() {
     ],
     Past: [
       {
+        title: "Career Fair Prep 101 Recap",
+        date: "SEP 9",
+        time: "September 2026",
+        location: "UT Dallas",
+        desc: "✨ Career Fair Prep 101 was a success! ✨\n\nThroughout the workshop, students gained practical strategies to help them feel more prepared and confident when connecting with recruiters. Attendees learned how to strengthen their resumes, research target companies, make strong first impressions, introduce themselves, and create a personalized follow-up plan.\n\nStudents learned how to:\n📄 Strengthen their resumes by highlighting relevant skills, experiences, projects, and accomplishments.\n🎯 Identify and research target companies based on their career interests and professional goals.\n👔 Make a strong first impression through professional attire, preparation, confident body language, and active listening.\n🗣️ Introduce themselves with confidence by developing a clear and authentic elevator pitch.\n🤝 Practice networking, recruiter conversations, thoughtful questions, and mock introductions.\n📩 Create a personalized follow-up plan for after the career fair.\n\nOne of the most memorable parts of the workshop was our confidence-building activity. Students used a fun jab, left, right, hook combination to shake off the jitters, bring energy into the room, and get comfortable stepping outside their comfort zones. 🥊\n\nAfter warming up, students practiced their elevator pitches four times with different students. Each round gave them the opportunity to improve their delivery, receive feedback, speak more confidently about their experiences, and make their introductions feel more natural.\n\nWe're proud of everyone who showed up ready to learn, connect, and take the next step toward securing the bag. 💼✨\n\nGood luck to everyone attending the career fair on September 9–10. We can't wait to see you put your preparation into action!",
+        image: cf[0],
+        photos: cf,
+        hashtags: "#ColorStackUTD #CareerFairPrep #utdcomets #SecureTheBag",
+        instagram: "@colorstackutd",
+      },
+      {
         title: "ColorStack UTD's First GBM",
         date: "SEP 15",
         time: "September 15, 2025",
@@ -357,7 +645,8 @@ export default function Events() {
             body: "We closed with speed pitch rounds - 3 minutes per pair, 1 min pitch each, 1 min feedback. The members who practiced out loud left with a completely different level of confidence than when they walked in.",
           },
         ],
-        recap: "This is what ColorStack is about. Not just information - transformation. 💚 Look out for what's next. 👀\n\n#ColorStackUTD #UTD #ResumeNight #TechCareers #ColorStack #CareerDevelopment #JSOM",
+        recap: "This is what ColorStack is about. Not just information - transformation. 💚 Look out for what's next. 👀",
+        hashtags: "#ColorStackUTD #UTD #ResumeNight #TechCareers #ColorStack #CareerDevelopment #JSOM",
         instagram: "@colorstackutd",
       },
       {
@@ -479,15 +768,24 @@ export default function Events() {
         </div>
 
         {/* Event Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {activeTab === "Upcoming"
-            ? events.Upcoming.map((event, idx) => (
-                <UpcomingCard key={`upcoming-${idx}`} event={event} idx={idx} />
-              ))
-            : events.Past.map((event, idx) => (
-                <GBMCard key={`past-${idx}`} event={event} idx={idx} />
-              ))}
-        </div>
+        {activeTab === "Upcoming" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {events.Upcoming.map((event, idx) => (
+              <UpcomingCard key={`upcoming-${idx}`} event={event} idx={idx} />
+            ))}
+          </div>
+        ) : (
+          groupBySchoolYear(events.Past).map(([schoolYear, yearEvents]) => (
+            <div key={schoolYear} className="mb-16 last:mb-0">
+              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-8">{schoolYear}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {yearEvents.map((event, idx) => (
+                  <GBMCard key={`past-${schoolYear}-${idx}`} event={event} idx={idx} />
+                ))}
+              </div>
+            </div>
+          ))
+        )}
 
         {events[activeTab].length === 0 && (
           <div className="text-center py-24 text-muted-foreground text-xl font-medium">

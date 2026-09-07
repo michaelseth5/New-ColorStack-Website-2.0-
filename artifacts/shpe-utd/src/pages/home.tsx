@@ -614,7 +614,7 @@ export default function Home() {
               transition={{ duration: 0.55, delay: 0.68, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="text-[0.95rem] text-[#1a1a1a]/55 mb-9 max-w-sm leading-relaxed"
             >
-              Building The Next Generation Of Black, Latinx, And Indigenous Engineers At UT Dallas. Come Get Technical. Come Get Connected.
+              Building The Next Generation Of Black, Latinx, And Indigenous Engineers At UT Dallas.
             </motion.p>
 
             {/* Buttons */}

@@ -13,7 +13,7 @@ const at = [1, 2, 4, 5, 6, 7, 8, 9].map(i => `${BASE}/at-${i}.jpg`);
 const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
 const tp = Array.from({ length: 11 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
 const api101 = `${BASE}/api101.jpg`;
-const cf = Array.from({ length: 4 }, (_, i) => `${BASE}/cf-${i + 1}.jpg`);
+const cf = Array.from({ length: 14 }, (_, i) => `${BASE}/cf-${i + 1}.jpg`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -585,7 +585,7 @@ export default function Events() {
     ],
     Past: [
       {
-        title: "Career Fair Prep 101 Recap",
+        title: "Career Fair Prep 101 Workshop",
         date: "SEP 9",
         time: "September 2026",
         location: "UT Dallas",

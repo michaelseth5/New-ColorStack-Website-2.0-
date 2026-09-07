@@ -7,7 +7,15 @@ import eboardHajar from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
 import eboardOluwadamilare from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
 import eboardMichael from "@assets/Michael_Katongole_1778782883428.png";
 import eboardRamzi from "@assets/Ramzi_Burhan_1778782883429.jpg";
-import eboardMarwan from "@assets/Marwan_Hegazy_1778782883427.jpg";
+import eboardJose from "@assets/Jose_Rogel_1778782883427.png";
+import eboardHenos from "@assets/Henos_1778797249996.webp";
+import eboardHasset from "@assets/Hasset_Getachew_1778782883426.jpg";
+import eboardAnthonio from "@assets/Anthonio_Odonkor.jpg";
+import eboardTimage from "@assets/Timage_Abubaker_1778782883430.jpg";
+import eboardMayowa from "@assets/Mayowa_Akinyede.png";
+import eboardAlejandro from "@assets/Alejandro_Gomez_De_Mendieta.jpg";
+import eboardNoha from "@assets/Noha_Markose_1778782883428.jpg";
+import eboardMamoudou from "@assets/Mamoudou_Balde.jpg";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const heroImg = `${BASE}/hero.jpg`;
@@ -68,6 +76,10 @@ const carouselSlides = [
   { src: `${BASE}/tp-10.jpg`, event: techPanelEvent, date: techPanelDate },
   { src: `${BASE}/tp-11.jpg`, event: techPanelEvent, date: techPanelDate },
   { src: `${BASE}/api101.jpg`, event: "API 101: Wall St. Decoded", date: "Mar 27, 2026" },
+  { src: `${BASE}/cf-1.jpg`, event: "Career Fair Prep 101", date: "Sep 9, 2026" },
+  { src: `${BASE}/cf-2.jpg`, event: "Career Fair Prep 101", date: "Sep 9, 2026" },
+  { src: `${BASE}/cf-3.jpg`, event: "Career Fair Prep 101", date: "Sep 9, 2026" },
+  { src: `${BASE}/cf-4.jpg`, event: "Career Fair Prep 101", date: "Sep 9, 2026" },
 ];
 
 const featuredSrcs = new Set(featuredCarouselSlides.map((s) => s.src));
@@ -441,6 +453,137 @@ function HeroWelcome() {
           <ChevronDown size={22} className="text-white/30" />
         </motion.div>
       </motion.div>
+    </section>
+  );
+}
+
+interface EboardMember {
+  name: string;
+  title: string;
+  img: string;
+}
+
+/** Front row shown by default, in display order — Michael Katongole (President) sits in the
+ * center (index 2 of 5). */
+const eboardFront: EboardMember[] = [
+  { name: "Jose Juan Rogel Ramirez", title: "Vice President", img: eboardJose },
+  { name: "Henos Habteab Tekie", title: "Secretary", img: eboardHenos },
+  { name: "Michael Katongole", title: "President", img: eboardMichael },
+  { name: "Hasset Getachew", title: "Treasurer", img: eboardHasset },
+  { name: "Anthonio Duke Odonkor", title: "Committee Chair / Corporate & Outreach Director", img: eboardAnthonio },
+];
+
+/** Remaining 2026–2027 officers (per the full roster on /board) the arrows rotate into. */
+const eboardMore: EboardMember[] = [
+  { name: "Hajar Abdulkadir", title: "Founder", img: eboardHajar },
+  { name: "Oluwadamilare Sunmola", title: "Founder", img: eboardOluwadamilare },
+  { name: "Timage Abubaker", title: "Public Communications", img: eboardTimage },
+  { name: "Mayowa Akinyede", title: "Tech Coordinator", img: eboardMayowa },
+  { name: "Alejandro Gomez De Mendieta", title: "Tech Coordinator", img: eboardAlejandro },
+  { name: "Noha Markose", title: "Historian", img: eboardNoha },
+  { name: "Mamoudou Balde", title: "Academic Chair", img: eboardMamoudou },
+  { name: "Ramzi Burhan", title: "Treasurer Deputy", img: eboardRamzi },
+];
+
+const eboardMembers: EboardMember[] = [...eboardFront, ...eboardMore];
+
+function EboardPreview() {
+  const [page, setPage] = useState(0);
+  const visibleCount = 5;
+  const total = eboardMembers.length;
+  const pageCount = Math.ceil(total / visibleCount);
+
+  const next = () => setPage((p) => (p + 1) % pageCount);
+  const prev = () => setPage((p) => (p - 1 + pageCount) % pageCount);
+
+  const visible = eboardMembers.slice(page * visibleCount, page * visibleCount + visibleCount);
+
+  return (
+    <section className="bg-[#fdf4ee] py-24 px-6">
+      <div className="max-w-5xl mx-auto text-center">
+        <motion.p
+          variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+          style={{ fontFamily: "'Fira Code', monospace" }}
+          className="text-primary/70 text-xs mb-4 tracking-wide"
+        >
+          // the people behind the mission
+        </motion.p>
+        <motion.h2
+          variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-black text-foreground mb-4"
+          style={{ fontFamily: "'Fira Code', monospace" }}
+        >
+          <span className="text-foreground/25">&lt;</span>
+          <span> Meet The Eboard </span>
+          <span className="text-foreground/25">/&gt;</span>
+        </motion.h2>
+        <motion.p
+          variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+          className="text-foreground/55 text-[0.95rem] mb-14 max-w-md mx-auto"
+        >
+          The people building this chapter from the ground up.
+        </motion.p>
+
+        <div className="flex items-center justify-center gap-3 sm:gap-6 mb-4">
+          <button
+            onClick={prev}
+            className="shrink-0 p-2 rounded-full border border-border hover:border-primary/60 hover:text-primary transition-colors"
+            aria-label="Show previous board member"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <div className="flex flex-wrap justify-center gap-10">
+            {visible.map((member, i) => (
+              <motion.div
+                key={member.name}
+                variants={fadeUp}
+                initial="hidden"
+                animate="show"
+                transition={{ delay: i * 0.06 }}
+                className="flex flex-col items-center w-[120px]"
+              >
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
+                  <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                </div>
+                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-[#B54708] mb-1 leading-tight">
+                  role = "{member.title}"
+                </p>
+                <p className="text-sm font-bold text-foreground leading-snug text-center">{member.name}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            className="shrink-0 p-2 rounded-full border border-border hover:border-primary/60 hover:text-primary transition-colors"
+            aria-label="Show next board member"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+
+        <div className="flex justify-center gap-1.5 mb-12">
+          {Array.from({ length: pageCount }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === page ? "bg-primary w-5" : "bg-border w-1.5 hover:bg-primary/40"
+              }`}
+              aria-label={`Show board members page ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <Link href="/board">
+            <button className="bg-[#114634] text-white rounded-full px-8 py-3.5 text-[14px] font-semibold hover:bg-[#114634]/90 transition-all hover:-translate-y-px">
+              Meet The Full Board
+            </button>
+          </Link>
+        </motion.div>
+      </div>
     </section>
   );
 }
@@ -823,69 +966,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Eboard Preview ──────────────────────────── */}
-      <section className="bg-white py-24 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <motion.p
-            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            style={{ fontFamily: "'Fira Code', monospace" }}
-            className="text-primary/70 text-xs mb-4 tracking-wide"
-          >
-            // the people behind the mission
-          </motion.p>
-          <motion.h2
-            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-black text-foreground mb-4"
-            style={{ fontFamily: "'Fira Code', monospace" }}
-          >
-            <span className="text-foreground/25">&lt;</span>
-            <span> Meet The Eboard </span>
-            <span className="text-foreground/25">/&gt;</span>
-          </motion.h2>
-          <motion.p
-            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="text-foreground/55 text-[0.95rem] mb-14 max-w-md mx-auto"
-          >
-            The people building this chapter from the ground up.
-          </motion.p>
-
-          <div className="flex flex-wrap justify-center gap-10 mb-12">
-            {[
-              { name: "Hajar Abdulkadir", title: "Co-President", img: eboardHajar },
-              { name: "Oluwadamilare Sunmola", title: "Co-President", img: eboardOluwadamilare },
-              { name: "Michael Katongole", title: "Vice President", img: eboardMichael },
-              { name: "Ramzi Burhan", title: "Treasurer", img: eboardRamzi },
-              { name: "Marwan Hegazy", title: "Secretary", img: eboardMarwan },
-            ].map((member, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                className="flex flex-col items-center w-[120px]"
-              >
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
-                </div>
-                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-primary/65 mb-1 leading-tight">
-                  role = "{member.title}"
-                </p>
-                <p className="text-sm font-bold text-foreground leading-snug text-center">{member.name}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <Link href="/board">
-              <button className="bg-[#114634] text-white rounded-full px-8 py-3.5 text-[14px] font-semibold hover:bg-[#114634]/90 transition-all hover:-translate-y-px">
-                Meet The Full Board
-              </button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <EboardPreview />
 
       {/* ── Get Involved ────────────────────────────── */}
       <section className="bg-[#f7f7f7] py-24 px-6">
@@ -899,7 +980,7 @@ export default function Home() {
               accent: false,
             },
             {
-              title: "Get Cracked with Us",
+              title: "Come Get Locked In",
               desc: "Join ColorStack UTD. We'll make sure you have the technical skills, the network, and the opportunities to land wherever you want.",
               cta: "Become a Member",
               href: "/about",

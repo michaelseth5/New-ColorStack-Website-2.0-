@@ -101,7 +101,7 @@ const ambassadors2025: Ambassador[] = [
 const leadership2026: Officer[] = [
   { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
-  { name: "Leila Igwegbe", title: "Mentor", image: leilaImg, linkedinUrl: "https://www.linkedin.com/in/leila-igwegbe/", internLogo: logoDatadog, internCompany: "Datadog", internLogoZoom: true },
+  { name: "Leila Igwegbe", title: "Product Manager", image: leilaImg, linkedinUrl: "https://www.linkedin.com/in/leila-igwegbe/", internLogo: logoDatadog, internCompany: "Datadog", internLogoZoom: true },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
 ];

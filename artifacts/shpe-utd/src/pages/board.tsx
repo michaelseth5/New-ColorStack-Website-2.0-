@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Linkedin, Mail, ShieldCheck } from "lucide-react";
 
-import { ProfileCard } from "@/components/ProfileCard";
-
 import logoBoA from "@assets/company_boa.svg";
 import logoCodePath from "@assets/company_codepath.webp";
 import logoCiti from "@assets/company_citi.png";
@@ -213,13 +211,13 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
           {officer.emailUrl && (
             <a
               href={officer.emailUrl}
-              className="group/email inline-flex w-full items-center gap-2 rounded-xl border border-[#114634]/12 bg-[#f7f7f7] px-2.5 py-2 text-[0.68rem] font-medium leading-snug text-[#114634] transition-colors hover:border-[#114634]/25 hover:bg-[#114634]/5"
+              className="group/email inline-flex w-full items-start gap-2 rounded-xl border border-[#114634]/12 bg-[#f7f7f7] px-2.5 py-2 text-[0.68rem] font-medium leading-snug text-[#114634] transition-colors hover:border-[#114634]/25 hover:bg-[#114634]/5"
               aria-label={`Email ${officer.name}`}
             >
               <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[#114634]/10 text-[#114634] transition-colors group-hover/email:bg-[#114634]/15">
                 <Mail size={13} strokeWidth={2.2} />
               </span>
-              <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+              <span className="min-w-0 break-words [overflow-wrap:anywhere] pt-0.5">
                 {officer.emailUrl.replace("mailto:", "")}
               </span>
             </a>
@@ -336,26 +334,9 @@ export default function Board() {
         <section className="py-20 border-b border-border">
           <SectionHeading label="Executive Leadership" title="Leadership" />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-            {leadership.map((officer, idx) =>
-              officer.name === "Michael Katongole" ? (
-                <ProfileCard
-                  key={officer.name}
-                  name={officer.name}
-                  role={officer.title}
-                  photo={officer.image}
-                  email={(officer.emailUrl ?? "").replace("mailto:", "")}
-                  linkedinUrl={officer.linkedinUrl}
-                  company={
-                    officer.internLogo
-                      ? { name: officer.internCompany ?? "", logo: officer.internLogo }
-                      : undefined
-                  }
-                  className="self-start"
-                />
-              ) : (
-                <OfficerCard key={officer.name} officer={officer} index={idx} />
-              )
-            )}
+            {leadership.map((officer, idx) => (
+              <OfficerCard key={officer.name} officer={officer} index={idx} />
+            ))}
           </div>
         </section>
 

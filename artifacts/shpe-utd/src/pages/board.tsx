@@ -13,6 +13,7 @@ import logoStellantis from "@assets/company_stellantis.png";
 import logoMicrosoft from "@assets/company_microsoft.png";
 import logoCapitalOne from "@assets/company_capital_one.png";
 import logoCloudflare from "@assets/company_cloudflare2.png";
+import logoDatadog from "@assets/company_datadog.svg";
 
 import hajarImg from "@assets/Hajar_Abdulkadir_1778782883426.jpg";
 import oluwadamilareImg from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg";
@@ -37,6 +38,7 @@ import elizabethImg from "@assets/Elizabeth_Gonzalez.jpg";
 import mayowaImg from "@assets/Mayowa_Akinyede.png";
 import ugonnaImg from "@assets/Ugonna_Anyalemechi.png";
 import alejandroImg from "@assets/Alejandro_Gomez_De_Mendieta.jpg";
+import leilaImg from "@assets/Leila_Igwegbe.jpg";
 
 interface Officer {
   name: string;
@@ -97,6 +99,7 @@ const ambassadors2025: Ambassador[] = [
 const leadership2026: Officer[] = [
   { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
+  { name: "Leila Igwegbe", title: "Mentor", image: leilaImg, linkedinUrl: "https://www.linkedin.com/in/leila-igwegbe/", internLogo: logoDatadog, internCompany: "Datadog", internLogoZoom: true },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Oluwadamilare Sunmola", title: "Founder", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/", internLogo: logoCapitalOne, internCompany: "Capital One", internLogoZoom: true },
 ];

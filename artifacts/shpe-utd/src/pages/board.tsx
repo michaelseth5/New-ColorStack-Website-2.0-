@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Linkedin, Mail, ShieldCheck } from "lucide-react";
 
+import { ProfileCard } from "@/components/ProfileCard";
+
 import logoBoA from "@assets/company_boa.svg";
 import logoCodePath from "@assets/company_codepath.webp";
 import logoCiti from "@assets/company_citi.png";
@@ -334,9 +336,26 @@ export default function Board() {
         <section className="py-20 border-b border-border">
           <SectionHeading label="Executive Leadership" title="Leadership" />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-            {leadership.map((officer, idx) => (
-              <OfficerCard key={officer.name} officer={officer} index={idx} />
-            ))}
+            {leadership.map((officer, idx) =>
+              officer.name === "Michael Katongole" ? (
+                <ProfileCard
+                  key={officer.name}
+                  name={officer.name}
+                  role={officer.title}
+                  photo={officer.image}
+                  email={(officer.emailUrl ?? "").replace("mailto:", "")}
+                  linkedinUrl={officer.linkedinUrl}
+                  company={
+                    officer.internLogo
+                      ? { name: officer.internCompany ?? "", logo: officer.internLogo }
+                      : undefined
+                  }
+                  className="self-start"
+                />
+              ) : (
+                <OfficerCard key={officer.name} officer={officer} index={idx} />
+              )
+            )}
           </div>
         </section>
 

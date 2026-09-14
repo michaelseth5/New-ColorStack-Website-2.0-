@@ -39,6 +39,7 @@ import mayowaImg from "@assets/Mayowa_Akinyede.png";
 import ugonnaImg from "@assets/Ugonna_Anyalemechi.png";
 import alejandroImg from "@assets/Alejandro_Gomez_De_Mendieta.jpg";
 import leilaImg from "@assets/Leila_Igwegbe.jpg";
+import ahmedImg from "@assets/Ahmed_Izzeldin_Ahmed.png";
 
 interface Officer {
   name: string;
@@ -57,6 +58,7 @@ interface Officer {
 
 interface Ambassador {
   name: string;
+  title?: string;
   image: string;
   linkedinUrl?: string;
   internLogo?: string;
@@ -117,6 +119,7 @@ const operations2026: Officer[] = [
 ];
 
 const ambassadors2026: Ambassador[] = [
+  { name: "Ahmed (Izzeldin) Ahmed", title: "Mentor", image: ahmedImg, linkedinUrl: "https://www.linkedin.com/in/ahmed-ahmed-03078a279/" },
   { name: "Ugonna Anyalemechi", image: ugonnaImg, linkedinUrl: "https://www.linkedin.com/in/ugonna-anyalemechi/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Elizabeth Gonzalez", image: elizabethImg, linkedinUrl: "https://www.linkedin.com/in/anais-elizabeth-gonzalez/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
@@ -371,7 +374,7 @@ export default function Board() {
                 </div>
                 <div className="p-3 flex flex-col">
                   <p className="text-[0.6rem] font-bold tracking-widest text-primary uppercase mb-1">
-                    Ambassador
+                    {amb.title ?? "Ambassador"}
                   </p>
                   <p className="font-semibold text-foreground text-sm leading-snug mb-2">
                     {amb.name}

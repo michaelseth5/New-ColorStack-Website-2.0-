@@ -291,6 +291,7 @@ export default function Board() {
               <p>June 1, 2026</p>
               <p>July 1, 2026</p>
               <p>August 1, 2026</p>
+              <p>September 1, 2026</p>
               <p className="mt-2">
                 This is the official board roster for the 2026-2027 academic year. No other positions or titles are recognized by the organization outside of what's listed here.
               </p>

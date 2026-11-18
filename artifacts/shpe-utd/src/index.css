@@ -393,13 +393,12 @@
   display: grid;
   gap: clamp(26px, 5vw, 64px);
   align-items: center;
-  width: min(100%, 1312px);
-  margin-inline: auto;
-  padding: clamp(38px, 6vw, 96px) var(--review-gutter);
+  width: 100%;
+  padding-block-start: clamp(38px, 6vw, 96px);
 }
-.review-hero-image { min-width: 0; aspect-ratio: 4/3; overflow: hidden; border-radius: 26px; background: var(--review-paper); }
-.review-hero-image img { width: 100%; height: 100%; object-fit: cover; }
-.review-hero-copy { grid-row: 1; min-width: 0; }
+.review-hero-image { position: relative; min-width: 0; aspect-ratio: 3832/2555; overflow: hidden; background: var(--review-paper); }
+.review-hero-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.review-hero-copy { grid-row: 1; min-width: 0; padding-inline: var(--review-gutter); }
 .review-hero-copy h1 { font-size: clamp(3rem, 7vw, 6.4rem); line-height: .93; letter-spacing: -.072em; }
 .review-hero-copy [data-testid="button-hero-join"] { background: var(--review-green); box-shadow: none; }
 .review-hero-copy [data-testid="button-hero-join"]:hover { background: #0b3728; }
@@ -458,9 +457,9 @@
 @media (min-width: 900px) {
   .review-desktop-nav { display: flex; align-items: center; gap: clamp(16px, 2vw, 29px); }
   .review-mobile-nav, .review-mobile-menu { display: none; }
-  .review-hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
-  .review-hero-image { aspect-ratio: 5/6; }
-  .review-hero-copy { grid-row: auto; }
+  .review-hero { grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); gap: 0; padding-block-start: 0; }
+  .review-hero-image { align-self: stretch; aspect-ratio: auto; min-height: clamp(480px, 39vw, 720px); }
+  .review-hero-copy { grid-row: auto; padding: clamp(32px, 4vw, 72px); }
   .review-pillars { grid-template-columns: 1fr 1fr; }
   .review-pillar:first-child { grid-column: 1 / -1; }
 }
@@ -472,11 +471,7 @@
 
 /* Bring the chapter orange into the first fold. */
 .review-home { --review-hero-wash: #fff0e4; }
-.review-hero {
-  background: var(--review-hero-wash);
-  box-shadow: 0 0 0 100vmax var(--review-hero-wash);
-  clip-path: inset(0 -100vmax);
-}
+.review-hero { background: var(--review-hero-wash); }
 .review-frame:has(.review-home) .review-nav { border-bottom: 3px solid var(--review-orange); }
 .review-hero-copy [data-testid="button-hero-join"] { background: var(--review-orange); color: #21180f; }
 .review-hero-copy [data-testid="button-hero-join"]:hover { background: #df681d; }

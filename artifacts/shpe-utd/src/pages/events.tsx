@@ -10,6 +10,9 @@ const gbm2 = `${BASE}/gbm-2.jpg`;
 const gbm3 = `${BASE}/gbm-3.jpg`;
 const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
 const at = [1, 2, 4, 5, 6, 7, 8, 9].map(i => `${BASE}/at-${i}.jpg`);
+const afroTech2026Photos = [
+  "group", "conference-sign", "attendees", "google", "expo-floor", "selfie", "vanguard",
+].map(photo => `${BASE}/afrotech-2026-${photo}.webp`);
 const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
 const tp = Array.from({ length: 11 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
 const api101 = `${BASE}/api101.jpg`;
@@ -33,6 +36,7 @@ interface BaseEvent {
   image?: string;
   flyer?: boolean;
   photos?: string[];
+  showFullPhotos?: boolean;
   symbol?: SymbolConfig;
   recap?: string;
   highlights?: string[];
@@ -179,15 +183,16 @@ function EventBody({ desc, lead, sections, highlights, recap }: BodyContent) {
 function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
   const photos = event.photos ?? [event.image!];
   const [current, setCurrent] = useState(0);
+  const [photoSelected, setPhotoSelected] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    if (photos.length <= 1) return;
+    if (photos.length <= 1 || photoSelected) return;
     const id = setInterval(() => {
       setCurrent((c) => (c + 1) % photos.length);
     }, 3000);
     return () => clearInterval(id);
-  }, [photos.length]);
+  }, [photos.length, photoSelected]);
 
   const preview = buildPreview(event, BODY_CHAR_LIMIT);
 
@@ -211,7 +216,7 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className={`absolute inset-0 h-full w-full ${event.flyer ? "bg-[#f7f4ef] object-contain" : "object-cover"}`}
+              className={`absolute inset-0 h-full w-full ${event.flyer || event.showFullPhotos ? "bg-[#f7f4ef] object-contain" : "object-cover"}`}
             />
           </AnimatePresence>
           {!event.flyer && (
@@ -220,11 +225,17 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
             </div>
           )}
           {!event.flyer && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 ${event.showFullPhotos ? "rounded-full bg-black/75 p-2" : ""}`}>
               {photos.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setCurrent(i)}
+                  type="button"
+                  aria-label={`Show photo ${i + 1} of ${photos.length}`}
+                  aria-pressed={i === current}
+                  onClick={() => {
+                    if (event.showFullPhotos) setPhotoSelected(true);
+                    setCurrent(i);
+                  }}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     i === current ? "bg-white scale-125" : "bg-white/50"
                   }`}
@@ -589,6 +600,15 @@ export default function Events() {
       },
     ],
     Past: [
+      {
+        title: "AfroTech Conference 2026",
+        date: "NOV 2026",
+        time: "November 2026",
+        location: "Houston, TX",
+        desc: "ColorStack UTD members traveled to Houston for AfroTech’s 10th annual conference, where they met industry professionals and explored career opportunities.",
+        photos: afroTech2026Photos,
+        showFullPhotos: true,
+      },
       {
         title: "Yapp Session",
         date: "SEP 24",

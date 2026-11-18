@@ -34,7 +34,7 @@ const stats = [
 
 export default function ZeroToLaunch() {
   return (
-    <div className="review-program min-h-screen">
+    <div className="review-program min-h-screen" data-accent="orange">
       <section className="review-program-hero">
         <div className="review-program-shell">
           <a
@@ -72,8 +72,8 @@ export default function ZeroToLaunch() {
 
       <section className="review-program-section">
         <div className="review-program-shell">
-          <h2 className="text-2xl font-extrabold text-[#114634] md:text-3xl">About LiLO</h2>
-          <p className="mt-4 max-w-4xl leading-relaxed text-[#1a1a1a]/80">
+          <h2 className="text-2xl font-extrabold text-(--review-green) md:text-3xl">About LiLO</h2>
+          <p className="mt-4 max-w-4xl leading-relaxed text-(--chapter-ink)/80">
             LiLO is a network of software engineers who came up through non-traditional paths. They&apos;ve
             rewritten 600+ resumes and coached 100+ students into interviews at Amazon, Microsoft, and Meta.
             Every learner gets paired with a mentor who stays with them from the first resume rewrite through
@@ -83,7 +83,7 @@ export default function ZeroToLaunch() {
           <div className="review-program-roster mt-8">
             {founders.map((founder) => (
               <div key={founder.name} className="review-program-person py-4">
-                <p className="font-bold text-[#1a1a1a]">{founder.name}</p>
+                <p className="font-bold text-(--chapter-ink)">{founder.name}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{founder.title}</p>
               </div>
             ))}
@@ -93,12 +93,12 @@ export default function ZeroToLaunch() {
 
       <section className="review-program-section">
         <div className="review-program-shell">
-          <h2 className="text-2xl font-extrabold text-[#114634] md:text-3xl">What You Get</h2>
+          <h2 className="text-2xl font-extrabold text-(--review-green) md:text-3xl">What You Get</h2>
           <div className="review-program-list mt-8">
             {features.map(({ title, description }) => (
               <article key={title} className="review-program-row">
-                <h3 className="text-lg font-bold text-[#1a1a1a]">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#1a1a1a]/80">{description}</p>
+                <h3 className="text-lg font-bold text-(--chapter-ink)">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-(--chapter-ink)/80">{description}</p>
               </article>
             ))}
           </div>

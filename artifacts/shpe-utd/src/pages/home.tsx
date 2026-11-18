@@ -170,7 +170,7 @@ function EventCarousel() {
   }, [maxIndex]);
 
   return (
-    <section className="review-events bg-[#114634] py-16 px-6 overflow-hidden">
+    <section className="review-events py-16 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-black text-white mb-10 text-center tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
           <span className="text-white/30">&lt;</span>
@@ -198,10 +198,10 @@ function EventCarousel() {
                       decoding="async"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-(--chapter-photo-caption) via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                       <p className="text-white font-bold text-sm leading-tight">{slide.event}</p>
-                      <p className="text-white/70 text-xs mt-0.5">{slide.date}</p>
+                      <p className="text-white text-xs mt-0.5">{slide.date}</p>
                     </div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ function EventCarousel() {
 
           <button
             onClick={prev}
-            className="absolute left-[-14px] top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#EC7524] text-white rounded-full p-2.5 transition-all duration-200 backdrop-blur-sm z-10"
+            className="absolute left-[-14px] top-1/2 -translate-y-1/2 bg-white/20 hover:bg-(--review-orange) text-white rounded-full p-2.5 transition-all duration-200 backdrop-blur-sm z-10"
             aria-label="Previous"
           >
             <ChevronLeft size={20} />
@@ -219,7 +219,7 @@ function EventCarousel() {
 
           <button
             onClick={next}
-            className="absolute right-[-14px] top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#EC7524] text-white rounded-full p-2.5 transition-all duration-200 backdrop-blur-sm z-10"
+            className="absolute right-[-14px] top-1/2 -translate-y-1/2 bg-white/20 hover:bg-(--review-orange) text-white rounded-full p-2.5 transition-all duration-200 backdrop-blur-sm z-10"
             aria-label="Next"
           >
             <ChevronRight size={20} />
@@ -232,7 +232,7 @@ function EventCarousel() {
               key={i}
               onClick={() => setIndex(i)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                i === index ? "bg-[#EC7524] w-6" : "bg-white/30 w-2 hover:bg-white/60"
+                i === index ? "bg-(--review-orange) w-6" : "bg-white/30 w-2 hover:bg-white/60"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />
@@ -302,11 +302,11 @@ function NetworkGraph() {
       transition={{ duration: 1.1, delay: 0.4, ease: "easeOut" as const }}
       className="relative select-none"
     >
-      <div className="absolute inset-0 rounded-full blur-[90px] bg-[#EC7524]/15 scale-90 pointer-events-none" />
+      <div className="absolute inset-0 rounded-full blur-[90px] bg-(--review-orange)/15 scale-90 pointer-events-none" />
       <svg
         viewBox="0 0 555 370"
         className="w-full max-w-[520px] lg:max-w-[560px] relative z-10"
-        style={{ filter: "drop-shadow(0 0 18px rgba(236,117,36,0.18))" }}
+        style={{ filter: "drop-shadow(0 0 18px color-mix(in srgb, var(--review-orange) 18%, transparent))" }}
         aria-hidden="true"
       >
         {EDGES.map(([a, b], i) => (
@@ -314,7 +314,7 @@ function NetworkGraph() {
             key={`e${i}`}
             x1={NODES[a].cx} y1={NODES[a].cy}
             x2={NODES[b].cx} y2={NODES[b].cy}
-            stroke="#EC7524"
+            stroke="var(--review-orange)"
             strokeWidth="1.2"
             animate={{ opacity: [0.12, 0.42, 0.12] }}
             transition={{ duration: 2.8 + (i % 6) * 0.35, repeat: Infinity, ease: "easeInOut", delay: (i % 8) * 0.28 }}
@@ -328,7 +328,7 @@ function NetworkGraph() {
               animate={{ scale: [0.6, 2, 0.6], opacity: [0, 0.18, 0] }}
               transition={{ duration: 3.2 + i * 0.22, repeat: Infinity, ease: "easeInOut", delay: i * 0.18 }}
             >
-              <circle cx={n.cx} cy={n.cy} r={n.r * 2.2} fill="#EC7524" />
+              <circle cx={n.cx} cy={n.cy} r={n.r * 2.2} fill="var(--review-orange)" />
             </motion.g>
             {/* Main node */}
             <motion.g
@@ -336,7 +336,7 @@ function NetworkGraph() {
               animate={{ scale: [1, 1.3, 1], opacity: [0.65, 1, 0.65] }}
               transition={{ duration: 2.6 + i * 0.19, repeat: Infinity, ease: "easeInOut", delay: i * 0.16 }}
             >
-              <circle cx={n.cx} cy={n.cy} r={n.r} fill="#EC7524" />
+              <circle cx={n.cx} cy={n.cy} r={n.r} fill="var(--review-orange)" />
               <circle cx={n.cx} cy={n.cy} r={n.r * 0.38} fill="white" opacity="0.95" />
             </motion.g>
           </g>
@@ -366,7 +366,7 @@ function HeroWelcome() {
   return (
     <section
       className="relative w-full min-h-screen overflow-hidden flex items-center"
-      style={{ background: "linear-gradient(170deg, #114634 0%, #0d3226 55%, #080f0a 100%)" }}
+      style={{ background: "var(--review-green)" }}
     >
       {/* Circuit board dot+line pattern */}
       <div
@@ -378,7 +378,7 @@ function HeroWelcome() {
       />
       {/* Bottom fade to near-black */}
       <div className="absolute inset-x-0 bottom-0 h-48 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, #080f0a)" }}
+        style={{ background: "linear-gradient(to bottom, transparent, var(--chapter-ink))" }}
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 md:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -388,7 +388,7 @@ function HeroWelcome() {
           <motion.p
             custom={0} variants={textVariants} initial="hidden" animate="show"
             style={{ fontFamily: "'Fira Code', monospace" }}
-            className="text-[#EC7524]/70 text-sm mb-4 tracking-wider"
+            className="text-(--review-green) text-sm mb-4 tracking-wider"
           >
             // Welcome To
           </motion.p>
@@ -400,7 +400,7 @@ function HeroWelcome() {
               </span>
               {showCursor && (
                 <motion.span
-                  className="text-[clamp(3.5rem,7vw,5.5rem)] font-thin text-[#EC7524] leading-none ml-1"
+                  className="text-[clamp(3.5rem,7vw,5.5rem)] font-thin text-(--chapter-orange-text) leading-none ml-1"
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 0.7, repeat: Infinity }}
                 >
@@ -412,7 +412,7 @@ function HeroWelcome() {
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" as const }}
-                className="absolute -bottom-1 left-0 h-[3px] w-full bg-[#EC7524] origin-left rounded-full"
+                className="absolute -bottom-1 left-0 h-[3px] w-full bg-(--review-orange) origin-left rounded-full"
               />
             </div>
           </motion.div>
@@ -436,7 +436,7 @@ function HeroWelcome() {
             className="flex flex-wrap gap-4"
           >
             <Link href="/join">
-              <button className="bg-[#EC7524] hover:bg-[#d46620] text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-[#EC7524]/25 text-[15px]">
+              <button className="bg-(--review-orange) hover:bg-(--chapter-orange-hover) text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-(--review-orange)/25 text-[15px]">
                 Join The Chapter
               </button>
             </Link>
@@ -513,7 +513,7 @@ function EboardPreview() {
   const visible = eboardMembers.slice(page * visibleCount, page * visibleCount + visibleCount);
 
   return (
-    <section className="review-board bg-[#fdf4ee] py-24 px-6">
+    <section className="review-board py-24 px-6">
       <div className="max-w-5xl mx-auto text-center">
         <motion.p
           variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -560,7 +560,7 @@ function EboardPreview() {
                 <div className="w-20 h-20 rounded-[20px] overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
                   <img src={member.img} alt={member.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
                 </div>
-                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-[#B54708] mb-1 leading-tight">
+                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-(--chapter-mint) mb-1 leading-tight">
                   role = "{member.title}"
                 </p>
                 <p className="text-sm font-bold text-foreground leading-snug text-center">{member.name}</p>
@@ -592,7 +592,7 @@ function EboardPreview() {
 
         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <Link href="/board">
-            <button className="bg-[#114634] text-white rounded-full px-8 py-3.5 text-[14px] font-semibold hover:bg-[#114634]/90 transition-all hover:-translate-y-px">
+            <button className="bg-(--review-green) text-white rounded-full px-8 py-3.5 text-[14px] font-semibold hover:bg-(--review-green)/90 transition-all hover:-translate-y-px">
               Meet The Full Board
             </button>
           </Link>
@@ -686,8 +686,8 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <p className="text-[#1a1a1a] font-black text-base leading-none tracking-tight">ColorStack</p>
-                <p className="text-[#EC7524] font-bold text-[11px] tracking-[0.22em] uppercase mt-1">AT UTD</p>
+                <p className="text-(--chapter-ink) font-black text-base leading-none tracking-tight">ColorStack</p>
+                <p className="text-(--chapter-orange-text) font-bold text-[11px] tracking-[0.22em] uppercase mt-1">AT UTD</p>
               </div>
             </motion.div>
 
@@ -697,7 +697,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.18, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               style={{ fontFamily: "'Fira Code', monospace" }}
-              className="text-[#EC7524]/65 text-xs mb-3 tracking-widest"
+              className="text-(--review-green) text-xs mb-3 tracking-widest"
             >
               // Welcome To
             </motion.p>
@@ -709,11 +709,11 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.12, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="relative inline-block mb-1"
             >
-              <h1 className="text-[clamp(2.6rem,4vw,3.8rem)] font-black text-[#1a1a1a] leading-none tracking-tight">
+              <h1 className="text-[clamp(2.6rem,4vw,3.8rem)] font-black text-(--chapter-ink) leading-none tracking-tight">
                 ColorStack
                 {showCursor && !reduceMotion && (
                   <motion.span
-                    className="font-thin text-[#EC7524] ml-0.5"
+                    className="font-thin text-(--chapter-orange-text) ml-0.5"
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 0.7, repeat: Infinity }}
                   >
@@ -725,7 +725,7 @@ export default function Home() {
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.6, delay: 0.72, ease: "easeOut" as const }}
-                className="absolute -bottom-1 left-0 h-[3px] w-full bg-[#EC7524] origin-left rounded-full"
+                className="absolute -bottom-1 left-0 h-[3px] w-full bg-(--review-orange) origin-left rounded-full"
               />
             </motion.div>
 
@@ -734,7 +734,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.18, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[#1a1a1a]/70 font-medium text-[1rem] mt-3 mb-6 leading-snug"
+              className="text-(--chapter-ink)/70 font-medium text-[1rem] mt-3 mb-6 leading-snug"
             >
               At The University Of Texas At Dallas
             </motion.p>
@@ -754,8 +754,8 @@ export default function Home() {
                   { n: '04', text: 'Then We Make Sure The World Knows It!!' },
                 ].map(({ n, text }) => (
                   <div key={n} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ color: '#EC7524', fontWeight: 'bold', fontSize: '20px', flexShrink: 0 }}>{n}</span>
-                    <span style={{ color: '#1a1a1a', fontWeight: 600, fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)', lineHeight: 1.35 }}>{text}</span>
+                    <span style={{ color: 'var(--review-green)', fontWeight: 'bold', fontSize: '20px', flexShrink: 0 }}>{n}</span>
+                    <span style={{ color: 'var(--chapter-ink)', fontWeight: 600, fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)', lineHeight: 1.35 }}>{text}</span>
                   </div>
                 ))}
               </div>
@@ -766,7 +766,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.27, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
-              className="text-[0.95rem] text-[#1a1a1a]/55 mb-9 max-w-sm leading-relaxed"
+              className="text-[0.95rem] text-(--chapter-muted) mb-9 max-w-sm leading-relaxed"
             >
               Building The Next Generation Of Black, Latinx, And Indigenous Engineers At UT Dallas.
             </motion.p>
@@ -781,13 +781,13 @@ export default function Home() {
               <Link href="/join">
                 <button
                   data-testid="button-hero-join"
-                  className="bg-[#EC7524] hover:bg-[#d46620] text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-[#EC7524]/20 text-[15px]"
+                  className="bg-(--review-orange) hover:bg-(--chapter-orange-hover) text-white font-bold px-8 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-lg shadow-(--review-orange)/20 text-[15px]"
                 >
                   Join The Chapter
                 </button>
               </Link>
               <Link href="/about">
-                <button className="bg-transparent border-2 border-[#1a1a1a]/30 hover:border-[#1a1a1a]/70 text-[#1a1a1a] font-bold px-8 py-3.5 rounded-full transition-all duration-200 text-[15px]">
+                <button className="chapter-secondary bg-transparent border-2 font-bold px-8 py-3.5 rounded-full transition-all duration-200 text-[15px]">
                   Learn More
                 </button>
               </Link>
@@ -801,7 +801,7 @@ export default function Home() {
       <section className="review-mission bg-white py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-5 tracking-wide">// what we do</p>
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-(--review-green) text-xs mb-5 tracking-wide">// what we do</p>
             <motion.h2
               variants={fadeUp}
               initial="hidden"
@@ -830,21 +830,21 @@ export default function Home() {
                 img: `${BASE}/speed.jpg`,
                 showFullPhoto: true,
                 icon: <Terminal size={18} strokeWidth={1.8} />,
-                bg: "#EC7524",
+                accent: "orange",
               },
               {
                 title: "Build Community",
                 desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
                 img: `${BASE}/community.jpg`,
                 icon: <GitMerge size={18} strokeWidth={1.8} />,
-                bg: "#114634",
+                accent: "green",
               },
               {
                 title: "Get Connected",
                 desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
                 img: `${BASE}/connected.png`,
                 icon: <Globe size={18} strokeWidth={1.8} />,
-                bg: "#1a1a1a",
+                accent: "mint",
               },
             ].map((pillar, i) => (
               <motion.div
@@ -855,7 +855,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="review-pillar rounded-2xl p-7 flex flex-col"
-                style={{ backgroundColor: pillar.bg }}
+                data-accent={pillar.accent}
               >
                 <div className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center mb-5 flex-shrink-0">
                   {pillar.icon}
@@ -919,7 +919,7 @@ export default function Home() {
       <EventCarousel />
 
       {/* ── Testimonials ────────────────────────────── */}
-      <section className="bg-white py-24 px-6">
+      <section className="review-testimonials bg-white py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -933,7 +933,7 @@ export default function Home() {
               <span> Member Testimonials </span>
               <span className="text-foreground/25">/&gt;</span>
             </h2>
-            <p className="text-foreground/50 text-[0.95rem]">Hear directly from our members.</p>
+            <p className="text-(--chapter-muted) text-[0.95rem]">Hear directly from our members.</p>
           </motion.div>
 
           <div className="relative overflow-hidden">
@@ -946,7 +946,7 @@ export default function Home() {
                 exit={{ opacity: 0, x: direction * -40 }}
                 transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="bg-[#fdf4ee] rounded-2xl px-10 md:px-16 py-12 text-center">
+                <div className="bg-(--chapter-orange-wash) rounded-2xl px-10 md:px-16 py-12 text-center">
                   <p className="text-[1.2rem] md:text-[1.45rem] font-medium italic text-foreground/80 leading-relaxed mb-8">
                     "{testimonials[currentTestimonial].quote}"
                   </p>
@@ -984,7 +984,7 @@ export default function Home() {
       <EboardPreview />
 
       {/* ── Get Involved ────────────────────────────── */}
-      <section className="review-cta bg-[#f7f7f7] py-24 px-6">
+      <section className="review-cta py-24 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
@@ -1023,7 +1023,7 @@ export default function Home() {
               <h3 className={`text-lg font-bold mb-3 ${card.accent ? "text-white" : "text-foreground"}`}>
                 {card.title}
               </h3>
-              <p className={`text-sm leading-relaxed mb-8 flex-1 ${card.accent ? "text-white/85" : "text-foreground/60"}`}>
+              <p className={`text-sm leading-relaxed mb-8 flex-1 ${card.accent ? "text-white/85" : "text-(--chapter-muted)"}`}>
                 {card.desc}
               </p>
               <Link href={card.href}>

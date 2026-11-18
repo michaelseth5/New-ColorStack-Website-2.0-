@@ -24,7 +24,7 @@ const mentees = ["Anthonio Odonkor", "Sally Duru", "Halema Diab", "Henos Tekie"]
 
 export default function ColorStackMini() {
   return (
-    <div className="review-program min-h-screen">
+    <div className="review-program min-h-screen" data-accent="mint">
       {/* Header */}
       <section className="review-program-hero">
         <motion.div

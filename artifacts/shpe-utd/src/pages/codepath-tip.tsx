@@ -1,6 +1,6 @@
 export default function CodePathTip() {
   return (
-    <div className="review-program min-h-screen">
+    <div className="review-program min-h-screen" data-accent="green">
       <section className="review-program-hero">
         <div className="review-program-shell">
           <p className="review-program-label">

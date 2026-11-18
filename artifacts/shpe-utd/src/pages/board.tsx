@@ -39,6 +39,7 @@ import ugonnaImg from "@assets/Ugonna_Anyalemechi.png";
 import alejandroImg from "@assets/Alejandro_Gomez_De_Mendieta.jpg";
 import leilaImg from "@assets/Leila_Igwegbe.jpg";
 import ahmedImg from "@assets/Ahmed_Izzeldin_Ahmed.png";
+import salamotImg from "@assets/Salamot_Fakoya.webp";
 
 interface Officer {
   name: string;
@@ -122,6 +123,7 @@ const ambassadors2026: Ambassador[] = [
   { name: "Ahmed (Izzeldin) Ahmed", title: "Mentor", image: ahmedImg, linkedinUrl: "https://www.linkedin.com/in/ahmed-ahmed-03078a279/", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
+  { name: "Salamot Fakoya", image: salamotImg, linkedinUrl: "https://www.linkedin.com/in/salamotfakoya/" },
 ];
 
 // ── Shared ───────────────────────────────────────────────────────────────────

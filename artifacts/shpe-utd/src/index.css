@@ -440,11 +440,11 @@
   aspect-ratio: 4 / 3;
   object-fit: contain;
 }
-.review-stats { background: var(--review-green); border-top: 4px solid var(--review-orange); }
-.review-stats h2 > span:not(:nth-child(2)) { color: var(--chapter-mint); }
-.review-stats [class*="text-primary"] { color: var(--chapter-on-green-muted); }
+.review-stats { background: var(--chapter-ink); border-top: 4px solid var(--review-orange); }
+.review-stats h2 > span:not(:nth-child(2)) { color: var(--review-orange); }
+.review-stats [class*="text-primary"] { color: var(--chapter-white); }
 .review-stat-figure {
-  color: var(--chapter-mint);
+  color: var(--review-orange);
   font-size: clamp(3.75rem, 8vw, 6.5rem);
   font-variant-numeric: tabular-nums;
   letter-spacing: -.075em;
@@ -452,16 +452,17 @@
 .review-events { padding-block: clamp(72px, 10vw, 132px); }
 .review-events h2 { text-align: start; }
 .review-events img { border-radius: 24px; }
-.review-board { background: var(--review-green); color: var(--chapter-white); }
+.review-board { background: var(--chapter-white); color: var(--chapter-ink); box-shadow: inset 0 1px var(--chapter-silver); }
 .review-board > div { max-width: 1200px; }
-.review-board :is(h2, h2 span, .text-sm.font-bold) { color: var(--chapter-white); }
-.review-board :is(.tracking-wide, h2 span:first-child, h2 span:last-child) { color: var(--chapter-mint); }
-.review-board [class~="text-foreground/55"] { color: var(--chapter-on-green-muted); }
-.review-board button[aria-label] { color: var(--chapter-white); border-color: var(--chapter-mint); }
-.review-board button[aria-label]:hover { color: var(--chapter-mint); }
-.review-board button.bg-primary { background: var(--chapter-mint); }
-.review-board a button { background: transparent; color: var(--chapter-mint); box-shadow: inset 0 0 0 1px var(--chapter-mint); }
-.review-board a button:hover { background: var(--chapter-mint); color: var(--review-green); }
+.review-board :is(h2, h2 span, .text-sm.font-bold) { color: var(--chapter-ink); }
+.review-board :is(.tracking-wide, h2 span:first-child, h2 span:last-child) { color: var(--chapter-orange-text); }
+.review-board [class~="text-foreground/55"] { color: var(--chapter-muted); }
+.review-board button[aria-label] { color: var(--chapter-ink); border-color: var(--chapter-silver); }
+.review-board button[aria-label]:hover { color: var(--chapter-orange-text); border-color: var(--chapter-orange-text); }
+.review-board button.bg-primary { background: var(--chapter-orange-text); }
+.review-board button.bg-border { background: var(--chapter-muted); }
+.review-board a button { background: var(--review-orange); color: var(--chapter-ink); }
+.review-board a button:hover { background: var(--chapter-orange-hover); }
 .review-cta { background: var(--chapter-orange-wash); }
 .review-cta > div { max-width: 1200px; }
 .review-cta > div > div { border-radius: 24px; }
@@ -521,7 +522,8 @@
 .review-testimonials button:hover { color: var(--review-green); }
 .review-home :is(a, button):focus-visible,
 .review-program a:focus-visible { outline-color: var(--review-green); }
-.review-home :is(.review-stats, .review-board, .review-cta .bg-primary) :is(a, button):focus-visible,
+.review-home .review-board :is(a, button):focus-visible { outline-color: var(--chapter-orange-text); }
+.review-home .review-cta .bg-primary :is(a, button):focus-visible,
 .review-program :is(.review-program-hero, .review-program-last) a:focus-visible { outline-color: var(--chapter-mint); }
 
 .review-program { color: var(--chapter-ink); }

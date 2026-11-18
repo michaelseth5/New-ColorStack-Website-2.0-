@@ -560,7 +560,7 @@ function EboardPreview() {
                 <div className="w-20 h-20 rounded-[20px] overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
                   <img src={member.img} alt={member.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
                 </div>
-                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-(--chapter-mint) mb-1 leading-tight">
+                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-(--chapter-orange-text) mb-1 leading-tight">
                   role = "{member.title}"
                 </p>
                 <p className="text-sm font-bold text-foreground leading-snug text-center">{member.name}</p>

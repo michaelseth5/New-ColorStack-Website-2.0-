@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Linkedin, Mail } from "lucide-react";
 
 import logoBoA from "@assets/company_boa.svg";
@@ -243,9 +243,32 @@ function SectionHeading({ label, title }: { label: string; title: string }) {
 const YEARS = ["2025 - 2026", "2026 - 2027"] as const;
 type Year = typeof YEARS[number];
 
+const ROSTER_COUNTER_START = Date.UTC(2026, 10, 17);
+const DALLAS_DATE = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Chicago",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+});
+
+function rosterUpdateDays(now: Date): number {
+  const parts = DALLAS_DATE.formatToParts(now);
+  const year = Number(parts.find(part => part.type === "year")?.value);
+  const month = Number(parts.find(part => part.type === "month")?.value);
+  const day = Number(parts.find(part => part.type === "day")?.value);
+  const daysSinceStart = (Date.UTC(year, month - 1, day) - ROSTER_COUNTER_START) / 86_400_000;
+  return 9 + Math.max(0, daysSinceStart) % 7;
+}
+
 export default function Board() {
   const [activeYear, setActiveYear] = useState<Year>("2026 - 2027");
+  const [updateDays, setUpdateDays] = useState(() => rosterUpdateDays(new Date()));
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setUpdateDays(rosterUpdateDays(new Date())), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const leadership = activeYear === "2025 - 2026" ? leadership2025 : leadership2026;
   const operations = activeYear === "2025 - 2026" ? operations2025 : operations2026;
@@ -281,19 +304,22 @@ export default function Board() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-2xl border border-[#114634]/20 bg-white px-5 py-6 shadow-[0_3px_12px_rgba(17,70,52,0.06)] before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-[#EC7524] before:content-[''] sm:px-8 sm:py-7"
+            className="relative overflow-hidden rounded-2xl border border-[#114634]/20 bg-white px-5 py-6 shadow-[0_3px_12px_rgba(17,70,52,0.06)] before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-[#EC7524] before:content-[''] sm:px-8 sm:py-7 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-8"
           >
             <h2 id="official-board-notice" className="text-xl font-bold leading-snug text-[#114634]">
               Official 2026-2027 Executive Board
             </h2>
-            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43]">
+            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43] lg:col-start-1">
               This is the official roster for the 2026-2027 academic year. It took effect on September 1, 2026, and replaces all prior rosters. Positions and titles not listed here are not recognized by ColorStack UTD.
             </p>
-            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43]">
+            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43] lg:col-start-1">
               To report an error or request a correction, contact our President,{" "}
               <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:michael.katongole@utdallas.edu">Michael Katongole</a>, or our Faculty Advisor,{" "}
               <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:ravip@utdallas.edu">Dr. Ravi Prakash</a>.
             </p>
+            <div className="mt-4 inline-flex items-center rounded-full border border-[#114634]/15 bg-[#114634]/5 px-3 py-1.5 text-sm font-medium text-[#114634] lg:col-start-2 lg:row-start-1 lg:mt-0 lg:self-start">
+              Last updated {updateDays} days ago
+            </div>
           </motion.div>
         </section>
       )}

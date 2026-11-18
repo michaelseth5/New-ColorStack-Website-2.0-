@@ -828,6 +828,7 @@ export default function Home() {
                 title: "Get Technically Sharp",
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
                 img: `${BASE}/speed.jpg`,
+                showFullPhoto: true,
                 icon: <Terminal size={18} strokeWidth={1.8} />,
                 bg: "#EC7524",
               },
@@ -866,8 +867,9 @@ export default function Home() {
                   alt={pillar.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full rounded-xl object-cover"
-                  style={{ maxHeight: "220px" }}
+                  className={pillar.showFullPhoto ? "review-pillar-full-photo w-full" : "w-full rounded-xl object-cover max-h-[220px]"}
+                  width={pillar.showFullPhoto ? 2048 : undefined}
+                  height={pillar.showFullPhoto ? 1536 : undefined}
                 />
               </motion.div>
             ))}
@@ -901,7 +903,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
                 >
-                  <div className="text-[3rem] md:text-[3.5rem] font-black text-white leading-none mb-2">
+                  <div className="review-stat-figure font-black leading-none mb-2">
                     <AnimatedCounter end={stat.num} />
                     {stat.suffix}
                   </div>

@@ -419,13 +419,30 @@
 .review-pillar p { color: #53615a; }
 .review-pillar > div:first-child { background: var(--review-paper); color: var(--review-green); }
 .review-pillar img { aspect-ratio: 16/9; border-radius: 16px; }
-.review-stats { background: var(--review-green); }
+.review-pillar .review-pillar-full-photo {
+  width: min(100%, 660px);
+  height: auto;
+  align-self: center;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+.review-stats { background: var(--review-green); border-top: 4px solid var(--review-orange); }
+.review-stats h2 > span:not(:nth-child(2)) { color: #ffae79; }
 .review-stats [class*="text-primary"] { color: #f4f4ee; }
-.review-stats [class*="font-black"] { font-size: clamp(3.75rem, 8vw, 6.5rem); letter-spacing: -.075em; }
+.review-stat-figure {
+  color: #ffae79;
+  font-size: clamp(3.75rem, 8vw, 6.5rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.075em;
+}
 .review-events { padding-block: clamp(72px, 10vw, 132px); }
 .review-events h2 { text-align: start; }
 .review-events img { border-radius: 24px; }
-.review-board { background: var(--review-paper); }
+.review-board {
+  background:
+    radial-gradient(ellipse at 12% 4%, #ffd8bb 0%, transparent 55%),
+    linear-gradient(135deg, #fff3e7 0%, #f9f4ea 46%, #dcebe0 100%);
+}
 .review-board > div { max-width: 1200px; }
 .review-cta { background: var(--review-paper); }
 .review-cta > div { max-width: 1200px; }

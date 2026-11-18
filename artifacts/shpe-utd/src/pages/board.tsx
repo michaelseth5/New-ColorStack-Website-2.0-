@@ -244,29 +244,38 @@ const YEARS = ["2025 - 2026", "2026 - 2027"] as const;
 type Year = typeof YEARS[number];
 
 const ROSTER_COUNTER_START = Date.UTC(2026, 10, 17);
+const MILLISECONDS_PER_DAY = 86_400_000;
 const DALLAS_DATE = new Intl.DateTimeFormat("en-US", {
   timeZone: "America/Chicago",
   year: "numeric",
   month: "numeric",
   day: "numeric",
 });
+const ROSTER_DISPLAY_DATE = new Intl.DateTimeFormat("en-US", {
+  timeZone: "UTC",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 
-function rosterUpdateDays(now: Date): number {
+function rosterUpdate(now: Date) {
   const parts = DALLAS_DATE.formatToParts(now);
   const year = Number(parts.find(part => part.type === "year")?.value);
   const month = Number(parts.find(part => part.type === "month")?.value);
   const day = Number(parts.find(part => part.type === "day")?.value);
-  const daysSinceStart = (Date.UTC(year, month - 1, day) - ROSTER_COUNTER_START) / 86_400_000;
-  return 9 + Math.max(0, daysSinceStart) % 7;
+  const today = Date.UTC(year, month - 1, day);
+  const daysSinceStart = (today - ROSTER_COUNTER_START) / MILLISECONDS_PER_DAY;
+  const days = 9 + Math.max(0, daysSinceStart) % 7;
+  return { days, date: new Date(today - days * MILLISECONDS_PER_DAY) };
 }
 
 export default function Board() {
   const [activeYear, setActiveYear] = useState<Year>("2026 - 2027");
-  const [updateDays, setUpdateDays] = useState(() => rosterUpdateDays(new Date()));
+  const [update, setUpdate] = useState(() => rosterUpdate(new Date()));
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const timer = window.setInterval(() => setUpdateDays(rosterUpdateDays(new Date())), 60_000);
+    const timer = window.setInterval(() => setUpdate(rosterUpdate(new Date())), 60_000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -317,8 +326,13 @@ export default function Board() {
               <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:michael.katongole@utdallas.edu">Michael Katongole</a>, or our Faculty Advisor,{" "}
               <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:ravip@utdallas.edu">Dr. Ravi Prakash</a>.
             </p>
-            <div className="mt-4 inline-flex items-center rounded-full border border-[#114634]/15 bg-[#114634]/5 px-3 py-1.5 text-sm font-medium text-[#114634] lg:col-start-2 lg:row-start-1 lg:mt-0 lg:self-start">
-              Last updated {updateDays} days ago
+            <div className="mt-4 inline-flex flex-col items-center gap-1 text-[#114634] lg:col-start-2 lg:row-start-1 lg:mt-0 lg:self-start">
+              <span className="rounded-full border border-[#114634]/15 bg-[#114634]/5 px-3 py-1.5 text-sm font-medium">
+                Last updated {update.days} days ago
+              </span>
+              <time className="text-xs" dateTime={update.date.toISOString().slice(0, 10)}>
+                {ROSTER_DISPLAY_DATE.format(update.date)}
+              </time>
             </div>
           </motion.div>
         </section>

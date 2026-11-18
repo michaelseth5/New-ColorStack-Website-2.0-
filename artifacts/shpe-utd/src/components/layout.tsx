@@ -78,8 +78,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const programsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -104,21 +105,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
     }`;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background font-sans">
+    <div className="review-frame min-h-screen flex flex-col bg-background font-sans">
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
-          isScrolled ? "shadow-[0_1px_0_0_rgba(0,0,0,0.08)]" : ""
-        }`}
+        className="review-nav" data-scrolled={isScrolled} aria-label="Main Navigation"
       >
-        <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
+        <div className="review-nav-inner">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center" data-testid="link-home">
             <img src={navLogo} alt="ColorStack UTD" style={{ height: "40px", width: "auto" }} />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="review-desktop-nav">
             <Link href="/events" className={linkClass("/events")} data-testid="link-events">
               Events
             </Link>
@@ -141,7 +140,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     ? "text-primary"
                     : "text-foreground/80 hover:text-primary"
                 }`}
-                data-testid="dropdown-programs"
+                aria-expanded={programsOpen} data-testid="dropdown-programs"
               >
                 Programs
                 <ChevronDown
@@ -187,7 +186,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 className={`flex items-center gap-1 text-[15px] font-medium transition-colors duration-150 ${
                   isActive("/about") ? "text-primary" : "text-foreground/80 hover:text-primary"
                 }`}
-                data-testid="dropdown-about"
+                aria-expanded={aboutOpen} data-testid="dropdown-about"
               >
                 About Us
                 <ChevronDown
@@ -230,12 +229,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
 
-          <div className="flex items-center gap-0.5 md:hidden">
+          <div className="review-mobile-nav">
             <HeaderIconLinks />
             <button
               className="text-foreground/70 hover:text-foreground p-2 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              data-testid="button-mobile-menu"
+              aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"} aria-expanded={mobileMenuOpen} data-testid="button-mobile-menu"
             >
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -244,7 +243,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border/40 bg-white">
+          <div className="review-mobile-menu border-t border-border/40 bg-white">
             <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
               {[
                 { name: "Events", path: "/events" },
@@ -276,8 +275,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
       </nav>
 
-      <main className="flex-1 pt-16">
-        {children}
+      <main className="review-main flex-1">
+        <div key={location} className="review-route">{children}</div>
       </main>
 
       <footer className="bg-[#1a1a1a] text-white py-14 mt-auto">

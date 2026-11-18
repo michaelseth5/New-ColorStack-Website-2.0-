@@ -32,6 +32,7 @@ interface BaseEvent {
   desc: string;
   image?: string;
   photos?: string[];
+  collage?: string[];
   symbol?: SymbolConfig;
   recap?: string;
   highlights?: string[];

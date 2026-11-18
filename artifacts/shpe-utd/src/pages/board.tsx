@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Linkedin, Mail, ShieldCheck } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 import logoBoA from "@assets/company_boa.svg";
 import logoCodePath from "@assets/company_codepath.webp";
@@ -249,6 +249,7 @@ type Year = typeof YEARS[number];
 
 export default function Board() {
   const [activeYear, setActiveYear] = useState<Year>("2026 - 2027");
+  const reduceMotion = useReducedMotion();
 
   const leadership = activeYear === "2025 - 2026" ? leadership2025 : leadership2026;
   const operations = activeYear === "2025 - 2026" ? operations2025 : operations2026;
@@ -278,32 +279,27 @@ export default function Board() {
       </section>
 
       {activeYear === "2026 - 2027" && (
-        <div className="container mx-auto max-w-6xl px-6 mt-8 mb-4 md:mt-10 md:mb-5">
-          <div
-            role="note"
-            className="flex gap-3 rounded-2xl border border-[#114634]/15 border-l-4 border-l-[#114634] bg-[#f7f7f7] px-6 py-5 sm:px-8 sm:py-6"
+        <section className="container mx-auto mt-8 mb-4 max-w-6xl px-6 md:mt-10 md:mb-5" aria-labelledby="official-board-notice">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="relative overflow-hidden rounded-2xl border border-[#114634]/20 bg-white px-5 py-6 shadow-[0_3px_12px_rgba(17,70,52,0.06)] before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-[#EC7524] before:content-[''] sm:px-8 sm:py-7"
           >
-            <ShieldCheck
-              className="mt-0.5 h-5 w-5 shrink-0 text-[#114634]"
-              aria-hidden="true"
-            />
-            <div className="min-w-0 text-sm leading-7 text-foreground/85">
-              <p className="font-bold text-foreground">Official 2026-2027 Executive Board</p>
-              <p className="mt-2">This board has been in effect since:</p>
-              <p>May 1, 2026</p>
-              <p>June 1, 2026</p>
-              <p>July 1, 2026</p>
-              <p>August 1, 2026</p>
-              <p>September 1, 2026</p>
-              <p className="mt-2">
-                This is the official board roster for the 2026-2027 academic year. No other positions or titles are recognized by the organization outside of what's listed here.
-              </p>
-              <p className="mt-2">
-                Report any inconsistencies to our president Michael Katongole or Dr. Ravi Prakash, our Faculty Advisor.
-              </p>
-            </div>
-          </div>
-        </div>
+            <h2 id="official-board-notice" className="text-xl font-bold leading-snug text-[#114634]">
+              Official 2026-2027 Executive Board
+            </h2>
+            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43]">
+              This is the official roster for the 2026-2027 academic year. It took effect on September 1, 2026, and replaces all prior rosters. Positions and titles not listed here are not recognized by ColorStack UTD.
+            </p>
+            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43]">
+              To report an error or request a correction, contact our President,{" "}
+              <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:michael.katongole@utdallas.edu">Michael Katongole</a>, or our Faculty Advisor,{" "}
+              <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:ravip@utdallas.edu">Dr. Ravi Prakash</a>.
+            </p>
+          </motion.div>
+        </section>
       )}
 
       {/* Year selector */}

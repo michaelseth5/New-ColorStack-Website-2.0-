@@ -199,14 +199,15 @@ export default function Join() {
             </motion.div>
           ) : (
             <div className="bg-[#f5f5f5] rounded-3xl p-8 md:p-10">
-              <p className="text-[#EC7524]/70 text-xs mb-2 tracking-wide">// fill this out</p>
+              <p className="chapter-kicker mb-2">// fill this out</p>
               <h2 className="text-2xl font-black text-foreground mb-8">Interest Form</h2>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Full Name</label>
+                  <label htmlFor="interest-name" className="block text-xs font-bold uppercase tracking-widest text-foreground/70 mb-2">Full Name</label>
                   <input
                     type="text"
+                    id="interest-name"
                     name="name"
                     required
                     value={form.name}
@@ -217,9 +218,10 @@ export default function Join() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">UTD Email</label>
+                  <label htmlFor="interest-email" className="block text-xs font-bold uppercase tracking-widest text-foreground/70 mb-2">UTD Email</label>
                   <input
                     type="email"
+                    id="interest-email"
                     name="email"
                     required
                     value={form.email}
@@ -230,8 +232,9 @@ export default function Join() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Major</label>
+                  <label htmlFor="interest-major" className="block text-xs font-bold uppercase tracking-widest text-foreground/70 mb-2">Major</label>
                   <select
+                    id="interest-major"
                     name="major"
                     required
                     value={form.major}
@@ -244,8 +247,9 @@ export default function Join() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Year</label>
+                  <label htmlFor="interest-year" className="block text-xs font-bold uppercase tracking-widest text-foreground/70 mb-2">Year</label>
                   <select
+                    id="interest-year"
                     name="year"
                     required
                     value={form.year}
@@ -265,7 +269,7 @@ export default function Join() {
                   {status === "submitting" ? "Submitting..." : "Submit Interest Form"}
                 </button>
 
-                <p className="text-center text-foreground/40 text-xs">
+                <p className="text-center text-foreground/65 text-xs">
                   We don't spam. Just the essentials.
                 </p>
               </form>

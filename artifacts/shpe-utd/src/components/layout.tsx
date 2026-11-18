@@ -241,6 +241,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="chapter-nav-mobile">
             <HeaderIconLinks />
+            <Link href="/join" className="chapter-button chapter-nav-cta">Join</Link>
             <button
               className="text-foreground/70 hover:text-foreground p-2 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

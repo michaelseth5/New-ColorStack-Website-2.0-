@@ -797,16 +797,16 @@ export default function Home() {
       </section>
 
       {/* ── What We Do ──────────────────────────────── */}
-      <section className="bg-white py-16 md:py-24 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto rounded-[2rem] bg-[#EC7524] px-5 py-10 sm:px-10 md:px-14 md:py-16 shadow-[0_20px_50px_rgba(140,67,13,0.12)]">
-          <div className="max-w-3xl mx-auto text-left mb-10">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-black/65 text-xs mb-5 tracking-wide">// what we do</p>
+      <section className="bg-white py-20 md:py-28 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-14">
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-5 tracking-wide">// what we do</p>
             <motion.h2
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black text-[#171717] mb-5 tracking-tight"
+              className="text-3xl md:text-4xl font-black text-foreground mb-5"
             >
               Three Pillars. One Mission.
             </motion.h2>
@@ -815,7 +815,7 @@ export default function Home() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-80px" }}
-              className="text-base md:text-lg font-medium text-[#171717]/85 leading-relaxed"
+              className="text-[1.1rem] md:text-[1.25rem] font-medium text-foreground/70 leading-relaxed"
             >
               ColorStack's Core Mission Is To Increase The Number Of Black, Latinx, And Indigenous Students Who Graduate With Computer Science Degrees And Launch Rewarding Technical Careers. We Do That Through Three Pillars.
             </motion.p>
@@ -852,14 +852,14 @@ export default function Home() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-2xl bg-white p-6 flex flex-col shadow-sm overflow-hidden"
+                className="rounded-2xl p-7 flex flex-col shadow-sm"
+                style={{ backgroundColor: pillar.bg }}
               >
-                <div className="w-9 h-9 rounded-full text-white flex items-center justify-center mb-5 flex-shrink-0"
-                  style={{ backgroundColor: pillar.bg }}>
+                <div className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center mb-5 flex-shrink-0">
                   {pillar.icon}
                 </div>
-                <h3 className="text-xl font-black text-[#171717] mb-3">{pillar.title}</h3>
-                <p className="text-[0.93rem] text-[#333]/75 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
+                <h3 className="text-xl font-black text-white mb-3">{pillar.title}</h3>
+                <p className="text-[0.93rem] text-white/70 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
                 <img
                   src={pillar.img}
                   alt={pillar.title}
@@ -871,7 +871,7 @@ export default function Home() {
           </div>
 
           {/* ── Mission + Stats ───────────────────────── */}
-          <div className="mt-10 bg-[#1a1a1a] rounded-3xl px-6 sm:px-8 py-12 text-center">
+          <div className="mt-16 -mx-6 bg-[#1a1a1a] rounded-3xl px-8 py-16 text-center">
             <motion.h2
               variants={fadeUp}
               initial="hidden"
@@ -898,11 +898,11 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
                 >
-                  <div className="text-[3rem] md:text-[3.5rem] font-black text-[#EC7524] leading-none mb-2">
+                  <div className="text-[3rem] md:text-[3.5rem] font-black text-white leading-none mb-2">
                     <AnimatedCounter end={stat.num} />
                     {stat.suffix}
                   </div>
-                  <p className="text-white/85 text-[12px] font-bold uppercase tracking-widest">{stat.label}</p>
+                  <p className="text-primary text-[12px] font-bold uppercase tracking-widest">{stat.label}</p>
                 </motion.div>
               ))}
             </div>

@@ -73,7 +73,7 @@ interface Ambassador {
 const leadership2025: Officer[] = [
   { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
   { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
-  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu" },
+  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
   { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },
   { name: "Marwan Hegazy", title: "Secretary", image: marwanImg, linkedinUrl: "https://www.linkedin.com/in/marwan-hegazy/" },
 ];
@@ -99,7 +99,7 @@ const ambassadors2025: Ambassador[] = [
 // ── 2026 – 2027 ─────────────────────────────────────────────────────────────
 
 const leadership2026: Officer[] = [
-  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu", internLogo: logoCiti, internCompany: "Citi" },
+  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
   { name: "Leila Igwegbe", title: "Product Manager", image: leilaImg, linkedinUrl: "https://www.linkedin.com/in/leila-igwegbe/", internLogo: logoDatadog, internCompany: "Datadog", internLogoZoom: true },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },

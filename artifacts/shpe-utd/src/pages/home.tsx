@@ -798,10 +798,10 @@ export default function Home() {
       </section>
 
       {/* ── What We Do ──────────────────────────────── */}
-      <section className="review-mission bg-white py-20 md:py-28 px-6">
+      <section className="review-mission py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-(--review-green) text-xs mb-5 tracking-wide">// what we do</p>
+            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-foreground text-xs mb-5 tracking-wide">// what we do</p>
             <motion.h2
               variants={fadeUp}
               initial="hidden"
@@ -816,7 +816,7 @@ export default function Home() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-80px" }}
-              className="text-[1.1rem] md:text-[1.25rem] font-medium text-foreground/70 leading-relaxed"
+              className="text-[1.1rem] md:text-[1.25rem] font-medium text-foreground leading-relaxed"
             >
               ColorStack's Core Mission Is To Increase The Number Of Black, Latinx, And Indigenous Students Who Graduate With Computer Science Degrees And Launch Rewarding Technical Careers. We Do That Through Three Pillars.
             </motion.p>
@@ -828,7 +828,8 @@ export default function Home() {
                 title: "Get Technically Sharp",
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
                 img: `${BASE}/speed.jpg`,
-                showFullPhoto: true,
+                width: 2048,
+                height: 1536,
                 icon: <Terminal size={18} strokeWidth={1.8} />,
                 accent: "orange",
               },
@@ -836,6 +837,8 @@ export default function Home() {
                 title: "Build Community",
                 desc: "We bring together individuals who look like us, from all different backgrounds, and create a space where no one has to figure it out alone. Upperclassmen pour into underclassmen, and every member has access to mentorship, accountability, and people who genuinely want to see them win.",
                 img: `${BASE}/community.jpg`,
+                width: 1102,
+                height: 732,
                 icon: <GitMerge size={18} strokeWidth={1.8} />,
                 accent: "green",
               },
@@ -843,6 +846,8 @@ export default function Home() {
                 title: "Get Connected",
                 desc: "Once our members are built, we connect them to the opportunities they deserve. Internships, new grad roles, and industry relationships. No talented student goes unseen.",
                 img: `${BASE}/connected.png`,
+                width: 738,
+                height: 432,
                 icon: <Globe size={18} strokeWidth={1.8} />,
                 accent: "mint",
               },
@@ -854,23 +859,24 @@ export default function Home() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="review-pillar rounded-2xl p-7 flex flex-col"
+                className="review-pillar"
                 data-accent={pillar.accent}
               >
-                <div className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center mb-5 flex-shrink-0">
-                  {pillar.icon}
-                </div>
-                <h3 className="text-xl font-black text-white mb-3">{pillar.title}</h3>
-                <p className="text-[0.93rem] text-white/70 leading-relaxed mb-6 flex-1">{pillar.desc}</p>
                 <img
                   src={pillar.img}
                   alt={pillar.title}
                   loading="lazy"
                   decoding="async"
-                  className={pillar.showFullPhoto ? "review-pillar-full-photo w-full" : "w-full rounded-xl object-cover max-h-[220px]"}
-                  width={pillar.showFullPhoto ? 2048 : undefined}
-                  height={pillar.showFullPhoto ? 1536 : undefined}
+                  width={pillar.width}
+                  height={pillar.height}
                 />
+                <div className="review-pillar-copy">
+                  <div className="review-pillar-icon w-9 h-9 rounded-full flex items-center justify-center mb-4">
+                    {pillar.icon}
+                  </div>
+                  <h3 className="text-xl font-black mb-3">{pillar.title}</h3>
+                  <p className="text-base leading-relaxed">{pillar.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>

@@ -8,7 +8,6 @@ import eboardOluwadamilare from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg
 import eboardMichael from "@assets/Michael_Katongole_1778782883428.png";
 import eboardRamzi from "@assets/Ramzi_Burhan_1778782883429.jpg";
 import eboardJose from "@assets/Jose_Rogel_1778782883427.png";
-import eboardHenos from "@assets/Henos_1778797249996.webp";
 import eboardHasset from "@assets/Hasset_Getachew_1778782883426.jpg";
 import eboardAnthonio from "@assets/Anthonio_Odonkor.jpg";
 import eboardTimage from "@assets/Timage_Abubaker_1778782883430.jpg";
@@ -483,7 +482,6 @@ interface EboardMember {
  * center (index 2 of 5). */
 const eboardFront: EboardMember[] = [
   { name: "Jose Juan Rogel Ramirez", title: "Vice President", img: eboardJose },
-  { name: "Henos Habteab Tekie", title: "Secretary", img: eboardHenos },
   { name: "Michael Katongole", title: "President", img: eboardMichael },
   { name: "Hasset Getachew", title: "Treasurer", img: eboardHasset },
   { name: "Anthonio Duke Odonkor", title: "Committee Chair / Corporate & Outreach Director", img: eboardAnthonio },

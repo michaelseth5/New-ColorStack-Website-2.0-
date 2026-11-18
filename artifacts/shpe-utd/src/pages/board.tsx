@@ -27,7 +27,6 @@ import nadirImg from "@assets/Nadir_Muktar_1778782883428.jpg";
 import joseImg from "@assets/Jose_Rogel_1778782883427.png";
 import timageImg from "@assets/Timage_Abubaker_1778782883430.jpg";
 import hassetImg from "@assets/Hasset_Getachew_1778782883426.jpg";
-import henosImg from "@assets/Henos_1778797249996.webp";
 import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
 import rodolfoImg from "@assets/Rodolfo_Gonzalez.jpg";
 import damianImg from "@assets/Damian_Aguilar.jpg";
@@ -90,7 +89,6 @@ const ambassadors2025: Ambassador[] = [
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/" },
   { name: "Hasset Getachew", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
   { name: "Damian Aguilar", image: damianImg, linkedinUrl: "https://www.linkedin.com/in/damianaguilar2004/" },
-  { name: "Henos Tekie", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Mamoudou Balde", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/" },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
 ];
@@ -107,7 +105,6 @@ const leadership2026: Officer[] = [
 
 const operations2026: Officer[] = [
   { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
-  { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Timage Abubaker", title: "Public Communications", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internBadgeClass: "w-16 h-9", internLogoClass: "w-full h-full object-contain" },
   { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/", internLogo: logoEA, internCompany: "EA Sports", internLogoZoom: true },

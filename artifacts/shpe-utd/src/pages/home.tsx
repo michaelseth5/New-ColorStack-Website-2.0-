@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Terminal, GitMerge, Globe, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState, useCallback, useRef } from "react";
@@ -8,7 +8,6 @@ import eboardOluwadamilare from "@assets/Oluwadamilare_Sunmola_1778782883429.jpg
 import eboardMichael from "@assets/Michael_Katongole_1778782883428.png";
 import eboardRamzi from "@assets/Ramzi_Burhan_1778782883429.jpg";
 import eboardJose from "@assets/Jose_Rogel_1778782883427.png";
-import eboardHenos from "@assets/Henos_1778797249996.webp";
 import eboardHasset from "@assets/Hasset_Getachew_1778782883426.jpg";
 import eboardAnthonio from "@assets/Anthonio_Odonkor.jpg";
 import eboardTimage from "@assets/Timage_Abubaker_1778782883430.jpg";
@@ -129,12 +128,14 @@ function buildShuffledSlides(slides: Slide[]): Slide[] {
 }
 
 function EventCarousel() {
+  const reduceMotion = useReducedMotion();
   const [slides] = useState<Slide[]>(() => [
     ...featuredCarouselSlides,
     ...buildShuffledSlides(carouselSlides.filter((s) => !featuredSrcs.has(s.src))),
   ]);
   const [index, setIndex] = useState(0);
-  const [perView, setPerView] = useState(3);
+  const getPerView = () => window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+  const [perView, setPerView] = useState(getPerView);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const total = slides.length;
 
@@ -155,20 +156,21 @@ function EventCarousel() {
   const prev = useCallback(() => setIndex(i => (i <= 0 ? maxIndex : i - 1)), [maxIndex]);
 
   useEffect(() => {
+    if (reduceMotion) return;
     const schedule = () => {
       const delay = 2500 + Math.random() * 2500;
       timerRef.current = setTimeout(() => { next(); schedule(); }, delay);
     };
     schedule();
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [next]);
+  }, [next, reduceMotion]);
 
   useEffect(() => {
     setIndex(i => Math.min(i, maxIndex));
   }, [maxIndex]);
 
   return (
-    <section className="bg-[#114634] py-16 px-6 overflow-hidden">
+    <section className="review-events bg-[#114634] py-16 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-black text-white mb-10 text-center tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
           <span className="text-white/30">&lt;</span>
@@ -192,6 +194,8 @@ function EventCarousel() {
                     <img
                       src={slide.src}
                       alt={slide.event}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
@@ -240,12 +244,13 @@ function EventCarousel() {
 }
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
+  const reduceMotion = useReducedMotion();
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || reduceMotion) return;
     let startTime: number | null = null;
     let animationFrame: number;
     const animate = (timestamp: number) => {
@@ -258,9 +263,9 @@ function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number
     };
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [inView, end, duration]);
+  }, [inView, end, duration, reduceMotion]);
 
-  return <span ref={ref}>{count}</span>;
+  return <span ref={ref}>{reduceMotion ? end : count}</span>;
 }
 
 const fadeUp = {
@@ -477,7 +482,6 @@ interface EboardMember {
  * center (index 2 of 5). */
 const eboardFront: EboardMember[] = [
   { name: "Jose Juan Rogel Ramirez", title: "Vice President", img: eboardJose },
-  { name: "Henos Habteab Tekie", title: "Secretary", img: eboardHenos },
   { name: "Michael Katongole", title: "President", img: eboardMichael },
   { name: "Hasset Getachew", title: "Treasurer", img: eboardHasset },
   { name: "Anthonio Duke Odonkor", title: "Committee Chair / Corporate & Outreach Director", img: eboardAnthonio },
@@ -509,7 +513,7 @@ function EboardPreview() {
   const visible = eboardMembers.slice(page * visibleCount, page * visibleCount + visibleCount);
 
   return (
-    <section className="bg-[#fdf4ee] py-24 px-6">
+    <section className="review-board bg-[#fdf4ee] py-24 px-6">
       <div className="max-w-5xl mx-auto text-center">
         <motion.p
           variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -553,8 +557,8 @@ function EboardPreview() {
                 transition={{ delay: i * 0.06 }}
                 className="flex flex-col items-center w-[120px]"
               >
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                <div className="w-20 h-20 rounded-[20px] overflow-hidden mb-3 border-2 border-border/50 shadow-sm">
+                  <img src={member.img} alt={member.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
                 </div>
                 <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.58rem] text-[#B54708] mb-1 leading-tight">
                   role = "{member.title}"
@@ -599,6 +603,7 @@ function EboardPreview() {
 }
 
 export default function Home() {
+  const reduceMotion = useReducedMotion();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [direction, setDirection] = useState(1);
   const [showCursor, setShowCursor] = useState(true);
@@ -640,42 +645,38 @@ export default function Home() {
   }, [testimonials.length]);
 
   useEffect(() => {
+    if (reduceMotion) return;
     const id = setInterval(next, 4500);
     return () => clearInterval(id);
-  }, [next]);
+  }, [next, reduceMotion]);
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="review-home flex flex-col w-full">
 
       {/* ── Hero ────────────────────────────────────── */}
-      <section className="w-full flex flex-col md:flex-row min-h-[calc(100vh-64px)]">
+      <section className="review-hero">
         {/* Left – photo */}
-        <div className="w-full md:w-[55%] h-[52vw] md:h-auto relative overflow-hidden">
+        <div className="review-hero-image">
           <img
             src={heroImg}
             alt="Black and Latinx computing students at UTD"
+            width={3832}
+            height={2555}
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-center"
           />
         </div>
 
         {/* Right – welcome panel */}
-        <div className="w-full md:w-[45%] flex flex-col justify-center bg-[#fdf4ee] px-10 md:px-16 lg:px-20 py-16 relative overflow-hidden">
-          {/* Subtle circuit pattern */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.05]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='80' cy='0' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='0' cy='80' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%231a1a1a'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%231a1a1a'/%3E%3Cline x1='0' y1='0' x2='40' y2='0' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='0' y1='0' x2='0' y2='40' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='40' y2='80' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='80' y1='80' x2='80' y2='40' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='80' y2='40' stroke='%231a1a1a' stroke-width='0.4'/%3E%3Cline x1='40' y1='40' x2='40' y2='0' stroke='%231a1a1a' stroke-width='0.4'/%3E%3C/svg%3E")`,
-              backgroundSize: "80px 80px",
-            }}
-          />
-
+        <div className="review-hero-copy">
           <div className="relative z-10">
 
             {/* Wordmark */}
             <motion.div
-              initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.65, delay: 0.05, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.05, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="flex items-center gap-4 mb-8"
             >
               <div className="relative flex-shrink-0">
@@ -692,8 +693,8 @@ export default function Home() {
 
             {/* // Welcome To */}
             <motion.p
-              initial={{ opacity: 0, y: 16, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.18, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               style={{ fontFamily: "'Fira Code', monospace" }}
               className="text-[#EC7524]/65 text-xs mb-3 tracking-widest"
@@ -703,14 +704,14 @@ export default function Home() {
 
             {/* ColorStack title */}
             <motion.div
-              initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.12, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="relative inline-block mb-1"
             >
               <h1 className="text-[clamp(2.6rem,4vw,3.8rem)] font-black text-[#1a1a1a] leading-none tracking-tight">
                 ColorStack
-                {showCursor && (
+                {showCursor && !reduceMotion && (
                   <motion.span
                     className="font-thin text-[#EC7524] ml-0.5"
                     animate={{ opacity: [1, 0, 1] }}
@@ -730,9 +731,9 @@ export default function Home() {
 
             {/* At The University... */}
             <motion.p
-              initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.44, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.18, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="text-[#1a1a1a]/70 font-medium text-[1rem] mt-3 mb-6 leading-snug"
             >
               At The University Of Texas At Dallas
@@ -740,9 +741,9 @@ export default function Home() {
 
             {/* Tagline */}
             <motion.div
-              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.56, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.22, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="mb-4"
             >
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -762,9 +763,9 @@ export default function Home() {
 
             {/* Body copy */}
             <motion.p
-              initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.68, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.27, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="text-[0.95rem] text-[#1a1a1a]/55 mb-9 max-w-sm leading-relaxed"
             >
               Building The Next Generation Of Black, Latinx, And Indigenous Engineers At UT Dallas.
@@ -772,9 +773,9 @@ export default function Home() {
 
             {/* Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.55, delay: 0.8, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.35, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
               className="flex flex-wrap gap-4"
             >
               <Link href="/join">
@@ -797,7 +798,7 @@ export default function Home() {
       </section>
 
       {/* ── What We Do ──────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28 px-6">
+      <section className="review-mission bg-white py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-14">
             <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-5 tracking-wide">// what we do</p>
@@ -821,12 +822,13 @@ export default function Home() {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="review-pillars">
             {[
               {
                 title: "Get Technically Sharp",
                 desc: "We build technically elite members. That means mastering Data Structures and Algorithms in Java and Python, building full stack applications with JavaScript, React, Node.js, and MongoDB, and deploying production ready projects on AWS and Azure with full CI/CD pipelines.",
                 img: `${BASE}/speed.jpg`,
+                showFullPhoto: true,
                 icon: <Terminal size={18} strokeWidth={1.8} />,
                 bg: "#EC7524",
               },
@@ -852,7 +854,7 @@ export default function Home() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-2xl p-7 flex flex-col shadow-sm"
+                className="review-pillar rounded-2xl p-7 flex flex-col"
                 style={{ backgroundColor: pillar.bg }}
               >
                 <div className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center mb-5 flex-shrink-0">
@@ -863,15 +865,18 @@ export default function Home() {
                 <img
                   src={pillar.img}
                   alt={pillar.title}
-                  className="w-full rounded-xl object-cover"
-                  style={{ maxHeight: "220px" }}
+                  loading="lazy"
+                  decoding="async"
+                  className={pillar.showFullPhoto ? "review-pillar-full-photo w-full" : "w-full rounded-xl object-cover max-h-[220px]"}
+                  width={pillar.showFullPhoto ? 2048 : undefined}
+                  height={pillar.showFullPhoto ? 1536 : undefined}
                 />
               </motion.div>
             ))}
           </div>
 
           {/* ── Mission + Stats ───────────────────────── */}
-          <div className="mt-16 -mx-6 bg-[#1a1a1a] rounded-3xl px-8 py-16 text-center">
+          <div className="review-stats mt-16 rounded-3xl px-8 py-16">
             <motion.h2
               variants={fadeUp}
               initial="hidden"
@@ -898,7 +903,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
                 >
-                  <div className="text-[3rem] md:text-[3.5rem] font-black text-white leading-none mb-2">
+                  <div className="review-stat-figure font-black leading-none mb-2">
                     <AnimatedCounter end={stat.num} />
                     {stat.suffix}
                   </div>
@@ -979,7 +984,7 @@ export default function Home() {
       <EboardPreview />
 
       {/* ── Get Involved ────────────────────────────── */}
-      <section className="bg-[#f7f7f7] py-24 px-6">
+      <section className="review-cta bg-[#f7f7f7] py-24 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {

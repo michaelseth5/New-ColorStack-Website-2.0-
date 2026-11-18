@@ -3,8 +3,8 @@ import { Menu, X, ChevronDown, Instagram, Linkedin, TreePine } from "lucide-reac
 import { useState, useEffect, useRef } from "react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const navLogo = `${BASE}/colorstack-logo.png`;
-const logo = `${BASE}/logo-bg.png`;
+const navLogo = `${BASE}/colorstack-logo.webp`;
+const logo = `${BASE}/logo-bg.webp`;
 
 const SOCIAL_LINKS = [
   { Icon: Instagram, href: "https://www.instagram.com/colorstackutd/", label: "Instagram", handle: "@colorstackutd" },
@@ -46,42 +46,40 @@ function RotatingQuote() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let timeout: ReturnType<typeof setTimeout>;
     const interval = setInterval(() => {
       setVisible(false);
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setIdx(i => (i + 1) % QUOTES.length);
         setVisible(true);
       }, 400);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, []);
 
   const quote = QUOTES[idx];
   return (
     <div
-      className="max-w-sm text-sm leading-relaxed transition-opacity duration-400"
+      className="chapter-footer-quote max-w-sm text-sm leading-relaxed transition-opacity duration-400"
       style={{ opacity: visible ? 1 : 0 }}
     >
       <p className="text-white/60 italic">"{quote.text}"</p>
-      <p className="text-white/40 mt-1.5">- {quote.author}</p>
+      <p className="text-white/65 mt-1.5">- {quote.author}</p>
     </div>
   );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
   const [location] = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const programsDropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -92,9 +90,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
         setProgramsOpen(false);
       }
     };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setAboutOpen(false);
+      setProgramsOpen(false);
+      setMobileMenuOpen(false);
+    };
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, []);
+
+  useEffect(() => {
+    setAboutOpen(false);
+    setProgramsOpen(false);
+    setMobileMenuOpen(false);
+  }, [location]);
 
   const isActive = (path: string) => location === path;
 
@@ -105,20 +119,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans">
+      <a className="chapter-skip" href="#main-content">Skip to content</a>
       {/* Navbar */}
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
-          isScrolled ? "shadow-[0_1px_0_0_rgba(0,0,0,0.08)]" : ""
-        }`}
-      >
-        <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center h-16">
+      <nav className="chapter-nav" aria-label="Main navigation">
+        <div className="chapter-shell chapter-nav-inner">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center" data-testid="link-home">
-            <img src={navLogo} alt="ColorStack UTD" style={{ height: "40px", width: "auto" }} />
+            <img src={navLogo} alt="ColorStack UTD" width={44} height={44} className="h-11 w-11 object-contain" />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="chapter-nav-desktop">
             <Link href="/events" className={linkClass("/events")} data-testid="link-events">
               Events
             </Link>
@@ -141,7 +152,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     ? "text-primary"
                     : "text-foreground/80 hover:text-primary"
                 }`}
-                data-testid="dropdown-programs"
+                aria-expanded={programsOpen} data-testid="dropdown-programs"
               >
                 Programs
                 <ChevronDown
@@ -187,7 +198,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 className={`flex items-center gap-1 text-[15px] font-medium transition-colors duration-150 ${
                   isActive("/about") ? "text-primary" : "text-foreground/80 hover:text-primary"
                 }`}
-                data-testid="dropdown-about"
+                aria-expanded={aboutOpen} data-testid="dropdown-about"
               >
                 About Us
                 <ChevronDown
@@ -223,19 +234,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <HeaderIconLinks />
             </div>
 
-            <Link href="/join" data-testid="link-join">
-              <button className="bg-primary text-white text-[14px] font-semibold px-5 py-2 rounded-full hover:bg-primary/90 transition-all hover:-translate-y-px">
-                Join
-              </button>
+            <Link href="/join" data-testid="link-join" className="chapter-button chapter-nav-cta">
+              Join
             </Link>
           </div>
 
-          <div className="flex items-center gap-0.5 md:hidden">
+          <div className="chapter-nav-mobile">
             <HeaderIconLinks />
             <button
               className="text-foreground/70 hover:text-foreground p-2 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              data-testid="button-mobile-menu"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} aria-expanded={mobileMenuOpen} aria-controls={mobileMenuOpen ? "chapter-mobile-menu" : undefined} data-testid="button-mobile-menu"
             >
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -244,7 +253,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border/40 bg-white">
+          <div id="chapter-mobile-menu" className="chapter-mobile-menu border-t border-border/40 bg-white">
             <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
               {[
                 { name: "Events", path: "/events" },
@@ -276,21 +285,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
       </nav>
 
-      <main className="flex-1 pt-16">
-        {children}
+      <main id="main-content" className="flex-1" tabIndex={-1}>
+        <div key={location} className="chapter-route" data-home={location === "/" ? "" : undefined}>
+          {children}
+        </div>
       </main>
 
-      <footer className="bg-[#1a1a1a] text-white py-14 mt-auto">
-        <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <footer className="chapter-footer bg-[#1a1a1a] text-white mt-auto">
+        <div className="chapter-shell grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="col-span-1 md:col-span-2">
             <div className="mb-5">
-              <img src={logo} alt="ColorStack at UTD" className="h-10 w-auto rounded-lg object-contain" />
+              <img src={logo} alt="ColorStack at UTD" width={40} height={40} loading="lazy" decoding="async" className="h-10 w-auto rounded-lg object-contain" />
             </div>
             <RotatingQuote />
           </div>
 
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white/40 mb-4">Quick Links</h4>
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white/65 mb-4">Quick Links</h4>
             <ul className="space-y-2.5">
               {[
                 { name: "Home", path: "/" },
@@ -314,7 +325,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white/40 mb-4">Connect</h4>
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white/65 mb-4">Connect</h4>
             <a
               href="mailto:utdcolorstack@gmail.com"
               className="text-primary hover:text-primary/80 text-sm transition-colors block mb-4"
@@ -331,7 +342,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 text-white/60 hover:text-white text-sm transition-colors"
                 >
-                  <Icon size={15} strokeWidth={1.8} className="text-white/40" />
+                  <Icon size={15} strokeWidth={1.8} className="text-white/65" />
                   {handle}
                 </a>
               ))}
@@ -339,7 +350,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 md:px-10 mt-12 pt-8 border-t border-white/10 text-center text-white/30 text-xs">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 mt-12 pt-8 border-t border-white/10 text-center text-white/65 text-xs">
           &copy; {new Date().getFullYear()} ColorStack at UT Dallas. All rights reserved.
         </div>
         <div className="max-w-6xl mx-auto px-6 md:px-10 mt-6 pt-4 border-t border-white/5 text-center">

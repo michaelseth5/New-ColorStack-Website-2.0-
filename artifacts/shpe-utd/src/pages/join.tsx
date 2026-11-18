@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { CheckCircle2, Slack, Terminal, GitMerge, Globe, Instagram, Linkedin, TreePine, Mail } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -74,11 +74,9 @@ export default function Join() {
           transition={{ duration: 0.5 }}
           className="relative z-10"
         >
-          <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-white/50 text-xs mb-4 tracking-wide">// start here</p>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
-            <span className="text-white/30">&lt;</span>
+          <p className="text-white/50 text-xs mb-4 tracking-wide">// start here</p>
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
             <span className="text-white"> Join Us </span>
-            <span className="text-white/30">/&gt;</span>
           </h1>
           <p className="text-white/75 text-lg font-medium max-w-2xl mx-auto">
             Become a member of ColorStack UTD. Get cracked, build community, and get connected to the opportunities you deserve.
@@ -94,7 +92,7 @@ export default function Join() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// what you get</p>
+          <p className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// what you get</p>
           <h2 className="text-3xl font-black text-foreground mb-8">What To Expect When You Join.</h2>
 
           <div className="space-y-6 mb-10">
@@ -147,7 +145,7 @@ export default function Join() {
 
           {/* Contact and socials */}
           <div className="mt-8 p-6 bg-[#f5f5f5] rounded-2xl">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// reach out</p>
+            <p className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// reach out</p>
             <h3 className="font-black text-foreground text-lg mb-4">Get In Touch</h3>
             <a
               href="mailto:utdcolorstack@gmail.com"
@@ -201,7 +199,7 @@ export default function Join() {
             </motion.div>
           ) : (
             <div className="bg-[#f5f5f5] rounded-3xl p-8 md:p-10">
-              <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-2 tracking-wide">// fill this out</p>
+              <p className="text-[#EC7524]/70 text-xs mb-2 tracking-wide">// fill this out</p>
               <h2 className="text-2xl font-black text-foreground mb-8">Interest Form</h2>
 
               <form onSubmit={handleSubmit} className="space-y-5">

@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin, Clock, ArrowRight, Instagram, FileText, Code2, Award, Network, Users, Briefcase, Mic2, MessageSquare, Sparkles, Star, Handshake } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const gbm1 = `${BASE}/gbm-1.jpg`;
-const gbm2 = `${BASE}/gbm-2.jpg`;
-const gbm3 = `${BASE}/gbm-3.jpg`;
-const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.jpg`);
-const at = [1, 2, 4, 5, 6, 7, 8, 9].map(i => `${BASE}/at-${i}.jpg`);
-const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.jpg`);
-const tp = Array.from({ length: 11 }, (_, i) => `${BASE}/tp-${i + 1}.jpg`);
-const api101 = `${BASE}/api101.jpg`;
-const cf = Array.from({ length: 14 }, (_, i) => `${BASE}/cf-${i + 1}.jpg`);
+const gbm1 = `${BASE}/gbm-1.webp`;
+const gbm2 = `${BASE}/gbm-2.webp`;
+const gbm3 = `${BASE}/gbm-3.webp`;
+const rn = Array.from({ length: 11 }, (_, i) => `${BASE}/rn-${i + 1}.webp`);
+const at = [1, 2, 4, 5, 6, 7, 8, 9].map(i => `${BASE}/at-${i}.webp`);
+const sk = Array.from({ length: 6 }, (_, i) => `${BASE}/sk-${i + 1}.webp`);
+const tp = Array.from({ length: 11 }, (_, i) => `${BASE}/tp-${i + 1}.webp`);
+const api101 = `${BASE}/api101.webp`;
+const cf = Array.from({ length: 14 }, (_, i) => `${BASE}/cf-${i + 1}.webp`);
 
 type EventTab = "Upcoming" | "Past";
 
@@ -32,6 +32,7 @@ interface BaseEvent {
   desc: string;
   image?: string;
   photos?: string[];
+  collage?: string[];
   symbol?: SymbolConfig;
   recap?: string;
   highlights?: string[];
@@ -203,6 +204,8 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
         <div className="relative h-72 w-full flex-shrink-0 overflow-hidden sm:h-80 lg:h-[28rem] lg:max-h-[32rem] lg:w-[min(100%,26rem)] lg:max-w-[42%]">
           <AnimatePresence mode="wait">
             <motion.img
+              loading="lazy"
+              decoding="async"
               key={current}
               src={photos[current]}
               alt={`${event.title} photo ${current + 1}`}
@@ -734,10 +737,8 @@ export default function Events() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
-            <span className="text-white/30">&lt;</span>
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
             <span className="text-white"> Our Events </span>
-            <span className="text-white/30">/&gt;</span>
           </h1>
           <p className="text-white/80 text-xl font-medium max-w-2xl mx-auto">
             Discover Opportunities To Learn, Grow, And Connect With The ColorStack UTD Community.

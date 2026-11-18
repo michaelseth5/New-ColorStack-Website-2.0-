@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { useState } from "react";
 import { Linkedin, Mail, ShieldCheck } from "lucide-react";
 
@@ -158,7 +158,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
     >
       {/* Photo */}
       <div className="w-full aspect-square overflow-hidden bg-[#fdf4ee] relative">
-        <img
+        <img loading="lazy" decoding="async"
           src={officer.image}
           alt={officer.name}
           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
@@ -174,7 +174,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
         </h3>
 
         {/* Role */}
-        <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[0.62rem] text-[#EC7524] mb-1 leading-tight">
+        <p className="text-[0.62rem] text-[#EC7524] mb-1 leading-tight">
           role = "{officer.title}"
         </p>
 
@@ -204,7 +204,7 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
             )}
             {officer.internLogo && (
               <div className={`${officer.internBadgeClass ?? "w-9 h-9"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={officer.internCompany}>
-                <img src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
+                <img loading="lazy" decoding="async" src={officer.internLogo} alt={officer.internCompany} className={officer.internLogoClass ?? `object-contain ${officer.internLogoZoom ? "w-8 h-8" : "w-6 h-6"}`} />
               </div>
             )}
           </div>
@@ -231,13 +231,11 @@ function OfficerCard({ officer, index }: { officer: Officer; index: number }) {
 function SectionHeading({ label, title }: { label: string; title: string }) {
   return (
     <div className="mb-10">
-      <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-2 tracking-wide">
+      <p className="text-[#EC7524]/70 text-xs mb-2 tracking-wide">
         // {label.toLowerCase()}
       </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
-        <span className="text-foreground/25">&lt;</span>
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground">
         <span> {title} </span>
-        <span className="text-foreground/25">/&gt;</span>
       </h2>
       <div className="mt-4 h-1 w-16 bg-primary rounded-full" />
     </div>
@@ -263,12 +261,10 @@ export default function Board() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.7 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6" style={{ fontFamily: "'Fira Code', monospace" }}>
-              <span className="text-white/30">&lt;</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
               <span className="text-white"> Meet The Board </span>
-              <span className="text-white/30">/&gt;</span>
             </h1>
             <p className="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">
               Built By Students. Driven By Community. Here To Make Sure You Secure "The Bag"!!
@@ -365,7 +361,7 @@ export default function Board() {
                 className="flex flex-col group bg-white rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="w-full aspect-square overflow-hidden relative">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={amb.image}
                     alt={amb.name}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
@@ -393,7 +389,7 @@ export default function Board() {
                     )}
                     {amb.internLogo && (
                       <div className={`${amb.internBadgeClass ?? "w-8 h-8"} rounded-xl bg-white border border-border shadow-sm flex items-center justify-center overflow-hidden`} title={amb.internCompany}>
-                        <img src={amb.internLogo} alt={amb.internCompany} className={amb.internLogoClass ?? `object-contain ${amb.internLogoZoom ? "w-7 h-7" : "w-5 h-5"}`} />
+                        <img loading="lazy" decoding="async" src={amb.internLogo} alt={amb.internCompany} className={amb.internLogoClass ?? `object-contain ${amb.internLogoZoom ? "w-7 h-7" : "w-5 h-5"}`} />
                       </div>
                     )}
                   </div>

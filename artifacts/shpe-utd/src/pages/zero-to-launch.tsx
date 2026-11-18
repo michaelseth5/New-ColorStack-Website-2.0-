@@ -1,3 +1,4 @@
+import { m as motion } from "framer-motion";
 import { Code2, FileText, Users, UserRoundCheck, ArrowRight } from "lucide-react";
 
 const features = [
@@ -45,7 +46,7 @@ export default function ZeroToLaunch() {
             href="https://learnwleo.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-full border border-[#C9A84C]/55 bg-[#C9A84C]/15 px-4 py-2 text-xs font-semibold tracking-wide text-[#F4E2A8] hover:bg-[#C9A84C]/25"
+            className="inline-flex items-center rounded-full border border-[#C9A84C]/55 bg-[#C9A84C]/15 px-4 py-2 text-xs font-semibold tracking-wide text-[#715812] hover:bg-[#C9A84C]/25"
           >
             In Partnership with LiLO x Learn with Leo
           </a>
@@ -95,18 +96,23 @@ export default function ZeroToLaunch() {
         </div>
       </section>
 
-      <section className="px-6 py-14">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-2xl font-extrabold text-[#114634] md:text-3xl">What You Get</h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {features.map(({ title, description, Icon }) => (
-              <article key={title} className="rounded-2xl border border-[#C9A84C]/35 bg-white p-6 shadow-sm">
+      <section className="chapter-section chapter-program">
+        <div className="chapter-shell chapter-sticky-grid">
+          <h2 className="chapter-heading chapter-sticky-heading">What You Get</h2>
+          <div className="chapter-feature-list">
+            {features.map(({ title, description, Icon }, index) => (
+              <motion.article
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                key={title} className="rounded-2xl border border-[#C9A84C]/35 bg-white p-6 shadow-sm">
                 <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#C9A84C]/18 text-[#9a7e2f]">
                   <Icon size={22} />
                 </div>
                 <h3 className="text-lg font-bold text-[#1a1a1a]">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#1a1a1a]/80">{description}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>

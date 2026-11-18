@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Search, Code2, Users, TrendingUp, User, ArrowRight } from "lucide-react";
 
 const features = [
@@ -51,9 +51,12 @@ export default function ColorStackMini() {
       </section>
 
       {/* Features */}
-      <section className="px-6 py-20 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="chapter-section chapter-mentorship">
+        <div className="chapter-shell chapter-sticky-grid">
+          <div className="chapter-sticky-heading">
+            <h2 className="chapter-heading">Mentorship</h2>
+          </div>
+          <div className="chapter-feature-list">
             {features.map(({ title, desc, Icon }, i) => (
               <motion.div
                 key={title}
@@ -66,7 +69,7 @@ export default function ColorStackMini() {
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Icon size={20} strokeWidth={2} />
                 </div>
-                <h3 className="text-base font-bold text-secondary">{title}</h3>
+                {title !== "Mentorship" && <h3 className="text-base font-bold text-secondary">{title}</h3>}
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
               </motion.div>
             ))}

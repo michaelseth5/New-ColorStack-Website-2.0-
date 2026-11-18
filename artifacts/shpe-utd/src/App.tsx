@@ -1,54 +1,57 @@
+import { lazy, Suspense } from "react";
+import { LazyMotion, domAnimation, MotionConfig } from "framer-motion";
 import { Switch, Route, Router as WouterRouter } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { Layout } from "@/components/layout";
 import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/home";
-import Board from "@/pages/board";
-import Events from "@/pages/events";
-import Sponsors from "@/pages/sponsors";
-import About from "@/pages/about";
-import Resources from "@/pages/resources";
-import Join from "@/pages/join";
-import ZeroToLaunch from "@/pages/zero-to-launch";
-import CodePathTip from "@/pages/codepath-tip";
-import ColorStackMini from "@/pages/colorstack-mini";
-
-const queryClient = new QueryClient();
+const Board = lazy(() => import("@/pages/board"));
+const Events = lazy(() => import("@/pages/events"));
+const Sponsors = lazy(() => import("@/pages/sponsors"));
+const About = lazy(() => import("@/pages/about"));
+const Resources = lazy(() => import("@/pages/resources"));
+const Join = lazy(() => import("@/pages/join"));
+const ZeroToLaunch = lazy(() => import("@/pages/zero-to-launch"));
+const CodePathTip = lazy(() => import("@/pages/codepath-tip"));
+const ColorStackMini = lazy(() => import("@/pages/colorstack-mini"));
 
 function Router() {
   return (
     <Layout>
       <ScrollToTop />
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/board" component={Board} />
-        <Route path="/events" component={Events} />
-        <Route path="/sponsors" component={Sponsors} />
-        <Route path="/about" component={About} />
-        <Route path="/resources" component={Resources} />
-        <Route path="/zero-to-launch" component={ZeroToLaunch} />
-        <Route path="/codepath-tip" component={CodePathTip} />
-        <Route path="/colorstack-mini" component={ColorStackMini} />
-        <Route path="/join" component={Join} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense
+        fallback={<div className="chapter-route-loading" aria-hidden="true" />}
+      >
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/board" component={Board} />
+          <Route path="/events" component={Events} />
+          <Route path="/sponsors" component={Sponsors} />
+          <Route path="/about" component={About} />
+          <Route path="/resources" component={Resources} />
+          <Route path="/zero-to-launch" component={ZeroToLaunch} />
+          <Route path="/codepath-tip" component={CodePathTip} />
+          <Route path="/colorstack-mini" component={ColorStackMini} />
+          <Route path="/join" component={Join} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </Layout>
   );
 }
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+    <LazyMotion features={domAnimation} strict>
+      <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+        <MotionConfig
+          reducedMotion="user"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+        </MotionConfig>
+      </WouterRouter>
+    </LazyMotion>
   );
 }
 

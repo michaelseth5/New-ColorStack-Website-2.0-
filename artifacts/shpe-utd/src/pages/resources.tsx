@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { BookOpen, Map, Code2, ExternalLink } from "lucide-react";
 
 const fadeUp = {
@@ -64,11 +64,9 @@ export default function Resources() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-4 tracking-wide">// everything you need to win</p>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight" style={{ fontFamily: "'Fira Code', monospace" }}>
-            <span className="text-white/30">&lt;</span>
+          <p className="text-[#EC7524]/70 text-xs mb-4 tracking-wide">// everything you need to win</p>
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
             <span className="text-white"> Resources </span>
-            <span className="text-white/30">/&gt;</span>
           </h1>
           <p className="text-white/70 text-lg font-medium max-w-2xl mx-auto">
             Curated tools, guides, and programs to help ColorStack UTD members get cracked, stay connected, and land.
@@ -94,11 +92,9 @@ export default function Resources() {
                 {section.icon}
               </div>
               <div>
-                <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs tracking-wide">{section.label}</p>
-                <h2 className="text-2xl font-black text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
-                  <span className="text-foreground/25">&lt;</span>
+                <p className="text-[#EC7524]/70 text-xs tracking-wide">{section.label}</p>
+                <h2 className="text-2xl font-black text-foreground">
                   <span> {section.title} </span>
-                  <span className="text-foreground/25">/&gt;</span>
                 </h2>
               </div>
             </div>
@@ -136,11 +132,9 @@ export default function Resources() {
 
       {/* Bottom CTA */}
       <section className="bg-[#EC7524] py-16 px-6 text-center">
-        <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-white/60 text-xs mb-4 tracking-wide">// more resources in the community</p>
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-4" style={{ fontFamily: "'Fira Code', monospace" }}>
-          <span className="text-white/30">&lt;</span>
+        <p className="text-white/60 text-xs mb-4 tracking-wide">// more resources in the community</p>
+        <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
           <span> More Resources In Our Slack </span>
-          <span className="text-white/30">/&gt;</span>
         </h2>
         <p className="text-white/80 text-base mb-8 max-w-lg mx-auto">
           Members get access to a private Slack workspace with curated channels for internship openings, study sessions, and peer support.

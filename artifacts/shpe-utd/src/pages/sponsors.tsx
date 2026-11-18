@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import {
   BookOpen, Ear, Clock, TrendingUp, Target,
   Mic2, Code2, Building2, BookMarked,
@@ -8,13 +8,13 @@ import {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 function SectionLabel({ text, light }: { text: string; light?: boolean }) {
   return (
     <p
-      style={{ fontFamily: "'Fira Code', monospace" }}
+
       className={`text-xs mb-3 tracking-wide ${light ? "text-white/50" : "text-[#EC7524]/70"}`}
     >
       // {text.toLowerCase()}
@@ -26,11 +26,9 @@ function SectionHeading({ title, light }: { title: string; light?: boolean }) {
   return (
     <h2
       className={`text-3xl md:text-4xl font-black mb-4 ${light ? "text-white" : "text-foreground"}`}
-      style={{ fontFamily: "'Fira Code', monospace" }}
+
     >
-      <span className={light ? "text-white/20" : "text-foreground/20"}>&lt;</span>
       <span> {title} </span>
-      <span className={light ? "text-white/20" : "text-foreground/20"}>/&gt;</span>
     </h2>
   );
 }
@@ -187,18 +185,13 @@ export default function Sponsors() {
 
       {/* Hero */}
       <section className="bg-[#114634] py-24 md:py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-        />
         <div className="relative max-w-5xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-white/50 text-xs mb-5 tracking-widest uppercase">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+            <p className="text-white/50 text-xs mb-5 tracking-widest uppercase">
               2025 - 2026 Corporate Sponsorship Packet
             </p>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6" style={{ fontFamily: "'Fira Code', monospace" }}>
-              <span className="text-white/30">&lt;</span>
+            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
               <span> Partner With Us </span>
-              <span className="text-white/30">/&gt;</span>
             </h1>
             <p className="text-white/75 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
               Our members are technically elite, community-driven, and ready to work. Partner with ColorStack UTD to build your pipeline of the best Black, Latinx, and Indigenous engineers at UT Dallas.
@@ -215,17 +208,17 @@ export default function Sponsors() {
       </section>
 
       {/* The Ideal Corporate Partner */}
-      <section className="bg-[#EC7524] py-20 md:py-28 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-white/60 text-xs mb-3 tracking-widest uppercase">
+      <section className="chapter-section chapter-partners">
+        <div className="chapter-shell chapter-sticky-grid">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="chapter-sticky-heading">
+            <p className="chapter-kicker mb-3">
               // who we work best with
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white" style={{ fontFamily: "'Fira Code', monospace" }}>
+            <h2 className="chapter-heading">
               The Ideal Corporate Partner
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="chapter-feature-list">
             {idealPartner.map(({ Icon, text }, i) => (
               <motion.div
                 key={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -246,10 +239,10 @@ export default function Sponsors() {
       <section className="bg-[#1a1a1a] py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/60 text-xs mb-3 tracking-widest uppercase">
+            <p className="text-[#EC7524]/60 text-xs mb-3 tracking-widest uppercase">
               // what we do for our members
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white" style={{ fontFamily: "'Fira Code', monospace" }}>
+            <h2 className="text-3xl md:text-4xl font-black text-white">
               Our Plans
             </h2>
           </motion.div>
@@ -281,7 +274,7 @@ export default function Sponsors() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 items-start">
+          <div className="chapter-partner-rail" tabIndex={0} aria-label="Sponsorship Tiers">
             {tiers.map((tier, i) => {
               const s = tierStyles(tier.style);
               return (
@@ -299,7 +292,7 @@ export default function Sponsors() {
 
                   <div className="p-6 flex flex-col flex-1">
                     {/* Tier name */}
-                    <p className={`text-lg font-black mb-1 ${s.name}`} style={{ fontFamily: "'Fira Code', monospace" }}>
+                    <p className={`text-lg font-black mb-1 ${s.name}`}>
                       {tier.name}
                     </p>
                     {/* Price */}
@@ -382,17 +375,14 @@ export default function Sponsors() {
 
       {/* CTA */}
       <section className="bg-[#114634] py-20 md:py-28 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05]"
-          style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-        />
         <motion.div
           variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
           className="relative max-w-3xl mx-auto text-center"
         >
-          <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-white/50 text-xs mb-4 tracking-widest uppercase">
+          <p className="text-white/50 text-xs mb-4 tracking-widest uppercase">
             // let's build together
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-5" style={{ fontFamily: "'Fira Code', monospace" }}>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-5">
             Ready To Partner With Us?
           </h2>
           <p className="text-white/70 text-lg mb-10 leading-relaxed">

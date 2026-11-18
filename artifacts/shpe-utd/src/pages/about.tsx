@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -66,11 +66,9 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="flex-1"
           >
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// who we are</p>
-            <h2 className="text-4xl font-black text-secondary mb-8" style={{ fontFamily: "'Fira Code', monospace" }}>
-              <span className="text-secondary/30">&lt;</span>
+            <p className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// who we are</p>
+            <h2 className="text-4xl font-black text-secondary mb-8">
               <span> Our Story </span>
-              <span className="text-secondary/30">/&gt;</span>
             </h2>
             <div className="space-y-6 text-lg text-foreground/80 leading-relaxed font-medium">
               <p>
@@ -96,7 +94,7 @@ export default function About() {
             className="flex-1 w-full"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
-              <img src={aboutImg} alt="ColorStack UTD Tech Panel" className="w-full object-cover object-bottom" style={{ height: "420px" }} />
+              <img loading="lazy" decoding="async" src={aboutImg} alt="ColorStack UTD Tech Panel" className="w-full object-cover object-bottom" style={{ height: "420px" }} />
             </div>
           </motion.div>
         </div>
@@ -106,11 +104,9 @@ export default function About() {
       <section className="bg-[#F5F5F5] py-24 px-4 border-y border-border">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <p style={{ fontFamily: "'Fira Code', monospace" }} className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// what drives us</p>
-            <h2 className="text-4xl font-black text-foreground" style={{ fontFamily: "'Fira Code', monospace" }}>
-              <span className="text-foreground/25">&lt;</span>
+            <p className="text-[#EC7524]/70 text-xs mb-3 tracking-wide">// what drives us</p>
+            <h2 className="text-4xl font-black text-foreground">
               <span> Our Core Values </span>
-              <span className="text-foreground/25">/&gt;</span>
             </h2>
           </div>
 

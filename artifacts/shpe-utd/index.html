@@ -2,15 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if (location.pathname === "/") {
+        const heroPreload = document.createElement("link");
+        heroPreload.rel = "preload";
+        heroPreload.as = "image";
+        heroPreload.imageSrcset = "/hero-mobile.webp 800w, /hero.webp 1600w";
+        heroPreload.imageSizes = "(min-width: 900px) 55vw, 100vw";
+        heroPreload.fetchPriority = "high";
+        document.head.append(heroPreload);
+      }
+    </script>
     <title>ColorStack At The University Of Texas At Dallas</title>
     <meta name="description" content="ColorStack UTD is building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected." />
     <meta property="og:title" content="ColorStack At The University Of Texas At Dallas" />
     <meta property="og:description" content="ColorStack UTD is building the next generation of Black, Latinx, and Indigenous engineers at UT Dallas. Come get technical. Come get connected." />
     <link rel="icon" type="image/png" href="/colorstack-logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>

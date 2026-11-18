@@ -510,19 +510,20 @@
 .review-hero-copy [data-testid="button-hero-join"]:hover { background: var(--chapter-orange-hover); }
 .chapter-secondary { border-color: var(--review-green); color: var(--review-green); }
 .chapter-secondary:hover { background: var(--chapter-mint); color: var(--review-green); }
-.review-events { background: var(--chapter-green-wash); }
-.review-events h2 span { color: var(--review-green); }
+.review-events { background: var(--review-green); }
+.review-events h2 { color: var(--chapter-white); }
+.review-events h2 > span:not(:nth-child(2)) { color: var(--review-orange); }
 .review-events button[aria-label="Previous"],
 .review-events button[aria-label="Next"] { background: var(--review-orange); color: var(--chapter-ink); }
 .review-events button[aria-label="Previous"]:hover,
 .review-events button[aria-label="Next"]:hover { background: var(--chapter-orange-hover); }
-.review-events button[aria-label^="Go to slide"][class~="w-6"] { box-shadow: 0 0 0 1px var(--review-green); }
-.review-events button[aria-label^="Go to slide"][class~="w-2"] { background: var(--chapter-muted); }
+.review-events button[aria-label^="Go to slide"][class~="w-2"] { background: var(--chapter-on-green-muted); }
 .review-testimonials { background: var(--chapter-white); }
 .review-testimonials button:hover { color: var(--review-green); }
 .review-home :is(a, button):focus-visible,
 .review-program a:focus-visible { outline-color: var(--review-green); }
 .review-home .review-board :is(a, button):focus-visible { outline-color: var(--chapter-orange-text); }
+.review-home .review-events button:focus-visible { outline-color: var(--chapter-white); }
 .review-home .review-cta .bg-primary :is(a, button):focus-visible,
 .review-program :is(.review-program-hero, .review-program-last) a:focus-visible { outline-color: var(--chapter-mint); }
 

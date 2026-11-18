@@ -25,7 +25,6 @@ import akramImg from "@assets/Akram_Hassen_1778782883426.jpg";
 import musaImg from "@assets/Musa_Mudesir_1778782883428.jpg";
 import nadirImg from "@assets/Nadir_Muktar_1778782883428.jpg";
 import joseImg from "@assets/Jose_Rogel_1778782883427.png";
-import sabrinaImg from "@assets/Sabrina_Abubaker_1778782883430.jpg";
 import timageImg from "@assets/Timage_Abubaker_1778782883430.jpg";
 import hassetImg from "@assets/Hasset_Getachew_1778782883426.jpg";
 import henosImg from "@assets/Henos_1778797249996.webp";
@@ -92,7 +91,6 @@ const ambassadors2025: Ambassador[] = [
   { name: "Damian Aguilar", image: damianImg, linkedinUrl: "https://www.linkedin.com/in/damianaguilar2004/" },
   { name: "Henos Tekie", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Mamoudou Balde", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/" },
-  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
 ];
 
@@ -124,7 +122,6 @@ const ambassadors2026: Ambassador[] = [
   { name: "Ahmed (Izzeldin) Ahmed", title: "Mentor", image: ahmedImg, linkedinUrl: "https://www.linkedin.com/in/ahmed-ahmed-03078a279/", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
-  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
 ];
 
 // ── Shared ───────────────────────────────────────────────────────────────────

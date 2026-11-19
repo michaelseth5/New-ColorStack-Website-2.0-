@@ -595,6 +595,12 @@ export default function Events() {
         time: "November 18, 2026",
         location: "FO 1.202, UT Dallas",
         desc: "ColorStack UTD collaborated with Women Who Compute UT Dallas, the Society of Women Engineers - UTD Chapter (Ladies in Tech Mentoring Program), and the OpenAI Student Collective for Level Up. Build Together., a hands-on AI workshop. Students explored ChatGPT Work, learned how AI can accelerate software development, and built multiplayer games using AI-powered tools.",
+        image: `${BASE}/openai-workshop-classroom.webp`,
+        photos: [
+          `${BASE}/openai-workshop-classroom.webp`,
+          `${BASE}/openai-workshop-group.webp`,
+          `${BASE}/openai-workshop-collaboration.webp`,
+        ],
         lead: "Students from different majors and technical backgrounds came together to learn, experiment, and build.",
         sections: [
           {

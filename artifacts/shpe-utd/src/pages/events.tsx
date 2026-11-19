@@ -31,6 +31,7 @@ interface BaseEvent {
   location?: string;
   desc: string;
   image?: string;
+  flyer?: boolean;
   photos?: string[];
   symbol?: SymbolConfig;
   recap?: string;
@@ -205,28 +206,32 @@ function GBMCard({ event, idx }: { event: BaseEvent; idx: number }) {
             <motion.img
               key={current}
               src={photos[current]}
-              alt={`${event.title} photo ${current + 1}`}
+              alt={event.flyer ? `${event.title} flyer` : `${event.title} photo ${current + 1}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="absolute inset-0 h-full w-full object-cover"
+              className={`absolute inset-0 h-full w-full ${event.flyer ? "bg-[#f7f4ef] object-contain" : "object-cover"}`}
             />
           </AnimatePresence>
-          <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
-            {event.date}
-          </div>
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {photos.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  i === current ? "bg-white scale-125" : "bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
+          {!event.flyer && (
+            <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-wider shadow-lg transform rotate-2">
+              {event.date}
+            </div>
+          )}
+          {!event.flyer && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-white scale-125" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Content */}
@@ -615,6 +620,15 @@ export default function Events() {
             <Users size={38} className="text-white" strokeWidth={1} />,
           ],
         },
+      },
+      {
+        title: "Yapp Session",
+        date: "SEP 24",
+        time: "September 24, 2026",
+        location: "Sweet Hut Bakery & Cafe, 2001 Coit Rd, Suite 301, Plano, TX 75075",
+        desc: "Coffee, matcha, and board games from 6:00 PM to 8:00 PM. Too much yapping was done.",
+        image: `${BASE}/yapp-session.webp`,
+        flyer: true,
       },
       {
         title: "Career Fair Prep 101 Workshop",

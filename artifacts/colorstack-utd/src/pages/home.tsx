@@ -537,6 +537,24 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── MEMBER TESTIMONIALS — orange gradient feature ── */}
+        <section id="testimonials" aria-labelledby="testimonials-heading" className="relative isolate overflow-hidden py-20 md:py-28 text-white" style={{ background: "radial-gradient(ellipse at 72% 16%, #ffb13d 0%, transparent 38%), radial-gradient(ellipse at 16% 70%, #ff9c2f 0%, transparent 40%), linear-gradient(125deg, #c8320b 0%, #f05a0d 47%, #ff840e 75%, #d93c08 100%)" }}>
+          <div aria-hidden="true" className="pointer-events-none absolute -top-44 -left-28 h-[25rem] w-[40rem] rounded-[50%] border border-orange-100/20 bg-orange-300/15 rotate-[-22deg]" />
+          <div aria-hidden="true" className="pointer-events-none absolute -bottom-72 -right-28 h-[30rem] w-[75rem] rounded-[50%] border border-orange-100/25 bg-orange-200/20 rotate-[-12deg]" />
+          <div aria-hidden="true" className="pointer-events-none absolute -bottom-80 -left-40 h-[28rem] w-[65rem] rounded-[50%] border border-orange-100/20 bg-orange-200/20 rotate-[12deg]" />
+          <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+            <h2 id="testimonials-heading" className="text-3xl font-bold tracking-tight drop-shadow-sm md:text-5xl">
+              <span className="text-orange-200/80">&lt; </span>Member Testimonials<span className="text-orange-200/80"> /&gt;</span>
+            </h2>
+            <p className="mt-4 text-base text-orange-50 md:text-lg">Hear directly from our members.</p>
+            <figure className="mx-auto mt-10 max-w-4xl rounded-[2rem] border border-white/75 bg-gradient-to-br from-orange-50/95 via-orange-100/90 to-orange-200/90 px-7 py-10 shadow-[0_24px_70px_rgba(103,30,0,0.26),inset_0_1px_18px_rgba(255,255,255,0.6)] backdrop-blur-lg md:px-14 md:py-14">
+              <blockquote className="text-lg font-semibold italic leading-relaxed text-stone-900 md:text-2xl">
+                &ldquo;Walking into a room full of Black and Latinx engineers who are thriving. That's powerful. ColorStack changed how I see myself in this industry.&rdquo;
+              </blockquote>
+            </figure>
+          </div>
+        </section>
+
         {/* ── CONTACT (SHPE form + ACM CTA headline) ── */}
         <section id="contact" className="py-28">
           <div className="max-w-7xl mx-auto px-6">

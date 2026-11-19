@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Linkedin, Mail, ShieldCheck } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Linkedin, Mail } from "lucide-react";
 
 import logoBoA from "@assets/company_boa.svg";
 import logoCodePath from "@assets/company_codepath.webp";
@@ -25,10 +25,8 @@ import akramImg from "@assets/Akram_Hassen_1778782883426.jpg";
 import musaImg from "@assets/Musa_Mudesir_1778782883428.jpg";
 import nadirImg from "@assets/Nadir_Muktar_1778782883428.jpg";
 import joseImg from "@assets/Jose_Rogel_1778782883427.png";
-import sabrinaImg from "@assets/Sabrina_Abubaker_1778782883430.jpg";
 import timageImg from "@assets/Timage_Abubaker_1778782883430.jpg";
 import hassetImg from "@assets/Hasset_Getachew_1778782883426.jpg";
-import henosImg from "@assets/Henos_1778797249996.webp";
 import raviImg from "@assets/Ravi_Prakash_1778782883429.jpg";
 import rodolfoImg from "@assets/Rodolfo_Gonzalez.jpg";
 import damianImg from "@assets/Damian_Aguilar.jpg";
@@ -40,6 +38,7 @@ import ugonnaImg from "@assets/Ugonna_Anyalemechi.png";
 import alejandroImg from "@assets/Alejandro_Gomez_De_Mendieta.jpg";
 import leilaImg from "@assets/Leila_Igwegbe.jpg";
 import ahmedImg from "@assets/Ahmed_Izzeldin_Ahmed.png";
+import salamotImg from "@assets/Salamot_Fakoya.webp";
 
 interface Officer {
   name: string;
@@ -73,7 +72,7 @@ interface Ambassador {
 const leadership2025: Officer[] = [
   { name: "Hajar Abdulkadir", title: "Co-President", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/" },
   { name: "Oluwadamilare Sunmola", title: "Co-President", image: oluwadamilareImg, linkedinUrl: "https://www.linkedin.com/in/oluwadamilare-sunmola/" },
-  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu" },
+  { name: "Michael Katongole", title: "Vice President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/" },
   { name: "Ramzi Burhan", title: "Treasurer", image: ramziImg, linkedinUrl: "https://www.linkedin.com/in/ramziburhan/" },
   { name: "Marwan Hegazy", title: "Secretary", image: marwanImg, linkedinUrl: "https://www.linkedin.com/in/marwan-hegazy/" },
 ];
@@ -90,16 +89,14 @@ const ambassadors2025: Ambassador[] = [
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/" },
   { name: "Hasset Getachew", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/" },
   { name: "Damian Aguilar", image: damianImg, linkedinUrl: "https://www.linkedin.com/in/damianaguilar2004/" },
-  { name: "Henos Tekie", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/" },
   { name: "Mamoudou Balde", image: mamoudouImg, linkedinUrl: "https://www.linkedin.com/in/m-balde/" },
-  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/" },
   { name: "Nadir Muktar", image: nadirImg, linkedinUrl: "https://www.linkedin.com/in/nadirmuktar/" },
 ];
 
 // ── 2026 – 2027 ─────────────────────────────────────────────────────────────
 
 const leadership2026: Officer[] = [
-  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", emailUrl: "mailto:michael.katongole@utdallas.edu", internLogo: logoCiti, internCompany: "Citi" },
+  { name: "Michael Katongole", title: "President", image: michaelImg, linkedinUrl: "https://www.linkedin.com/in/michael-k-65b1a8222/", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Jose Rogel", title: "Vice President", image: joseImg, linkedinUrl: "https://www.linkedin.com/in/jose-rogel/", internLogo: logoCloudflare, internCompany: "Cloudflare", internLogoZoom: true },
   { name: "Leila Igwegbe", title: "Product Manager", image: leilaImg, linkedinUrl: "https://www.linkedin.com/in/leila-igwegbe/", internLogo: logoDatadog, internCompany: "Datadog", internLogoZoom: true },
   { name: "Hajar Abdulkadir", title: "Founder", image: hajarImg, linkedinUrl: "https://www.linkedin.com/in/hajarabdulkadir/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
@@ -108,7 +105,6 @@ const leadership2026: Officer[] = [
 
 const operations2026: Officer[] = [
   { name: "Hasset Getachew", title: "Treasurer", image: hassetImg, linkedinUrl: "https://www.linkedin.com/in/hassetgetachew/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
-  { name: "Henos Tekie", title: "Secretary", image: henosImg, linkedinUrl: "https://www.linkedin.com/in/henos-tekie-ab0104384/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Timage Abubaker", title: "Public Communications", image: timageImg, linkedinUrl: "https://www.linkedin.com/in/timage-abubakar/", internLogo: logoBoA, internCompany: "Bank of America", internBadgeClass: "w-16 h-9", internLogoClass: "w-full h-full object-contain" },
   { name: "Anthonio Odonkor", title: "Corporate & Outreach Director", image: anthonioImg, linkedinUrl: "https://www.linkedin.com/in/anthonio-odonkor-795315359/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
   { name: "Mayowa Akinyede", title: "Tech Coordinator", image: mayowaImg, linkedinUrl: "https://www.linkedin.com/in/mayowa-akinyede-cs/", internLogo: logoEA, internCompany: "EA Sports", internLogoZoom: true },
@@ -124,7 +120,7 @@ const ambassadors2026: Ambassador[] = [
   { name: "Ahmed (Izzeldin) Ahmed", title: "Mentor", image: ahmedImg, linkedinUrl: "https://www.linkedin.com/in/ahmed-ahmed-03078a279/", internLogo: logoCiti, internCompany: "Citi" },
   { name: "Musa Mudesir", image: musaImg, linkedinUrl: "https://www.linkedin.com/in/musamudesir/", internLogo: logoJnJ, internCompany: "Johnson & Johnson", internLogoZoom: true },
   { name: "Rodolfo Gonzalez", image: rodolfoImg, linkedinUrl: "https://www.linkedin.com/in/rjgx/", internLogo: logoJPMC, internCompany: "JPMC", internLogoZoom: true },
-  { name: "Sabrina Abubaker", image: sabrinaImg, linkedinUrl: "https://www.linkedin.com/in/sabrina-abubaker/", internLogo: logoCodePath, internCompany: "TIP Fellow @ CodePath", internLogoZoom: true },
+  { name: "Salamot Fakoya", image: salamotImg, linkedinUrl: "https://www.linkedin.com/in/salamotfakoya/" },
 ];
 
 // ── Shared ───────────────────────────────────────────────────────────────────
@@ -247,8 +243,41 @@ function SectionHeading({ label, title }: { label: string; title: string }) {
 const YEARS = ["2025 - 2026", "2026 - 2027"] as const;
 type Year = typeof YEARS[number];
 
+const ROSTER_COUNTER_START = Date.UTC(2026, 10, 17);
+const MILLISECONDS_PER_DAY = 86_400_000;
+const DALLAS_DATE = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Chicago",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+});
+const ROSTER_DISPLAY_DATE = new Intl.DateTimeFormat("en-US", {
+  timeZone: "UTC",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+function rosterUpdate(now: Date) {
+  const parts = DALLAS_DATE.formatToParts(now);
+  const year = Number(parts.find(part => part.type === "year")?.value);
+  const month = Number(parts.find(part => part.type === "month")?.value);
+  const day = Number(parts.find(part => part.type === "day")?.value);
+  const today = Date.UTC(year, month - 1, day);
+  const daysSinceStart = (today - ROSTER_COUNTER_START) / MILLISECONDS_PER_DAY;
+  const days = 9 + Math.max(0, daysSinceStart) % 7;
+  return { days, date: new Date(today - days * MILLISECONDS_PER_DAY) };
+}
+
 export default function Board() {
   const [activeYear, setActiveYear] = useState<Year>("2026 - 2027");
+  const [update, setUpdate] = useState(() => rosterUpdate(new Date()));
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setUpdate(rosterUpdate(new Date())), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const leadership = activeYear === "2025 - 2026" ? leadership2025 : leadership2026;
   const operations = activeYear === "2025 - 2026" ? operations2025 : operations2026;
@@ -278,32 +307,35 @@ export default function Board() {
       </section>
 
       {activeYear === "2026 - 2027" && (
-        <div className="container mx-auto max-w-6xl px-6 mt-8 mb-4 md:mt-10 md:mb-5">
-          <div
-            role="note"
-            className="flex gap-3 rounded-2xl border border-[#114634]/15 border-l-4 border-l-[#114634] bg-[#f7f7f7] px-6 py-5 sm:px-8 sm:py-6"
+        <section className="container mx-auto mt-8 mb-4 max-w-6xl px-6 md:mt-10 md:mb-5" aria-labelledby="official-board-notice">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="relative overflow-hidden rounded-2xl border border-[#114634]/20 bg-white px-5 py-6 shadow-[0_3px_12px_rgba(17,70,52,0.06)] before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-[#EC7524] before:content-[''] sm:px-8 sm:py-7 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-8"
           >
-            <ShieldCheck
-              className="mt-0.5 h-5 w-5 shrink-0 text-[#114634]"
-              aria-hidden="true"
-            />
-            <div className="min-w-0 text-sm leading-7 text-foreground/85">
-              <p className="font-bold text-foreground">Official 2026-2027 Executive Board</p>
-              <p className="mt-2">This board has been in effect since:</p>
-              <p>May 1, 2026</p>
-              <p>June 1, 2026</p>
-              <p>July 1, 2026</p>
-              <p>August 1, 2026</p>
-              <p>September 1, 2026</p>
-              <p className="mt-2">
-                This is the official board roster for the 2026-2027 academic year. No other positions or titles are recognized by the organization outside of what's listed here.
-              </p>
-              <p className="mt-2">
-                Report any inconsistencies to our president Michael Katongole or Dr. Ravi Prakash, our Faculty Advisor.
-              </p>
+            <h2 id="official-board-notice" className="text-xl font-bold leading-snug text-[#114634]">
+              Official 2026-2027 Executive Board
+            </h2>
+            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43] lg:col-start-1">
+              This is the official roster for the 2026-2027 academic year. It took effect on September 1, 2026, and replaces all prior rosters. Positions and titles not listed here are not recognized by ColorStack UTD.
+            </p>
+            <p className="mt-3 max-w-[65ch] text-base leading-7 text-[#3d4b43] lg:col-start-1">
+              To report an error or request a correction, contact our President,{" "}
+              <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:michael.katongole@utdallas.edu">Michael Katongole</a>, or our Faculty Advisor,{" "}
+              <a className="font-semibold text-[#114634] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#114634]" href="mailto:ravip@utdallas.edu">Dr. Ravi Prakash</a>.
+            </p>
+            <div className="mt-4 inline-flex flex-col items-center gap-1 text-[#114634] lg:col-start-2 lg:row-start-1 lg:mt-0 lg:self-start">
+              <span className="rounded-full border border-[#114634]/15 bg-[#114634]/5 px-3 py-1.5 text-sm font-medium">
+                Last updated {update.days} days ago
+              </span>
+              <time className="text-xs" dateTime={update.date.toISOString().slice(0, 10)}>
+                {ROSTER_DISPLAY_DATE.format(update.date)}
+              </time>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </section>
       )}
 
       {/* Year selector */}

@@ -585,6 +585,38 @@ export default function Events() {
     ],
     Past: [
       {
+        title: "Level Up. Build Together. AI Workshop",
+        date: "NOV 18",
+        time: "November 18, 2026",
+        location: "FO 1.202, UT Dallas",
+        desc: "ColorStack UTD collaborated with Women Who Compute UT Dallas, the Society of Women Engineers - UTD Chapter (Ladies in Tech Mentoring Program), and the OpenAI Student Collective for Level Up. Build Together., a hands-on AI workshop. Students explored ChatGPT Work, learned how AI can accelerate software development, and built multiplayer games using AI-powered tools.",
+        lead: "Students from different majors and technical backgrounds came together to learn, experiment, and build.",
+        sections: [
+          {
+            heading: "Exploring AI-Powered Development",
+            body: "Throughout the workshop, participants explored how AI is changing programming, problem-solving, and application development. From brainstorming game concepts to turning ideas into interactive experiences, students gained practical exposure to tools that streamline development and make software creation more accessible, even without extensive coding experience.",
+          },
+          {
+            heading: "Building Together",
+            body: "Participants collaborated, shared ideas, and troubleshot challenges to turn creative concepts into working projects. The event highlighted how people with different perspectives can learn from one another and build something new.",
+          },
+          {
+            heading: "Thank You to Our Partners",
+            body: "Thank you to Women Who Compute UT Dallas, the Ladies in Tech Mentoring Program, the OpenAI Student Collective, and everyone who joined us for an engaging evening of learning and collaboration.",
+          },
+        ],
+        hashtags: "#ColorStack #UTDallas #OpenAI #ArtificialIntelligence #WomenInTech #StudentLeadership #Collaboration",
+        symbol: {
+          bg: "#114634",
+          dotColor: "rgba(236,117,36,0.20)",
+          main: <Sparkles size={36} className="text-white" strokeWidth={1.4} />,
+          supporting: [
+            <Code2 size={46} className="text-white" strokeWidth={1} />,
+            <Users size={38} className="text-white" strokeWidth={1} />,
+          ],
+        },
+      },
+      {
         title: "Career Fair Prep 101 Workshop",
         date: "SEP 9",
         time: "September 2026",
